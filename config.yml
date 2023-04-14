@@ -1,0 +1,105 @@
+baseURL: https://dhtzs.dev/
+languageCode: en-us
+title: "dhtzs.dev"
+theme: PaperMod
+
+enableRobotsTXT: true
+sitemap:
+  changefreq: "monthly"
+  filename: "sitemap.xml"
+
+# minify:
+#   disableXML: true
+#   minifyOutput: true
+disableHugoGeneratorInject: true
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+params:
+  env: "production"
+  title: "Dimitris Chatzis - Portfolio"
+  description: "Portfolio of Dimitris Chatzis"
+  author: "Dimitris Chatzis"
+  keywords: ["Dimitris Chatzis", "portfolio"]
+  DateFormat: "January 2, 2006"
+  disableAnchoredHeadings: true
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowCodeCopyButtons: false
+  defaultTheme: auto
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hideMeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+  socialIcons:
+    - name: "LinkedIn"
+      url: "https://linkedin.com/in/dimitris-chatzis"
+    - name: "Twitter"
+      url: "https://twitter.com/dhtzs"
+    - name: "GitHub"
+      url: "https://github.com/dhtzs"
+    - name: "HackerOne"
+      url: "https://discordapp.com/users/685173086022402060"
+    - name: "Discord"
+      url: "https://hackerone.com/dhtzs"
+    - name: "Bugcrowd"
+      url: "https://bugcrowd.com/dhtzs"
+    - name: "Intigriti"
+      url: "https://intigriti.com/profile/dhtzs"
+    - name: "Email"
+      url: "bWFpbHRvOmRodHpzMjAwMUBob3RtYWlsLmNvbQ=="
+  schema:
+    sameAs:
+      - "https://linkedin.com/in/dimitris-chatzis"
+      - "https://twitter.com/dhtzs"
+      - "https://github.com/dhtzs"
+      - "https://discordapp.com/users/685173086022402060"
+      - "https://hackerone.com/dhtzs"
+      - "https://bugcrowd.com/dhtzs"
+      - "https://intigriti.com/profile/dhtzs"
+  assets:
+    disableHLJS: true
+    favicon: "favicon.ico"
+    favicon16x16: "favicons/favicon-16x16.png"
+    favicon32x32: "favicons/favicon-32x32.png"
+    apple_touch_icon: "favicons/favicon-180x180.png"
+    safari_pinned_tab: "favicons/favicon.svg"
+    theme_color: "#1D1E20"
+    msapplication_TileColor: "#1D1E20"
+
+copyright: "© 2023 Dimitris Chatzis. All rights reserved."
+
+menu:
+  main:
+  - name: "Profile"
+    url: "/"
+    weight: 1
+  - name: "About me"
+    url: "/about-me"
+    weight: 2
+  - name: "Career"
+    url: "/career"
+    weight: 3
+
+outputs:
+    home:
+      - HTML
+      - JSON
+
+languages:
+    en:
+      languageName: "English"
+      weight: 1
+      profileMode:
+        enabled: true
+        title: "Dimitris Chatzis"
+        subtitle: "Student of [Digital Systems](https://ds.uth.gr/en) in [University of Thessaly](https://www.uth.gr/en), programmer and hacking enthusiast. Bug Bounty Hunter at HackerOne, Bugcrowd and Intigriti."
+        imageUrl: "/assets/images/profile"
+        imageTitle: "Dimitris Chatzis"

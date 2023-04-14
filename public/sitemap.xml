@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://dhtzs.dev/about-me/</loc>
+    <changefreq>monthly</changefreq>
+  </url><url>
+    <loc>https://dhtzs.dev/career/</loc>
+    <changefreq>monthly</changefreq>
+  </url><url>
+    <loc>https://dhtzs.dev/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

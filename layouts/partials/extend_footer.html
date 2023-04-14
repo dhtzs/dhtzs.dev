@@ -1,0 +1,20 @@
+
+
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js", {
+            updateViaCache: "none"
+        }).catch(function(err) {
+            return console.error(err);
+        });
+    }
+</script>
+<script>
+    var email = document.querySelector('a[title^="Email"]');
+    if (email) {
+        email.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = atob(this.getAttribute("href"));
+        });
+    }
+</script>
