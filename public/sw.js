@@ -2,7 +2,7 @@ var cacheName = "cache_v1",
 	urlsToCache = [
 		"/",
 		"about-me",
-		"career",
+		"overview",
 		"site.webmanifest",
 		"assets/css/custom.css",
 		"assets/images/profile.jpg"

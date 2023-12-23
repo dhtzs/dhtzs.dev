@@ -45,9 +45,9 @@ params:
       url: "https://twitter.com/dhtzs"
     - name: "GitHub"
       url: "https://github.com/dhtzs"
-    - name: "HackerOne"
-      url: "https://discordapp.com/users/685173086022402060"
     - name: "Discord"
+      url: "https://discordapp.com/users/685173086022402060"
+    - name: "HackerOne"
       url: "https://hackerone.com/dhtzs"
     - name: "Bugcrowd"
       url: "https://bugcrowd.com/dhtzs"
@@ -84,8 +84,8 @@ menu:
   - name: "About me"
     url: "/about-me"
     weight: 2
-  - name: "Career"
-    url: "/career"
+  - name: "Overview"
+    url: "/overview"
     weight: 3
 
 outputs:

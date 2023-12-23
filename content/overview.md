@@ -1,10 +1,10 @@
 ---
-title: "Career"
-description: "Career | Portfolio of Dimitris Chatzis"
+title: "Overview"
+description: "Overview | Portfolio of Dimitris Chatzis"
 author: "Dimitris Chatzis"
 keywords: ["Dimitris Chatzis", "portfolio"]
 layout: "single"
-url: "/career/"
+url: "/overview/"
 hideMeta: true
 draft: false
 ---

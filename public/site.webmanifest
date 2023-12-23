@@ -87,8 +87,8 @@
 				}
 			]
 		}, {
-			"name": "Career",
-			"url": "/career/",
+			"name": "Overview",
+			"url": "/overview/",
 			"icons": [
 				{
 					"src": "favicons/favicon-72x72.png",
