@@ -1,3 +1,11 @@
+::-moz-selection {
+    background: var(--tertiary);
+}
+
+::selection {
+    background: var(--tertiary);
+}
+
 .logo a::after {
     content: "";
     position: relative;

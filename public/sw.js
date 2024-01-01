@@ -1,8 +1,7 @@
-var cacheName = "cache_v1",
+var cacheName = "cache_v2",
 	urlsToCache = [
 		"/",
 		"about-me",
-		"overview",
 		"write-ups",
 		"site.webmanifest",
 		"assets/images/profile.jpg"

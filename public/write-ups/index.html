@@ -10,7 +10,7 @@
 <meta name="description" content="Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.">
 <meta name="author" content="Dimitris Chatzis">
 <link rel="canonical" href="https://dhtzs.dev/write-ups/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.b8c3fc66da5a5f52abf98ce194e7e782e16f5e896c5c225e5eb45ab1ffbf6194.css" integrity="sha256-uMP8ZtpaX1Kr&#43;YzhlOfnguFvXolsXCJeXrRasf&#43;/YZQ=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d01dd1350714100f774dd955702bd814c794f38f6c3522ea7026531703c15efd.css" integrity="sha256-0B3RNQcUEA93TdlVcCvYFMeU849sNSLqcCZTFwPBXv0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://dhtzs.dev/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://dhtzs.dev/favicons/favicon-32x32.png">
@@ -65,7 +65,18 @@
     html, body {
         font-family: 'Nunito', sans-serif !important;
     }
-</style><meta property="og:title" content="Write-ups" />
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVC4CS3028"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LVC4CS3028', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Write-ups" />
 <meta property="og:description" content="Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dhtzs.dev/write-ups/" /><meta property="article:section" content="" />
@@ -126,7 +137,7 @@
 </script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add("dark");
@@ -167,18 +178,13 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://dhtzs.dev/" title="Profile">
-                    <span>Profile</span>
+                <a href="https://dhtzs.dev/" title="Home">
+                    <span>Home</span>
                 </a>
             </li>
             <li>
                 <a href="https://dhtzs.dev/about-me" title="About me">
                     <span>About me</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dhtzs.dev/overview" title="Overview">
-                    <span>Overview</span>
                 </a>
             </li>
             <li>
@@ -191,21 +197,29 @@
 </header>
 <main class="main">
 
-<header class="page-header">
-  <h1>Write-ups</h1>
-  <div class="post-description">
-    Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.
-  </div>
-</header>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Write-ups
+    </h1>
+    <div class="post-meta">0 min&nbsp;·&nbsp;0 words&nbsp;·&nbsp;Dimitris Chatzis
+
+</div>
+  </header> 
+
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer>
+</article>
     </main>
     
 <footer class="footer">
-    <p>Copyright &copy; 2023 - 2024 | All rights reserved</p>
+    <p>Copyright &copy; 2024 | All rights reserved</p>
     <p>&lt;/&gt; with ❤️ and ☕ by Dimitris Chatzis</p>
-    <p>Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </p>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
@@ -280,6 +294,53 @@
         } else {
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll("pre > code").forEach(function(codeblock) {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement("button");
+        copybutton.classList.add("copy-code");
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(function() {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener("click", function(cb) {
+            if ("clipboard" in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand("copy");
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
         }
     });
 </script>

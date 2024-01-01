@@ -7,6 +7,7 @@ enableRobotsTXT: true
 sitemap:
   changefreq: "monthly"
   filename: "sitemap.xml"
+googleAnalytics: "G-LVC4CS3028"
 
 # minify:
 #   disableXML: true
@@ -74,6 +75,11 @@ params:
     theme_color: "#1D1E20"
     msapplication_TileColor: "#1D1E20"
 
+editPost:
+  URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content/"
+  Text: "Suggest changes"
+  appendFilePath: true
+
 markup:
   highlight:
     codeFences: true
@@ -83,31 +89,28 @@ markup:
 
 menu:
   main:
-  - name: "Profile"
+  - name: "Home"
     url: "/"
     weight: 1
   - name: "About me"
     url: "/about-me"
     weight: 2
-  - name: "Overview"
-    url: "/overview"
-    weight: 3
   - name: "Write-ups"
     url: "/write-ups"
-    weight: 4
+    weight: 3
 
 outputs:
-    home:
-      - HTML
-      - JSON
+  home:
+    - HTML
+    - JSON
 
 languages:
-    en:
-      languageName: "English"
-      weight: 1
-      profileMode:
-        enabled: true
-        title: "Dimitris Chatzis"
-        subtitle: "Student of [Digital Systems](https://ds.uth.gr/en) in [University of Thessaly](https://www.uth.gr/en), programmer and hacking enthusiast. Bug Bounty Hunter at HackerOne, Bugcrowd and Intigriti."
-        imageUrl: "/images/profile"
-        imageTitle: "Dimitris Chatzis"
+  en:
+    languageName: "English"
+    weight: 1
+    profileMode:
+      enabled: true
+      title: "Dimitris Chatzis"
+      subtitle: "Student of [Digital Systems](https://ds.uth.gr/en) in [University of Thessaly](https://www.uth.gr/en), programmer and hacking enthusiast. Bug Bounty Hunter at HackerOne, Bugcrowd and Intigriti."
+      imageUrl: "/images/profile"
+      imageTitle: "Dimitris Chatzis"
