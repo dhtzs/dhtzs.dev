@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-description: "Dive into my profile 'Overview' - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches."
+description: "Dive into my profile overview — Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches."
 author: "Dimitris Chatzis"
 keywords: ["Dimitris Chatzis", "overview"]
 layout: "single"

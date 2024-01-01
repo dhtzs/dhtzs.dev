@@ -1,6 +1,6 @@
 ---
 title: "About me"
-description: "Discover 'About Me' - A Digital Systems student and ethical hacker passionate about cybersecurity challenges and creative problem-solving."
+description: "Discover about me — A Digital Systems student and ethical hacker passionate about cybersecurity challenges and creative problem-solving."
 author: "Dimitris Chatzis"
 keywords: ["Dimitris Chatzis", "about me"]
 layout: "single"
