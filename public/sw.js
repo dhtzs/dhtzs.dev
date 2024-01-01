@@ -5,7 +5,6 @@ var cacheName = "cache_v1",
 		"overview",
 		"write-ups",
 		"site.webmanifest",
-		"assets/css/custom.css",
 		"assets/images/profile.jpg"
 	];
 

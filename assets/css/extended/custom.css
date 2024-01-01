@@ -1,0 +1,39 @@
+.logo a::after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    background-color: var(--primary);
+    vertical-align: middle;
+    border-radius: 1px;
+    width: 2px;
+    height: 24px;
+    bottom: 2.5px;
+    margin-left: 2.5px;
+    opacity: 0;
+    -webkit-animation: blink 1s step-end infinite;
+    animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.0;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.0;
+    }
+}
