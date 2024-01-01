@@ -1,11 +1,12 @@
 ---
 title: "Overview"
-description: "Overview | Portfolio of Dimitris Chatzis"
+description: "Dive into my profile 'Overview' - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches."
 author: "Dimitris Chatzis"
-keywords: ["Dimitris Chatzis", "portfolio"]
+keywords: ["Dimitris Chatzis", "overview"]
 layout: "single"
 url: "/overview/"
 hideMeta: true
+disableShare: true
 draft: false
 ---
 

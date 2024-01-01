@@ -1,11 +1,12 @@
 ---
 title: "About me"
-description: "About me | Portfolio of Dimitris Chatzis"
+description: "Discover 'About Me' - A Digital Systems student and ethical hacker passionate about cybersecurity challenges and creative problem-solving."
 author: "Dimitris Chatzis"
-keywords: ["Dimitris Chatzis", "portfolio"]
+keywords: ["Dimitris Chatzis", "about me"]
 layout: "single"
 url: "/about-me/"
 hideMeta: true
+disableShare: true
 draft: false
 ---
 

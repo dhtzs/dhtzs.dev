@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Overview | dhtzs.dev</title>
-<meta name="keywords" content="Dimitris Chatzis, portfolio">
-<meta name="description" content="Overview | Portfolio of Dimitris Chatzis">
+<meta name="keywords" content="Dimitris Chatzis, overview">
+<meta name="description" content="Dive into my profile &#39;Overview&#39; - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches.">
 <meta name="author" content="Dimitris Chatzis">
 <link rel="canonical" href="https://dhtzs.dev/overview/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.7140587df96a2b1a49eb723fa7063dc0c641a6cb638f3140e8d3beb4deae4f5c.css" integrity="sha256-cUBYfflqKxpJ63I/pwY9wMZBpstjjzFA6NO&#43;tN6uT1w=" rel="preload stylesheet" as="style">
@@ -66,7 +66,7 @@
         font-family: 'Nunito', sans-serif !important;
     }
 </style><meta property="og:title" content="Overview" />
-<meta property="og:description" content="Overview | Portfolio of Dimitris Chatzis" />
+<meta property="og:description" content="Dive into my profile &#39;Overview&#39; - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dhtzs.dev/overview/" /><meta property="article:section" content="" />
 
@@ -74,7 +74,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Overview"/>
-<meta name="twitter:description" content="Overview | Portfolio of Dimitris Chatzis"/>
+<meta name="twitter:description" content="Dive into my profile &#39;Overview&#39; - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches."/>
 
 
 <script type="application/ld+json">
@@ -97,9 +97,9 @@
   "@type": "BlogPosting",
   "headline": "Overview",
   "name": "Overview",
-  "description": "Overview | Portfolio of Dimitris Chatzis",
+  "description": "Dive into my profile 'Overview' - Explore my expertise on HackerOne, Bugcrowd, and Intigriti, showcasing a commitment to fortifying cybersecurity through methodical approaches.",
   "keywords": [
-    "Dimitris Chatzis", "portfolio"
+    "Dimitris Chatzis", "overview"
   ],
   "articleBody": "Introduction Hi, I’m Dimitris, a passionate bug bounty hunter with a deep interest in improving the security of companies and organizations. I’ve been actively involved in the bug bounty community for several years now, and I’ve gained a wealth of knowledge and experience through my work on various platforms. Bug bounty hunting is more than just a job to me - it’s a true passion that I approach with enthusiasm and dedication.\nExperience and Contributions I’ve had the privilege of engaging with top bug bounty platforms, collaborating with diverse organizations to uncover vulnerabilities and bolster their security posture. In the dynamic landscape of cybersecurity, I prioritize a methodical and data-driven approach. My methodology encompasses a blend of manual testing, automated scanning, and targeted research to identify vulnerabilities. I’m continually exploring new tools and techniques to refine my process, with a specific focus on reconnaissance. My goal is to stay at the forefront of evolving attack vectors and exploitation techniques.\nThroughout my journey in 2022, I demonstrated consistent commitment and perseverance on HackerOne, earning recognition for my contributions. My focus remains on making meaningful contributions to the bug bounty community and refining my skills. If you’re interested in exploring my bug bounty hunting experience further, feel free to check out my profiles on HackerOne, Bugcrowd, and Intigriti. I welcome connections with fellow bug bounty enthusiasts and am always open to discussions on our shared passion.\nBug Bounty Profiles If you’d like to learn more about my bug bounty hunting experience, I encourage you to check out my profiles on each of the platforms I participate in:\nHackerOne Bugcrowd Intigriti On these platforms, you can see my profile, my past submissions, and my overall stats. Feel free to explore and see the impact that I’ve made on each platform. I’m always interested in connecting with others in the bug bounty community, so feel free to reach out and say hello.\nMethodology When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I’m always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and I’m constantly studying new attack vectors and exploitation techniques to stay ahead of the curve.\n",
   "wordCount" : "387",
@@ -181,6 +181,11 @@
                     <span class="active">Overview</span>
                 </a>
             </li>
+            <li>
+                <a href="https://dhtzs.dev/write-ups" title="Write-ups">
+                    <span>Write-ups</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -237,12 +242,12 @@
     </main>
     
 <footer class="footer">
-    <span>© 2023 Dimitris Chatzis. All rights reserved.</span>
-    <span>
-        Powered by
+    <p>Copyright &copy; 2023 - 2024 | All rights reserved</p>
+    <p>&lt;/&gt; with ❤️ and ☕ by Dimitris Chatzis</p>
+    <p>Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+    </p>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
@@ -317,6 +322,53 @@
         } else {
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll("pre > code").forEach(function(codeblock) {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement("button");
+        copybutton.classList.add("copy-code");
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(function() {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener("click", function(cb) {
+            if ("clipboard" in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand("copy");
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
         }
     });
 </script>

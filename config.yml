@@ -23,8 +23,8 @@ params:
   DateFormat: "January 2, 2006"
   disableAnchoredHeadings: true
   ShowReadingTime: true
-  ShowShareButtons: false
-  ShowCodeCopyButtons: false
+  ShowShareButtons: true
+  ShowCodeCopyButtons: true
   defaultTheme: auto
   ShowPostNavLinks: true
   ShowBreadCrumbs: false
@@ -74,8 +74,6 @@ params:
     theme_color: "#1D1E20"
     msapplication_TileColor: "#1D1E20"
 
-copyright: "© 2023 Dimitris Chatzis. All rights reserved."
-
 menu:
   main:
   - name: "Profile"
@@ -87,6 +85,9 @@ menu:
   - name: "Overview"
     url: "/overview"
     weight: 3
+  - name: "Write-ups"
+    url: "/write-ups"
+    weight: 4
 
 outputs:
     home:
