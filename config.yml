@@ -2,6 +2,7 @@ baseURL: https://dhtzs.dev/
 languageCode: en-us
 title: "dhtzs.dev"
 theme: PaperMod
+watch: true
 
 enableRobotsTXT: true
 sitemap:
@@ -13,7 +14,7 @@ googleAnalytics: "G-LVC4CS3028"
 #   disableXML: true
 #   minifyOutput: true
 disableHugoGeneratorInject: true
-disableKinds: ["taxonomy"]
+disableKinds: ["taxonomy", "term"]
 
 params:
   env: "production"
