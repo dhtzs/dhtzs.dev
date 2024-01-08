@@ -53,3 +53,10 @@ html, body {
         opacity: 0.0;
     }
 }
+
+.footer svg {
+    vertical-align: sub;
+    width: 14px;
+	height: 14px;
+    margin: auto 1px;
+}
