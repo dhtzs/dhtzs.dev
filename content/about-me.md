@@ -1,12 +1,12 @@
 ---
 title: "About me"
 description: "Discover about me — Explore my bug bounty journey, methodical cybersecurity approach, and impactful contributions in the dynamic realm of ethical hacking."
-author: "Dimitris Chatzis"
-keywords: ["Dimitris Chatzis", "about me"]
+keywords: ["about me"]
 layout: "single"
-url: "/about-me/"
+url: "/about-me"
 hideMeta: true
 disableShare: true
+searchHidden: true
 draft: false
 ---
 

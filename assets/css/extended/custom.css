@@ -14,7 +14,7 @@ html, body {
     padding: 5px;
 }
 
-.logo a::after {
+.logo>a::after {
     content: "";
     position: relative;
     display: inline-block;

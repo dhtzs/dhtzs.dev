@@ -2,44 +2,53 @@ baseURL: https://dhtzs.dev/
 languageCode: en-us
 title: "dhtzs.dev"
 theme: PaperMod
-watch: true
 
 enableRobotsTXT: true
+buildDrafts: true
+buildFuture: false
+buildExpired: false
+pluralizeListTitles : false
 sitemap:
   changefreq: "monthly"
   filename: "sitemap.xml"
+
 googleAnalytics: "G-LVC4CS3028"
 
-# minify:
-#   disableXML: true
+security:
+  enableInlineShortcodes: true
+
+minify:
+  disableXML: true
 #   minifyOutput: true
 disableHugoGeneratorInject: true
 disableKinds: ["taxonomy", "term"]
 
 params:
   env: "production"
-  title: "Dimitris Chatzis - Portfolio"
-  description: "Portfolio of Dimitris Chatzis"
+  title: "Dimitris Chatzis"
+  description: "Explore my persona — A student, programmer, and bug bounty hunter on a digital journey."
   author: "Dimitris Chatzis"
   keywords: ["Dimitris Chatzis", "portfolio"]
-  DateFormat: "January 2, 2006"
-  disableAnchoredHeadings: true
+  images: ["images/logo.png"]
+  defaultTheme: auto
+  DateFormat: "October 30, 2001"
   ShowReadingTime: true
   ShowShareButtons: true
   ShowCodeCopyButtons: true
-  defaultTheme: auto
   ShowPostNavLinks: true
   ShowBreadCrumbs: false
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowToc: true
   UseHugoToc: true
+  TocOpen: false
+  disableAnchoredHeadings: true
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
   hideMeta: false
   hideSummary: false
-  showtoc: true
-  tocopen: false
   socialIcons:
     - name: "LinkedIn"
       url: "https://linkedin.com/in/dimitris-chatzis"
@@ -75,11 +84,10 @@ params:
     safari_pinned_tab: "favicons/favicon.svg"
     theme_color: "#1D1E20"
     msapplication_TileColor: "#1D1E20"
-
-editPost:
-  URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content/"
-  Text: "Suggest changes"
-  appendFilePath: true
+  editPost:
+    URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
+    Text: "Suggest changes"
+    appendFilePath: true
 
 markup:
   highlight:

@@ -4,6 +4,11 @@
     <title>dhtzs.dev</title>
     <link>https://dhtzs.dev/</link>
     <description>Recent content on dhtzs.dev</description>
+    <image>
+      <title>dhtzs.dev</title>
+      <url>https://dhtzs.dev/images/logo.png</url>
+      <link>https://dhtzs.dev/images/logo.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <atom:link href="https://dhtzs.dev/index.xml" rel="self" type="application/rss+xml" />
