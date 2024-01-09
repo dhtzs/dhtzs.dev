@@ -14,7 +14,7 @@ html, body {
     padding: 5px;
 }
 
-.logo>a::after {
+header .logo>a::after {
     content: "";
     position: relative;
     display: inline-block;
@@ -26,31 +26,41 @@ html, body {
     bottom: 2.5px;
     margin-left: 2.5px;
     opacity: 0;
-    -webkit-animation: blink 1s step-end infinite;
-    animation: blink 1s step-end infinite;
+    -webkit-animation: blink 1.06s linear infinite;
+    animation: blink 1.06s linear infinite;
+}
+
+#search-toggle {
+    width: 24px;
+    font-size: 26px;
+    margin: auto 4px;
+}
+
+#search-toggle:focus {
+    outline: 0;
 }
 
 @-webkit-keyframes blink {
     0% {
-        opacity: 0.0;
+        opacity: 0;
     }
     50% {
-        opacity: 1.0;
+        opacity: 1;
     }
     100% {
-        opacity: 0.0;
+        opacity: 0;
     }
 }
 
 @keyframes blink {
     0% {
-        opacity: 0.0;
+        opacity: 0;
     }
     50% {
-        opacity: 1.0;
+        opacity: 1;
     }
     100% {
-        opacity: 0.0;
+        opacity: 0;
     }
 }
 
