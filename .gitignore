@@ -1,4 +1,5 @@
+node_modules/
+backup/
 .hugo_build.lock
 resources/
 hugo_stats.json
-backup/
