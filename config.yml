@@ -5,10 +5,13 @@ theme: PaperMod
 paginate: 5
 
 enableRobotsTXT: true
+build:
+  buildStats:
+    enable: true
 buildDrafts: true
 buildFuture: false
 buildExpired: false
-pluralizeListTitles : false
+pluralizeListTitles: false
 sitemap:
   changefreq: "monthly"
   filename: "sitemap.xml"

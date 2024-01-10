@@ -30,13 +30,17 @@ header .logo>a::after {
     animation: blink 1.06s linear infinite;
 }
 
-#search-toggle {
+a#search-toggle {
     width: 24px;
     font-size: 26px;
     margin: auto 4px;
 }
 
-#search-toggle:focus {
+a#search-toggle.active {
+    pointer-events: none;
+}
+
+a#search-toggle:focus {
     outline: 0;
 }
 
