@@ -14,7 +14,7 @@ html, body {
     padding: 5px;
 }
 
-header .logo>a::after {
+header nav div.logo>a:after {
     content: "";
     position: relative;
     display: inline-block;
@@ -30,17 +30,17 @@ header .logo>a::after {
     animation: blink 1.06s linear infinite;
 }
 
-a#search-toggle {
+#search-toggle {
     width: 24px;
     font-size: 26px;
     margin: auto 4px;
 }
 
-a#search-toggle.active {
+#search-toggle.active {
     pointer-events: none;
 }
 
-a#search-toggle:focus {
+#search-toggle:focus {
     outline: 0;
 }
 

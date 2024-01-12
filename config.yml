@@ -81,6 +81,7 @@ params:
       - "https://intigriti.com/profile/dhtzs"
   assets:
     disableHLJS: true
+    disableFingerprinting: true
     favicon: "favicon.ico"
     favicon16x16: "favicons/favicon-16x16.png"
     favicon32x32: "favicons/favicon-32x32.png"

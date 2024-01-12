@@ -1,8 +1,8 @@
 
-
+{{ $sw := resources.Get "sw.js" | js.Build (dict "params" (dict "md5Hash" (now.UnixNano | md5))) | resources.Minify }}
 <script>
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js", {
+        navigator.serviceWorker.register("{{ $sw.RelPermalink }}", {
             updateViaCache: "none"
         }).catch(function(err) {
             return console.error(err);

@@ -9,20 +9,20 @@ My personal website - powered by Hugo & PaperMod. Hosted on GitHub Pages.
 > [!IMPORTANT]
 > The following instructions assume that you have already installed Hugo and Node.js.
 
-1. Clone the repository and navigate to the project directory.
+1. Clone the repository and navigate to the project directory:
 ```bash
 $ git clone --recurse-submodules https://github.com/dhtzs/dhtzs.github.io
 $ cd dhtzs.github.io/
 ```
-2. Install the required Node.js packages.
+2. Install the required Node.js packages:
 ```bash
 $ npm install
 ```
-3. Build the site.
+3. Build the site:
 ```bash
 $ hugo
 ```
-4. Serve the site locally.
+4. Serve the site locally:
 ```bash
 $ hugo server
 ```

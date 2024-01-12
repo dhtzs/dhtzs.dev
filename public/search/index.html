@@ -10,8 +10,8 @@
 <meta name="description" content="Find cybersecurity nuggets — Dive into my ethical hacking experiences smoothly with the search tool, uncovering nuggets of knowledge and practical solutions.">
 <meta name="author" content="Dimitris Chatzis">
 <link rel="canonical" href="https://dhtzs.dev/search/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d9ca3e433567a444648fb90c31883fe9c2014dfe34a05793f2ec761c801064eb.css" integrity="sha256-2co&#43;QzVnpERkj7kMMYg/6cIBTf40oFeT8ux2HIAQZOs=" rel="preload stylesheet" as="style"><link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
-<script defer crossorigin="anonymous" src="/assets/js/search.40bc872e663a93629c28470a60af5070cb451de1a65f242264488d087eabd131.js" integrity="sha256-QLyHLmY6k2KcKEcKYK9QcMtFHeGmXyQiZEiNCH6r0TE="></script>
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style"><link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
+<script defer crossorigin="anonymous" src="/assets/js/search.js"></script>
 <link rel="icon" href="https://dhtzs.dev/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://dhtzs.dev/favicons/favicon-32x32.png">
@@ -234,7 +234,7 @@ if (!doNotTrack) {
 
 <script>
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js", {
+        navigator.serviceWorker.register("\/sw.min.js", {
             updateViaCache: "none"
         }).catch(function(err) {
             return console.error(err);
