@@ -9,12 +9,14 @@
         });
     }
 </script>
+{{- if .IsHome }}
 <script>
     var email = document.querySelector('a[title^="Email"]');
     if (email) {
         email.addEventListener("click", function (e) {
             e.preventDefault();
-            window.location.href = atob("bWFpbHRvOmRodHpzMjAwMUBob3RtYWlsLmNvbQ==");
+            window.location.href = atob("bWFpbHRvOmRodHpzMjAwMUBob3RtYWlsLmNvbT9zdWJqZWN0PUp1c3QlMjBzYXlpbmclMjBoaSE=");
         });
     }
 </script>
+{{- end }}

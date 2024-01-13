@@ -71,6 +71,6 @@ header nav div.logo>a:after {
 .footer svg {
     vertical-align: sub;
     width: 14px;
-	height: 14px;
+    height: 100%;
     margin: auto 1px;
 }

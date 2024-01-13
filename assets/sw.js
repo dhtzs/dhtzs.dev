@@ -3,15 +3,15 @@ import * as params from "@params";
 var cacheStorage = "cache_" + params.md5Hash,
     assetsToCache = [
         "/",
-        "about-me",
-        "write-ups",
-        "search",
-        "404",
-        "assets/css/stylesheet.css",
-        "assets/js/search.js",
-        "site.webmanifest",
-        "images/profile.jpg",
-        "images/profile.webp"
+        "/about-me/",
+        "/write-ups/",
+        "/search/",
+        "/404",
+        "/assets/css/stylesheet.css",
+        "/assets/js/search.js",
+        "/site.webmanifest",
+        "/images/profile.jpg",
+        "/images/profile.webp"
     ];
 
 self.addEventListener("install", function(event) {

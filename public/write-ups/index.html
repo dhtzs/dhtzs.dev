@@ -73,10 +73,8 @@ if (!doNotTrack) {
 </script>
 <meta property="og:title" content="Write-ups" />
 <meta property="og:description" content="Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://dhtzs.dev/write-ups/" /><meta property="og:image" content="https://dhtzs.dev/images/logo.png"/><meta property="article:section" content="" />
-
-<meta property="og:site_name" content="Dimitris Chatzis" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dhtzs.dev/write-ups/" /><meta property="og:image" content="https://dhtzs.dev/images/logo.png"/><meta property="og:site_name" content="Dimitris Chatzis" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png"/>
@@ -99,42 +97,9 @@ if (!doNotTrack) {
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Write-ups",
-  "name": "Write-ups",
-  "description": "Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.",
-  "keywords": [
-    "write-ups"
-  ],
-  "articleBody": "",
-  "wordCount" : "0",
-  "inLanguage": "en",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "Dimitris Chatzis"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dhtzs.dev/write-ups/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "dhtzs.dev",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dhtzs.dev/favicon.ico"
-    }
-  }
-}
-</script>
 </head>
 
-<body class="" id="top">
+<body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add("dark");
@@ -171,7 +136,7 @@ if (!doNotTrack) {
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-                <a href="https://dhtzs.dev/search" id="search-toggle" accesskey="/" title="Search (Alt + /)">
+                <a href="https://dhtzs.dev/search/" id="search-toggle" accesskey="/" title="Search (Alt + /)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -188,38 +153,27 @@ if (!doNotTrack) {
                 </a>
             </li>
             <li>
-                <a href="https://dhtzs.dev/about-me" title="About me">
+                <a href="https://dhtzs.dev/about-me/" title="About me">
                     <span>About me</span>
                 </a>
             </li>
             <li>
-                <a href="https://dhtzs.dev/write-ups" title="Write-ups">
+                <a href="https://dhtzs.dev/write-ups/" title="Write-ups">
                     <span class="active">Write-ups</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title entry-hint-parent">
-      Write-ups
-    </h1>
-    <div class="post-description">
-      Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.
-    </div>
-  </header> 
-
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-
-  </footer>
-</article>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://dhtzs.dev/">Home</a></div>
+  <h1>
+    Write-ups
+  </h1>
+  <div class="post-description">
+    Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.
+  </div>
+</header>
     </main>
     
 <footer class="footer">
@@ -238,15 +192,6 @@ if (!doNotTrack) {
             updateViaCache: "none"
         }).catch(function(err) {
             return console.error(err);
-        });
-    }
-</script>
-<script>
-    var email = document.querySelector('a[title^="Email"]');
-    if (email) {
-        email.addEventListener("click", function (e) {
-            e.preventDefault();
-            window.location.href = atob("bWFpbHRvOmRodHpzMjAwMUBob3RtYWlsLmNvbQ==");
         });
     }
 </script>
@@ -299,53 +244,6 @@ if (!doNotTrack) {
         } else {
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
-        }
-    });
-</script>
-<script>
-    document.querySelectorAll("pre > code").forEach(function(codeblock) {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement("button");
-        copybutton.classList.add("copy-code");
-        copybutton.innerHTML = 'copy';
-
-        function copyingDone() {
-            copybutton.innerHTML = 'copied!';
-            setTimeout(function() {
-                copybutton.innerHTML = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener("click", function(cb) {
-            if ("clipboard" in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand("copy");
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
         }
     });
 </script>

@@ -96,7 +96,7 @@
                 </button>
                 {{- end }}
                 {{- $is_search := eq .Layout `search` }}
-                <a href="{{ `search` | absLangURL }}" id="search-toggle" {{ if $is_search }}class="active"{{ else }}accesskey="/" title="Search (Alt + /)"{{ end }}>
+                <a href="{{ (printf `%s/` `search`) | absLangURL }}" id="search-toggle" {{ if $is_search }}class="active"{{ else }}accesskey="/" title="Search (Alt + /)"{{ end }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="{{ if $is_search }}4{{ else }}2{{ end }}" stroke-linecap="round"
                         stroke-linejoin="round">

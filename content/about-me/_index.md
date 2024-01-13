@@ -3,7 +3,6 @@ title: "About me"
 description: "Discover about me — Explore my bug bounty journey, methodical cybersecurity approach, and impactful contributions in the dynamic realm of ethical hacking."
 keywords: ["about me"]
 layout: "single"
-url: "/about-me"
 hideMeta: true
 disableShare: true
 searchHidden: true

@@ -12,6 +12,7 @@ buildDrafts: true
 buildFuture: false
 buildExpired: false
 pluralizeListTitles: false
+pygmentsUseClasses: true
 sitemap:
   changefreq: "monthly"
   filename: "sitemap.xml"
@@ -25,7 +26,7 @@ minify:
   disableXML: true
 #   minifyOutput: true
 disableHugoGeneratorInject: true
-disableKinds: ["taxonomy", "term"]
+disableKinds: ["taxonomy", "term", "RSS"]
 
 params:
   env: "production"
@@ -36,18 +37,20 @@ params:
   images: ["images/logo.png"]
   defaultTheme: auto
   DateFormat: "October 30, 2001"
-  ShowReadingTime: true
+  ShareButtons: ["x", "linkedin", "reddit", "telegram"]
   ShowShareButtons: true
+  ShowReadingTime: true
   ShowCodeCopyButtons: true
   ShowPostNavLinks: true
-  ShowBreadCrumbs: false
+  ShowBreadCrumbs: true
   ShowWordCount: true
-  ShowRssButtonInSectionTermList: true
+  ShowRssButtonInSectionTermList: false
   ShowAllPagesInArchive: true
   ShowToc: true
   UseHugoToc: true
   TocOpen: false
   disableAnchoredHeadings: true
+  disableThemeToggle: false
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
@@ -80,7 +83,6 @@ params:
       - "https://bugcrowd.com/dhtzs"
       - "https://intigriti.com/profile/dhtzs"
   assets:
-    disableHLJS: true
     disableFingerprinting: true
     favicon: "favicon.ico"
     favicon16x16: "favicons/favicon-16x16.png"
@@ -89,17 +91,31 @@ params:
     safari_pinned_tab: "favicons/favicon.svg"
     theme_color: "#1D1E20"
     msapplication_TileColor: "#1D1E20"
-  editPost:
-    URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
-    Text: "Suggest changes"
-    appendFilePath: true
+  fuseOpts:
+    isCaseSensitive: false
+    includeScore: false
+    includeMatches: false
+    minMatchCharLength: 1
+    shouldSort: true
+    findAllMatches: false
+    keys: ["title", "content"]
+    location: 0
+    threshold: 0.6
+    distance: 1000
+    ignoreLocation: true
+  # editPost:
+  #   URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
+  #   Text: "Suggest changes"
+  #   appendFilePath: true
 
 markup:
   highlight:
+    style: catppuccin-macchiato
     codeFences: true
     guessSyntax: true
     lineNos: true
-    style: monokai
+    noClasses: false
+    tabWidth: 4
 
 menu:
   main:
@@ -107,16 +123,15 @@ menu:
     url: "/"
     weight: 1
   - name: "About me"
-    url: "/about-me"
+    url: "/about-me/"
     weight: 2
   - name: "Write-ups"
-    url: "/write-ups"
+    url: "/write-ups/"
     weight: 3
 
 outputs:
   home:
     - HTML
-    - RSS
     - JSON
 
 languages:

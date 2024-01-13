@@ -4,37 +4,38 @@
     "description": "Explore my persona — A student, programmer, and bug bounty hunter on a digital journey.",
     "start_url": "/",
     "scope": "/",
+    "lang": "en",
     "icons": [
         {
-            "src": "favicons/favicon-72x72.png",
+            "src": "/favicons/favicon-72x72.png",
             "type": "image/png",
             "sizes": "72x72"
         }, {
-            "src": "favicons/favicon-96x96.png",
+            "src": "/favicons/favicon-96x96.png",
             "type": "image/png",
             "sizes": "96x96"
         }, {
-            "src": "favicons/favicon-128x128.png",
+            "src": "/favicons/favicon-128x128.png",
             "type": "image/png",
             "sizes": "128x128"
         }, {
-            "src": "favicons/favicon-144x144.png",
+            "src": "/favicons/favicon-144x144.png",
             "type": "image/png",
             "sizes": "144x144"
         }, {
-            "src": "favicons/favicon-152x152.png",
+            "src": "/favicons/favicon-152x152.png",
             "type": "image/png",
             "sizes": "152x152"
         }, {
-            "src": "favicons/favicon-192x192.png",
+            "src": "/favicons/favicon-192x192.png",
             "type": "image/png",
             "sizes": "192x192"
         }, {
-            "src": "favicons/favicon-384x384.png",
+            "src": "/favicons/favicon-384x384.png",
             "type": "image/png",
             "sizes": "384x384"
         }, {
-            "src": "favicons/favicon-512x512.png",
+            "src": "/favicons/favicon-512x512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
@@ -44,7 +45,7 @@
     "display": "fullscreen",
     "orientation": "portrait",
     "serviceworker": {
-        "src": "/sw.js",
+        "src": "/sw.min.js",
         "update_via_cache": "none"
     },
     "shortcuts": [
@@ -53,35 +54,35 @@
             "url": "/about-me/",
             "icons": [
                 {
-                    "src": "favicons/favicon-72x72.png",
+                    "src": "/favicons/favicon-72x72.png",
                     "type": "image/png",
                     "sizes": "72x72"
                 }, {
-                    "src": "favicons/favicon-96x96.png",
+                    "src": "/favicons/favicon-96x96.png",
                     "type": "image/png",
                     "sizes": "96x96"
                 }, {
-                    "src": "favicons/favicon-128x128.png",
+                    "src": "/favicons/favicon-128x128.png",
                     "type": "image/png",
                     "sizes": "128x128"
                 }, {
-                    "src": "favicons/favicon-144x144.png",
+                    "src": "/favicons/favicon-144x144.png",
                     "type": "image/png",
                     "sizes": "144x144"
                 }, {
-                    "src": "favicons/favicon-152x152.png",
+                    "src": "/favicons/favicon-152x152.png",
                     "type": "image/png",
                     "sizes": "152x152"
                 }, {
-                    "src": "favicons/favicon-192x192.png",
+                    "src": "/favicons/favicon-192x192.png",
                     "type": "image/png",
                     "sizes": "192x192"
                 }, {
-                    "src": "favicons/favicon-384x384.png",
+                    "src": "/favicons/favicon-384x384.png",
                     "type": "image/png",
                     "sizes": "384x384"
                 }, {
-                    "src": "favicons/favicon-512x512.png",
+                    "src": "/favicons/favicon-512x512.png",
                     "type": "image/png",
                     "sizes": "512x512"
                 }
@@ -91,35 +92,35 @@
             "url": "/write-ups/",
             "icons": [
                 {
-                    "src": "favicons/favicon-72x72.png",
+                    "src": "/favicons/favicon-72x72.png",
                     "type": "image/png",
                     "sizes": "72x72"
                 }, {
-                    "src": "favicons/favicon-96x96.png",
+                    "src": "/favicons/favicon-96x96.png",
                     "type": "image/png",
                     "sizes": "96x96"
                 }, {
-                    "src": "favicons/favicon-128x128.png",
+                    "src": "/favicons/favicon-128x128.png",
                     "type": "image/png",
                     "sizes": "128x128"
                 }, {
-                    "src": "favicons/favicon-144x144.png",
+                    "src": "/favicons/favicon-144x144.png",
                     "type": "image/png",
                     "sizes": "144x144"
                 }, {
-                    "src": "favicons/favicon-152x152.png",
+                    "src": "/favicons/favicon-152x152.png",
                     "type": "image/png",
                     "sizes": "152x152"
                 }, {
-                    "src": "favicons/favicon-192x192.png",
+                    "src": "/favicons/favicon-192x192.png",
                     "type": "image/png",
                     "sizes": "192x192"
                 }, {
-                    "src": "favicons/favicon-384x384.png",
+                    "src": "/favicons/favicon-384x384.png",
                     "type": "image/png",
                     "sizes": "384x384"
                 }, {
-                    "src": "favicons/favicon-512x512.png",
+                    "src": "/favicons/favicon-512x512.png",
                     "type": "image/png",
                     "sizes": "512x512"
                 }
@@ -129,39 +130,69 @@
             "url": "/search/",
             "icons": [
                 {
-                    "src": "favicons/favicon-72x72.png",
+                    "src": "/favicons/favicon-72x72.png",
                     "type": "image/png",
                     "sizes": "72x72"
                 }, {
-                    "src": "favicons/favicon-96x96.png",
+                    "src": "/favicons/favicon-96x96.png",
                     "type": "image/png",
                     "sizes": "96x96"
                 }, {
-                    "src": "favicons/favicon-128x128.png",
+                    "src": "/favicons/favicon-128x128.png",
                     "type": "image/png",
                     "sizes": "128x128"
                 }, {
-                    "src": "favicons/favicon-144x144.png",
+                    "src": "/favicons/favicon-144x144.png",
                     "type": "image/png",
                     "sizes": "144x144"
                 }, {
-                    "src": "favicons/favicon-152x152.png",
+                    "src": "/favicons/favicon-152x152.png",
                     "type": "image/png",
                     "sizes": "152x152"
                 }, {
-                    "src": "favicons/favicon-192x192.png",
+                    "src": "/favicons/favicon-192x192.png",
                     "type": "image/png",
                     "sizes": "192x192"
                 }, {
-                    "src": "favicons/favicon-384x384.png",
+                    "src": "/favicons/favicon-384x384.png",
                     "type": "image/png",
                     "sizes": "384x384"
                 }, {
-                    "src": "favicons/favicon-512x512.png",
+                    "src": "/favicons/favicon-512x512.png",
                     "type": "image/png",
                     "sizes": "512x512"
                 }
             ]
+        }
+    ],
+    "screenshots": [
+        {
+         "src": "/screenshots/screenshot-720x1280-light.jpg",
+          "sizes": "720x1280",
+          "type": "image/jpg",
+          "form_factor": "narrow",
+          "label": "Light theme home screen on a mobile device"
+        },
+        {
+         "src": "/screenshots/screenshot-720x1280-dark.jpg",
+          "sizes": "720x1280",
+          "type": "image/jpg",
+          "form_factor": "narrow",
+          "label": "Dark theme home screen on a mobile device"
+        },
+        {
+         "src": "/screenshots/screenshot-1280x800-light.jpg",
+          "sizes": "1280x800",
+          "type": "image/jpg",
+          "form_factor": "wide",
+          "label": "Dark theme home screen on a desktop device"
+        },
+        {
+         "src": "/screenshots/screenshot-1280x800-dark.jpg",
+          "sizes": "1280x800",
+          "type": "image/jpg",
+          "form_factor": "wide",
+          "label": "Dark theme home screen on a desktop device"
         }
     ]
 }

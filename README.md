@@ -16,7 +16,7 @@ $ cd dhtzs.github.io/
 ```
 2. Install the required Node.js packages:
 ```bash
-$ npm install
+$ npm install --save-dev
 ```
 3. Build the site:
 ```bash
