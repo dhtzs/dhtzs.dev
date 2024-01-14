@@ -41,6 +41,7 @@ params:
   ShowShareButtons: true
   ShowReadingTime: true
   ShowCodeCopyButtons: true
+  ShowPageNums: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowWordCount: true
@@ -103,10 +104,12 @@ params:
     threshold: 0.6
     distance: 1000
     ignoreLocation: true
-  # editPost:
-  #   URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
-  #   Text: "Suggest changes"
-  #   appendFilePath: true
+  editPost:
+    URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
+    Text: "Suggest changes"
+    appendFilePath: true
+  mainSections:
+    - "write-ups"
 
 markup:
   highlight:

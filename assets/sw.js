@@ -1,6 +1,6 @@
 import * as params from "@params";
 
-var cacheStorage = "cache_" + params.md5Hash,
+var cacheStorage = "cache_" + (params.cacheStorageHash || "serviceWorker"),
     assetsToCache = [
         "/",
         "/about-me/",
@@ -12,7 +12,7 @@ var cacheStorage = "cache_" + params.md5Hash,
         "/site.webmanifest",
         "/images/profile.jpg",
         "/images/profile.webp"
-    ];
+    ].concat(Object.values(params.extraAssetsToCache));
 
 self.addEventListener("install", function(event) {
     event.waitUntil(caches.open(cacheStorage).then(function(cache) {

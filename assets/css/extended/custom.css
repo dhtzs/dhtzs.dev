@@ -68,9 +68,28 @@ header nav div.logo>a:after {
     }
 }
 
-.footer svg {
+.footer svg, .post-controls svg {
     vertical-align: sub;
     width: 14px;
     height: 100%;
     margin: auto 1px;
+}
+
+.post-controls, #control-offline {
+    color: var(--primary);
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#control-offline.cached {
+    color: #ed8796;
+}
+
+#control-offline.not-chached {
+    color: #a6da95;
+}
+
+#control-offline:hover {
+    cursor: pointer;
 }
