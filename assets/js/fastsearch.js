@@ -12,7 +12,9 @@ window.onload = function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText);
+                let data = JSON.parse(xhr.responseText).filter(function (data) {
+                    return !data.isSearchHidden;
+                });
                 if (data) {
                     // fuse.js options; check fuse.js website for details
                     let options = {
@@ -96,6 +98,35 @@ sInput.onkeyup = function (e) {
             resultsAvailable = true;
             first = resList.firstChild;
             last = resList.lastChild;
+
+            if ("serviceWorker" in navigator && "caches" in window) {
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 0) {
+                            caches.open("offline-access").then(function (cache) {
+                                return cache.keys().then(function (keyList) {
+                                    return Promise.all(keyList.map(function (key) {
+                                        return key.url;
+                                    }));
+                                }).then(function (keyList) {
+                                    document.querySelectorAll(".post-entry").forEach(function (entry) {
+                                        if (keyList.indexOf(entry.querySelector("a").href) !== -1) {
+                                            entry.style.borderColor = "#a6da95";
+                                            entry.style.pointerEvents = "auto";
+                                        } else {
+                                            entry.style.borderColor = "#ed8796";
+                                            entry.style.pointerEvents = "none";
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    }
+                }
+                xhr.open("GET", "/ping?v" + Date.now(), true);
+                xhr.send();
+            }
         } else {
             resultsAvailable = false;
             resList.innerHTML = '';

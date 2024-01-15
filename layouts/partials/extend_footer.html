@@ -1,15 +1,13 @@
 
-{{ $cacheStorageHash := now.UnixNano | md5 -}}
-{{- $extraAssetsToCache := dict -}}
-{{- $idx := 0 }}
+{{ $buildHash := now.UnixNano | md5 -}}
+{{- $extraAssetsToCache := slice -}}
 {{- range $section := site.Params.mainSections }}
-    {{- range $val := seq (math.Ceil (div (float (len (where $.Site.RegularPages "Section" $section))) (float 5))) -}}
-        {{- $extraAssetsToCache = $extraAssetsToCache | merge (dict (string $idx) (printf "/%s/page/%s/" $section (string $val))) -}}
-        {{- $idx = add $idx 1 }}
+    {{- range $page := seq (math.Ceil (div (float (len (where $.Site.RegularPages "Section" $section))) (float 5))) -}}
+        {{- $extraAssetsToCache = $extraAssetsToCache | append (printf "/%s/page/%s/" $section (string $page)) -}}
     {{- end -}}
 {{- end -}}
 {{ $sw := resources.Get "sw.js" | js.Build (dict "params" (dict
-    "cacheStorageHash" $cacheStorageHash
+    "buildHash" $buildHash
     "extraAssetsToCache" $extraAssetsToCache
 )) | resources.Minify }}
 <script>
@@ -32,16 +30,48 @@
     }
 </script>
 {{- end }}
+{{- if and (in site.Params.mainSections .Section) (not .IsPage) }}
+<script>
+    if ("serviceWorker" in navigator && "caches" in window) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 0) {
+                    caches.open("offline-access").then(function (cache) {
+                        return cache.keys().then(function (keyList) {
+                            return Promise.all(keyList.map(function (key) {
+                                return key.url;
+                            }));
+                        }).then(function (keyList) {
+                            document.querySelectorAll(".post-entry").forEach(function (entry) {
+                                if (keyList.indexOf(entry.querySelector("a").href) !== -1) {
+                                    entry.style.borderColor = "#a6da95";
+                                    entry.style.pointerEvents = "auto";
+                                } else {
+                                    entry.style.borderColor = "#ed8796";
+                                    entry.style.pointerEvents = "none";
+                                }
+                            });
+                        });
+                    });
+                }
+            }
+        }
+        xhr.open("GET", "/ping?v" + Date.now(), true);
+        xhr.send();
+    }
+</script>
+{{- end }}
 {{- if and .IsPage (not .IsHome) (not (.Param "hideMeta")) }}
 <script>
     var postControls = document.querySelector(".post-controls");
     if (postControls) {
         if ("serviceWorker" in navigator && "caches" in window) {
-            postControls.innerHTML += '<div id="control-offline"></div>';
-            var offlineControl = document.querySelector(".post-controls #control-offline");
+            postControls.innerHTML += '<div id="control-offlineAccess"></div>';
+            var offlineAccessControl = document.querySelector(".post-controls #control-offlineAccess");
 
             function checkIfCached () {
-                return caches.open("offline").then(function (cache) {
+                return caches.open("offline-access").then(function (cache) {
                     return cache.match(location.pathname).then(function (match) {
                         return !!match;
                     });
@@ -49,36 +79,66 @@
             }
 
             function addToCache () {
-                return caches.open("offline").then(function (cache) {
-                    cache.add(location.pathname);
+                return caches.open("offline-access").then(function (cache) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                let data = JSON.parse(xhr.responseText).find(function (data) {
+                                    return data.permalink.indexOf(location.pathname) !== -1;
+                                });
+                                data.resources.forEach(function (resource) {
+                                    cache.add(resource);
+                                });
+                                cache.add(data.permalink);
+                            }
+                        }
+                    }
+                    xhr.open("GET", "/index.json");
+                    xhr.send();
                 });
             }
 
             function removeFromCache () {
-                return caches.open("offline").then(function (cache) {
-                    cache.delete(location.pathname);
+                return caches.open("offline-access").then(function (cache) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                let data = JSON.parse(xhr.responseText).find(function (data) {
+                                    return data.permalink.indexOf(location.pathname) !== -1;
+                                });
+                                data.resources.forEach(function (resource) {
+                                    cache.delete(resource);
+                                });
+                                cache.delete(data.permalink);
+                            }
+                        }
+                    }
+                    xhr.open("GET", "/index.json");
+                    xhr.send();
                 });
             }
 
-            function updateOfflineControl (isCached) {
+            function updateOfflineAccessControl (isCached) {
                 if (!isCached) {
-                    offlineControl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>&nbsp;Save for offline reading';
-                    offlineControl.className = "not-chached";
+                    offlineAccessControl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>&nbsp;Turn on offline access';
+                    offlineAccessControl.style.color = "#a6da95";
                 } else {
-                    offlineControl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>&nbsp;Remove from offline reading';
-                    offlineControl.className = "cached";
+                    offlineAccessControl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>&nbsp;Turn off offline access';
+                    offlineAccessControl.style.color = "#ed8796";
                 }
             }
 
             checkIfCached().then(function (isCached) {
-                updateOfflineControl(isCached);
+                updateOfflineAccessControl(isCached);
             });
-            offlineControl.addEventListener("click", function () {
+            offlineAccessControl.addEventListener("click", function () {
                 checkIfCached().then(function (isCached) {
                     if (!isCached) {
-                        addToCache().then(updateOfflineControl(true));
+                        addToCache().then(updateOfflineAccessControl(true));
                     } else {
-                        removeFromCache().then(updateOfflineControl(false));
+                        removeFromCache().then(updateOfflineAccessControl(false));
                     }
                 });
             });

@@ -75,21 +75,13 @@ header nav div.logo>a:after {
     margin: auto 1px;
 }
 
-.post-controls, #control-offline {
+.post-controls, #control-offlineAccess {
     color: var(--primary);
     font-size: 14px;
     display: flex;
     flex-wrap: wrap;
 }
 
-#control-offline.cached {
-    color: #ed8796;
-}
-
-#control-offline.not-chached {
-    color: #a6da95;
-}
-
-#control-offline:hover {
+#control-offlineAccess:hover {
     cursor: pointer;
 }

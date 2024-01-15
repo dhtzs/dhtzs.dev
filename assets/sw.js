@@ -1,25 +1,72 @@
 import * as params from "@params";
 
-var cacheStorage = "cache_" + (params.cacheStorageHash || "serviceWorker"),
+var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
     assetsToCache = [
         "/",
         "/about-me/",
         "/write-ups/",
         "/search/",
         "/404",
+        "/index.json",
         "/assets/css/stylesheet.css",
         "/assets/js/search.js",
         "/site.webmanifest",
         "/images/profile.jpg",
-        "/images/profile.webp"
-    ].concat(Object.values(params.extraAssetsToCache));
+        "/images/profile.webp",
+        "/favicon.ico",
+        "/favicons/favicon.svg",
+        "/favicons/favicon-16x16.png",
+        "/favicons/favicon-32x32.png",
+        "/favicons/favicon-72x72.png",
+        "/favicons/favicon-96x96.png",
+        "/favicons/favicon-128x128.png",
+        "/favicons/favicon-144x144.png",
+        "/favicons/favicon-152x152.png",
+        "/favicons/favicon-180x180.png",
+        "/favicons/favicon-192x192.png",
+        "/favicons/favicon-384x384.png",
+        "/favicons/favicon-512x512.png",
+        "/screenshots/screenshot-720x1280-light.jpg",
+        "/screenshots/screenshot-720x1280-dark.jpg",
+        "/screenshots/screenshot-1280x800-light.jpg",
+        "/screenshots/screenshot-1280x800-dark.jpg"
+    ].concat(params.extraAssetsToCache);
 
 self.addEventListener("install", function(event) {
     event.waitUntil(caches.open(cacheStorage).then(function(cache) {
-        return cache.addAll([].concat.apply([], assetsToCache));
+        return cache.addAll(assetsToCache);
     }).then(function() {
         return self.skipWaiting();
     }));
+});
+
+self.addEventListener("activate", function(event) {
+    event.waitUntil(Promise.all([
+        caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                if (key.indexOf(cacheStorage) === -1 && key.indexOf("offline-access") === -1)
+                    return caches.delete(key);
+            }));
+        }),
+
+        fetch("/index.json?v=" + Date.now()).then(function(res) {
+            return res.json();
+        }).then(function(data) {
+            data = [].concat.apply([], data.map(function(data) {
+                return [data.permalink].concat(data.resources);
+            }));
+            return caches.open("offline-access").then(function(cache) {
+                return cache.keys().then(function(keyList) {
+                    return Promise.all(keyList.map(function(key) {
+                        if (data.indexOf(key.url) === -1)
+                            return cache.delete(key);
+                    }));
+                });
+            });
+        }),
+
+        self.clients.claim()
+    ]));
 });
 
 self.addEventListener("fetch", function(event) {
@@ -27,16 +74,4 @@ self.addEventListener("fetch", function(event) {
         event.respondWith(fetch(event.request).catch(function() {
             return caches.match(event.request);
         }));
-});
-
-self.addEventListener("activate", function(event) {
-    event.waitUntil(caches.keys().then(function(keyList) {
-        return Promise.all(keyList.map(function(key) {
-            if (cacheStorage.indexOf(key) === -1)
-                return caches.delete(key);
-            })
-        ).then(function() {
-            return self.clients.claim();
-        });
-    }));
 });
