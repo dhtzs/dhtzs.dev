@@ -18,7 +18,6 @@
 <link rel="mask-icon" href="https://dhtzs.dev/favicons/favicon.svg">
 <meta name="theme-color" content="#1D1E20">
 <meta name="msapplication-TileColor" content="#1D1E20">
-<link rel="alternate" hreflang="en" href="https://dhtzs.dev/about-me/">
 <noscript>
     <style>
         #theme-toggle,
@@ -64,7 +63,8 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVC4CS3028"></script>
 <script>
-var doNotTrack = false;
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
 if (!doNotTrack) {
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}

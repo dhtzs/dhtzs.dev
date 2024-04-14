@@ -17,14 +17,23 @@ sitemap:
   changefreq: "monthly"
   filename: "sitemap.xml"
 
-googleAnalytics: "G-LVC4CS3028"
+services:
+  googleAnalytics:
+    id: "G-LVC4CS3028"
+
+privacy:
+  googleAnalytics:
+    disable: false
+    anonymizeIP: false
+    respectDoNotTrack: true
+    useSessionStorage: false
 
 security:
   enableInlineShortcodes: true
 
 minify:
   disableXML: true
-#   minifyOutput: true
+  minifyOutput: false
 disableHugoGeneratorInject: true
 disableKinds: ["taxonomy", "term", "RSS"]
 
@@ -32,6 +41,8 @@ params:
   env: "production"
   title: "Dimitris Chatzis"
   description: "Explore my persona — A student, programmer, and bug bounty hunter on a digital journey."
+  footer:
+    hideCopyright: false
   author: "Dimitris Chatzis"
   keywords: ["Dimitris Chatzis", "portfolio"]
   images: ["images/logo.png"]
