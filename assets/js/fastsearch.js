@@ -124,7 +124,7 @@ sInput.onkeyup = function (e) {
                         }
                     }
                 }
-                xhr.open("GET", "/ping?v" + Date.now(), true);
+                xhr.open("GET", window.location.href + "?v=" + Date.now(), true);
                 xhr.send();
             }
         } else {

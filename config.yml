@@ -3,6 +3,7 @@ languageCode: en-us
 title: "dhtzs.dev"
 theme: PaperMod
 paginate: 5
+timeout: 60
 
 enableRobotsTXT: true
 build:
@@ -23,10 +24,7 @@ services:
 
 privacy:
   googleAnalytics:
-    disable: false
-    anonymizeIP: false
     respectDoNotTrack: true
-    useSessionStorage: false
 
 security:
   enableInlineShortcodes: true
@@ -75,14 +73,14 @@ params:
       url: "https://twitter.com/dhtzs"
     - name: "GitHub"
       url: "https://github.com/dhtzs"
-    - name: "Discord"
-      url: "https://discordapp.com/users/685173086022402060"
     - name: "HackerOne"
       url: "https://hackerone.com/dhtzs"
     - name: "Bugcrowd"
       url: "https://bugcrowd.com/dhtzs"
     - name: "Intigriti"
       url: "https://intigriti.com/profile/dhtzs"
+    - name: "PGPKey"
+      url: "/pgp-key.txt"
     - name: "Email"
       url: "#"
   schema:
@@ -90,7 +88,6 @@ params:
       - "https://linkedin.com/in/dimitris-chatzis"
       - "https://twitter.com/dhtzs"
       - "https://github.com/dhtzs"
-      - "https://discordapp.com/users/685173086022402060"
       - "https://hackerone.com/dhtzs"
       - "https://bugcrowd.com/dhtzs"
       - "https://intigriti.com/profile/dhtzs"
