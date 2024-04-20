@@ -167,32 +167,17 @@
     ],
     "screenshots": [
         {
-         "src": "/screenshots/screenshot-720x1280-light.jpg",
-          "sizes": "720x1280",
-          "type": "image/jpg",
-          "form_factor": "narrow",
-          "label": "Light theme home screen on a mobile device"
-        },
-        {
-         "src": "/screenshots/screenshot-720x1280-dark.jpg",
-          "sizes": "720x1280",
-          "type": "image/jpg",
-          "form_factor": "narrow",
-          "label": "Dark theme home screen on a mobile device"
-        },
-        {
-         "src": "/screenshots/screenshot-1280x800-light.jpg",
+         "src": "/images/screenshot-1280x800.jpg",
           "sizes": "1280x800",
           "type": "image/jpg",
           "form_factor": "wide",
-          "label": "Dark theme home screen on a desktop device"
-        },
-        {
-         "src": "/screenshots/screenshot-1280x800-dark.jpg",
-          "sizes": "1280x800",
+          "label": "dhtzs.dev on a desktop device"
+        }, {
+         "src": "/images/screenshot-720x1280.jpg",
+          "sizes": "720x1280",
           "type": "image/jpg",
-          "form_factor": "wide",
-          "label": "Dark theme home screen on a desktop device"
+          "form_factor": "narrow",
+          "label": "dhtzs.dev on a mobile device"
         }
     ]
 }

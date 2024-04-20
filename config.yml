@@ -21,10 +21,10 @@ sitemap:
 services:
   googleAnalytics:
     id: "G-LVC4CS3028"
-
 privacy:
   googleAnalytics:
     respectDoNotTrack: true
+    disable: true
 
 security:
   enableInlineShortcodes: true
@@ -113,7 +113,7 @@ params:
     distance: 100
     ignoreLocation: true
   editPost:
-    URL: "https://github.com/dhtzs/dhtzs.github.io/edit/main/content"
+    URL: "https://github.com/dhtzs/dhtzs.dev/edit/main/content"
     Text: "Suggest changes"
     appendFilePath: true
   mainSections:

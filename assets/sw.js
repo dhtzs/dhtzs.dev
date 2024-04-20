@@ -13,9 +13,11 @@ var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
         "/site.webmanifest",
         "/images/profile.jpg",
         "/images/profile.webp",
-        "/favicon.ico",
+        "/images/screenshot-1280x800.jpg",
+        "/images/screenshot-720x1280.jpg",
         "/.well-known/security.txt",
         "/pgp-key.txt",
+        "/favicon.ico",
         "/favicons/favicon.svg",
         "/favicons/favicon-16x16.png",
         "/favicons/favicon-32x32.png",
@@ -27,11 +29,7 @@ var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
         "/favicons/favicon-180x180.png",
         "/favicons/favicon-192x192.png",
         "/favicons/favicon-384x384.png",
-        "/favicons/favicon-512x512.png",
-        "/screenshots/screenshot-720x1280-light.jpg",
-        "/screenshots/screenshot-720x1280-dark.jpg",
-        "/screenshots/screenshot-1280x800-light.jpg",
-        "/screenshots/screenshot-1280x800-dark.jpg"
+        "/favicons/favicon-512x512.png"
     ].concat(params.extraAssetsToCache);
 
 self.addEventListener("install", function(event) {
