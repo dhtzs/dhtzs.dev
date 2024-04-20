@@ -5,29 +5,38 @@ My personal website - powered by Hugo & PaperMod. Hosted on GitHub Pages.
 - [Hugo](https://gohugo.io/)
 - [Node.js](https://nodejs.org/en/)
 
-## Getting Started
-> [!IMPORTANT]
-> The following instructions assume that you have already installed Hugo and Node.js.
+## Getting started
+> [!NOTE]
+> The following instructions assume that you have already installed both Hugo and Node.js.
 
-1. Clone the repository and navigate to the project directory:
-```bash
-$ git clone --recurse-submodules https://github.com/dhtzs/dhtzs.github.io
-$ cd dhtzs.github.io/
+1. Clone the repository and its submodules:
 ```
-2. Install the required Node.js packages:
-```bash
-$ npm install --save-dev
+git clone --recurse-submodules https://github.com/dhtzs/dhtzs.github.io
 ```
-3. Build the site:
-```bash
-$ hugo
+2. Navigate to the repository:
 ```
-4. Serve the site locally:
-```bash
-$ hugo server
+cd dhtzs.github.io/
+```
+3. Install dependencies:
+```
+npm install --save-dev
+```
+4. Build the site:
+```
+hugo
 ```
 
-## Licensing Information
+## Updating submodules and dependencies
+To update the submodules, run the following command:
+```
+git submodule update --remote --merge
+```
+To update the dependencies, run the following command:
+```
+npm update
+```
+
+## Licensing information
 [Hugo](https://gohugo.io/), the static site generator used to build the site, is licensed under the [Apache License 2.0](https://github.com/gohugoio/hugo/blob/master/LICENSE).
 
 [PaperMod](https://github.com/adityatelange/hugo-PaperMod) is licensed under the [MIT License](https://github.com/adityatelange/hugo-PaperMod/blob/master/LICENSE). Except where otherwise noted, any modifications to PaperMod by me are also licensed under the MIT License.

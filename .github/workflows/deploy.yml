@@ -1,4 +1,4 @@
-run-name: Deploy to GitHub Pages
+run-name: GitHub Pages
 on:
   push:
     branches: ["main"]
