@@ -49,7 +49,9 @@ npm update
 ## 📜 Licensing information
 All content in this repository is licensed under the [Creative Commons Attribution ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). That means you are free to share and adapt the content for any purpose, even commercially, as long as you give proper attribution to the author(s) and any derived work is shared under the same license. Please verify that you attribute the author(s) appropriately and include a link to the original publication when applicable.
 
-See the [LICENSE](LICENSE.md) file for more information.
+Read the [LICENSE.md](LICENSE.md) file for more information.
 
 ## 🤝 Contributing
 Interested in contributing? You are more than welcome to contribute to this repository as much as you wish.
+
+This repository adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.
