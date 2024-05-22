@@ -43,7 +43,7 @@ git submodule update --remote --merge
 ```
 3. Update dependencies:
 ```
-npm update
+npm run update-deps
 ```
 
 ## 📜 Licensing information
