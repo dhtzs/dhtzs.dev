@@ -32,3 +32,8 @@ On these platforms, you can see my profile, my past submissions, and my overall 
 
 ## Methodology
 When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I'm always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and __I'm constantly studying new attack vectors and exploitation techniques to stay ahead of the curve__.
+
+## Activity
+This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses. The data is updated every 24 hours, providing a fresh snapshot of my daily engagement.
+
+{{< activityChart >}}

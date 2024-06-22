@@ -68,6 +68,11 @@ header nav div.logo>a:after {
     }
 }
 
+canvas#activity-chart {
+    width: 100%;
+    height: 360px;
+}
+
 .footer svg, .post-controls svg {
     vertical-align: sub;
     width: 14px;

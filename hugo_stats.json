@@ -5,6 +5,7 @@
       "article",
       "body",
       "button",
+      "canvas",
       "circle",
       "details",
       "div",
@@ -67,6 +68,8 @@
     ],
     "ids": [
       "TableOfContents",
+      "activity",
+      "activity-chart",
       "bug-bounty-profiles",
       "experience-and-contributions",
       "introduction",
