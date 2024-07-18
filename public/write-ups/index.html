@@ -187,16 +187,16 @@
 <script>
     if ("serviceWorker" in navigator && "caches" in window) {
         let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 0) {
-                    caches.open("offline-access").then(function (cache) {
-                        return cache.keys().then(function (keyList) {
-                            return Promise.all(keyList.map(function (key) {
+                    caches.open("offline-access").then(function(cache) {
+                        return cache.keys().then(function(keyList) {
+                            return Promise.all(keyList.map(function(key) {
                                 return key.url;
                             }));
-                        }).then(function (keyList) {
-                            document.querySelectorAll(".post-entry").forEach(function (entry) {
+                        }).then(function(keyList) {
+                            document.querySelectorAll(".post-entry").forEach(function(entry) {
                                 if (keyList.indexOf(entry.querySelector("a").href) !== -1) {
                                     entry.style.borderColor = "#a6da95";
                                     entry.style.pointerEvents = "auto";

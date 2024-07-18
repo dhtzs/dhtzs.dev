@@ -23,7 +23,7 @@
 <script>
     var email = document.querySelector('a[title^="Email"]');
     if (email) {
-        email.addEventListener("click", function (e) {
+        email.addEventListener("click", function(e) {
             e.preventDefault();
             window.location.href = atob("bWFpbHRvOnNlY3VyaXR5QGRodHpzLmRldj9zdWJqZWN0PVNlY3VyaXR5JTIwaW5xdWlyeTolMjAlNUJCcmllZiUyMGRlc2NyaXB0aW9uJTVE");
         });
@@ -34,16 +34,16 @@
 <script>
     if ("serviceWorker" in navigator && "caches" in window) {
         let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 0) {
-                    caches.open("offline-access").then(function (cache) {
-                        return cache.keys().then(function (keyList) {
-                            return Promise.all(keyList.map(function (key) {
+                    caches.open("offline-access").then(function(cache) {
+                        return cache.keys().then(function(keyList) {
+                            return Promise.all(keyList.map(function(key) {
                                 return key.url;
                             }));
-                        }).then(function (keyList) {
-                            document.querySelectorAll(".post-entry").forEach(function (entry) {
+                        }).then(function(keyList) {
+                            document.querySelectorAll(".post-entry").forEach(function(entry) {
                                 if (keyList.indexOf(entry.querySelector("a").href) !== -1) {
                                     entry.style.borderColor = "#a6da95";
                                     entry.style.pointerEvents = "auto";
@@ -71,23 +71,23 @@
             var offlineAccessControl = document.querySelector(".post-controls #control-offlineAccess");
 
             function checkIfCached () {
-                return caches.open("offline-access").then(function (cache) {
-                    return cache.match(location.pathname).then(function (match) {
+                return caches.open("offline-access").then(function(cache) {
+                    return cache.match(location.pathname).then(function(match) {
                         return !!match;
                     });
                 });
             }
 
             function addToCache () {
-                return caches.open("offline-access").then(function (cache) {
+                return caches.open("offline-access").then(function(cache) {
                     let xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
+                    xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200) {
-                                let data = JSON.parse(xhr.responseText).find(function (data) {
+                                let data = JSON.parse(xhr.responseText).find(function(data) {
                                     return data.permalink.indexOf(location.pathname) !== -1;
                                 });
-                                data.resources.forEach(function (resource) {
+                                data.resources.forEach(function(resource) {
                                     cache.add(resource);
                                 });
                                 cache.add(data.permalink);
@@ -100,15 +100,15 @@
             }
 
             function removeFromCache () {
-                return caches.open("offline-access").then(function (cache) {
+                return caches.open("offline-access").then(function(cache) {
                     let xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
+                    xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200) {
-                                let data = JSON.parse(xhr.responseText).find(function (data) {
+                                let data = JSON.parse(xhr.responseText).find(function(data) {
                                     return data.permalink.indexOf(location.pathname) !== -1;
                                 });
-                                data.resources.forEach(function (resource) {
+                                data.resources.forEach(function(resource) {
                                     cache.delete(resource);
                                 });
                                 cache.delete(data.permalink);
@@ -130,11 +130,11 @@
                 }
             }
 
-            checkIfCached().then(function (isCached) {
+            checkIfCached().then(function(isCached) {
                 updateOfflineAccessControl(isCached);
             });
-            offlineAccessControl.addEventListener("click", function () {
-                checkIfCached().then(function (isCached) {
+            offlineAccessControl.addEventListener("click", function() {
+                checkIfCached().then(function(isCached) {
                     if (!isCached) {
                         addToCache().then(updateOfflineAccessControl(true));
                     } else {
