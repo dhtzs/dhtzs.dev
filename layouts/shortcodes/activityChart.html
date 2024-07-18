@@ -2,7 +2,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var activityChart;
-    fetch("https://dhtzs.dev/api/activity").then(res => res.json()).then(data => {
+    fetch("https://dhtzs.dev/api/activity").then(function(res) {
+        return res.json()
+    }).then(function(data) {
         var datasets = [
             { label: "Left clicks", data: data["left_clicks"] },
             { label: "Right clicks", data: data["right_clicks"] },
@@ -17,7 +19,7 @@
         activityChart = new Chart(document.getElementById("activity-chart").getContext("2d"), {
             type: "line",
             data: {
-                labels: (() => {
+                labels: (function() {
                     var timeLabels = [];
                     var ampm = ["AM", "PM"];
                     for (var i = 0; i < 24; i++) {
@@ -28,14 +30,16 @@
                     }
                     return timeLabels;
                 })(),
-                datasets: datasets.map(ds => ({
-                    label: ds.label,
-                    data: ds.data,
-                    pointRadius: 0,
-                    fill: false,
-                    tension: 0.1,
-                    borderWidth: 2
-                })),
+                datasets: datasets.map(function(ds) {
+                    return {
+                        label: ds.label,
+                        data: ds.data,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    }
+                }),
             },
             options: {
                 responsive: true,
@@ -44,7 +48,7 @@
                     title: {
                         display: true,
                         text: `Last activity update: ${new Date(data["last_upload"]).toUTCString()}`,
-                        color: () => getComputedStyle(document.body).getPropertyValue("--primary"),
+                        color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") },
                         position: "bottom",
                         align: "start",
                         font: {
@@ -55,15 +59,15 @@
                         display: true,
                         position: "bottom",
                         labels: {
-                            color: () => getComputedStyle(document.body).getPropertyValue("--primary")
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
                         }
                     },
                     tooltip: {
                         mode: "index",
                         intersect: false,
                         callbacks: {
-                            title: () => null,
-                            label: (context) => {
+                            title: function() { return null },
+                            label: function(context) {
                                 const { dataset: { label = "" }, raw: value } = context;
                                 if (label === "Mouse distance" || label === "Scroll distance")
                                     return `${label}: ${Math.round(value)} m`;
@@ -76,17 +80,17 @@
                     x: {
                         ticks: {
                             maxTicksLimit: 9,
-                            color: () => getComputedStyle(document.body).getPropertyValue("--primary")
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
                         },
                         grid: {
                             drawOnChartArea: true,
-                            color: () => getComputedStyle(document.body).getPropertyValue("--border")
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            callback: value => {
+                            callback: function(value) {
                                 var ranges = [
                                     { divider: 1e6, suffix: "M" },
                                     { divider: 1e3, suffix: "k" }
@@ -96,11 +100,11 @@
                                         return (value / ranges[i].divider).toString() + ranges[i].suffix;
                                 return value.toString();
                             },
-                            color: () => getComputedStyle(document.body).getPropertyValue("--primary")
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
                         },
                         grid: {
                             drawOnChartArea: true,
-                            color: () => getComputedStyle(document.body).getPropertyValue("--border")
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
                         }
                     },
                 },
