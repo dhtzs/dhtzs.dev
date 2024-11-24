@@ -136,18 +136,18 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://dhtzs.dev/" title="Home">
-                    <span>Home</span>
+                <a href="https://dhtzs.dev/" title="/home">
+                    <span>/home</span>
                 </a>
             </li>
             <li>
-                <a href="https://dhtzs.dev/about-me/" title="About me">
-                    <span class="active">About me</span>
+                <a href="https://dhtzs.dev/about-me/" title="/about-me">
+                    <span class="active">/about-me</span>
                 </a>
             </li>
             <li>
-                <a href="https://dhtzs.dev/write-ups/" title="Write-ups">
-                    <span>Write-ups</span>
+                <a href="https://dhtzs.dev/write-ups/" title="/write-ups">
+                    <span>/write-ups</span>
                 </a>
             </li>
         </ul>
@@ -176,7 +176,7 @@
     <li><a href="#experience-and-contributions">Experience and Contributions</a></li>
     <li><a href="#bug-bounty-profiles">Bug Bounty Profiles</a></li>
     <li><a href="#methodology">Methodology</a></li>
-    <li><a href="#activity">Activity</a></li>
+    <li><a href="#interactions">Interactions</a></li>
   </ul>
 </nav>
         </div>
@@ -200,8 +200,8 @@
 <p>On these platforms, you can see my profile, my past submissions, and my overall stats. Take the opportunity to check and see the impact that I&rsquo;ve made on each platform. I&rsquo;m always interested in connecting with others in the bug bounty community, so <strong>don&rsquo;t hesitate to reach out and say hello</strong>.</p>
 <h2 id="methodology">Methodology</h2>
 <p>When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I&rsquo;m always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and <strong>I&rsquo;m constantly studying new attack vectors and exploitation techniques to stay ahead of the curve</strong>.</p>
-<h2 id="activity">Activity</h2>
-<p>This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses. The data is updated every 24 hours, providing a fresh snapshot of my daily engagement.</p>
+<h2 id="interactions">Interactions</h2>
+<p>This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses, providing a fresh snapshot of my daily engagement.</p>
 <div><canvas id="activity-chart"></canvas></div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -251,7 +251,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: `Last activity update: ${new Date(data["last_upload"]).toUTCString()}`,
+                        text: `Last update: ${new Date(data["last_upload"]).toUTCString()}`,
                         color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") },
                         position: "bottom",
                         align: "start",

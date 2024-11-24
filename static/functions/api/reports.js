@@ -5,14 +5,14 @@ export async function onRequest(context) {
 
     if (param_platform == "hackerone") {
 
-        let reports = [];
-        let page_size = 100;
-        let page_number = 1;
-
         const headers = new Headers({
+            "User-Agent": "CloudflareWorker/1.0",
             "Authorization": "Basic " + btoa("dhtzs:" + context.env.HACKERONE_API_KEY),
             "Accept": "application/json"
         });
+        let reports = [];
+        let page_size = 100;
+        let page_number = 1;
 
         while (reports.length < param_maxResults) {
             try {

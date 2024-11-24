@@ -130,13 +130,13 @@ markup:
 
 menu:
   main:
-    - name: "Home"
+    - name: "/home"
       url: "/"
       weight: 1
-    - name: "About me"
+    - name: "/about-me"
       url: "/about-me/"
       weight: 2
-    - name: "Write-ups"
+    - name: "/write-ups"
       url: "/write-ups/"
       weight: 3
 
