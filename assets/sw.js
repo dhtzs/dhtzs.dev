@@ -1,22 +1,23 @@
 import * as params from "@params";
 
-var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
+var cacheStorage = "cache_" + params.buildHash,
     assetsToCache = [
         "/",
         "/about-me/",
         "/write-ups/",
+        "/contact-me/",
         "/search/",
         "/404",
         "/index.json",
         "/assets/css/stylesheet.css",
         "/assets/js/search.js",
-        "/site.webmanifest",
+        "/manifest.json",
         "/images/profile.jpg",
         "/images/profile.webp",
         "/images/screenshot-1280x800.jpg",
         "/images/screenshot-720x1280.jpg",
         "/.well-known/security.txt",
-        "/pgp-key.txt",
+        "/pubkey.asc",
         "/favicon.ico",
         "/favicons/favicon.svg",
         "/favicons/favicon-16x16.png",
@@ -49,7 +50,7 @@ self.addEventListener("activate", function(event) {
             }));
         }),
 
-        fetch("/index.json?v=" + Date.now()).then(function(res) {
+        fetch("/index.json?t=" + Date.now()).then(function(res) {
             return res.json();
         }).then(function(data) {
             data = [].concat.apply([], data.map(function(data) {
@@ -71,7 +72,8 @@ self.addEventListener("activate", function(event) {
 
 self.addEventListener("fetch", function(event) {
     if (!event.request.headers.get("Save-Data"))
-        event.respondWith(fetch(event.request).catch(function() {
+        event.respondWith(fetch(event.request).catch(function(e) {
+            console.error(e.message);
             return caches.match(event.request);
         }));
 });

@@ -7,17 +7,13 @@ pagination:
 timeout: 60
 
 enableRobotsTXT: true
-build:
-  buildStats:
-    enable: true
 buildDrafts: true
 buildFuture: false
 buildExpired: false
 pluralizeListTitles: false
 pygmentsUseClasses: true
 sitemap:
-  changefreq: "monthly"
-  filename: "sitemap.xml"
+  changefreq: "weekly"
 
 services:
   googleAnalytics:
@@ -39,7 +35,7 @@ disableKinds: ["taxonomy", "term", "RSS"]
 params:
   env: "production"
   title: "Dimitris Chatzis"
-  description: "Explore my persona — A student, programmer, and bug bounty hunter on a digital journey."
+  description: "Explore my persona — A full-stack developer and security researcher on a digital journey."
   footer:
     hideCopyright: false
   author: "Dimitris Chatzis"
@@ -47,7 +43,7 @@ params:
   images: ["images/logo.png"]
   defaultTheme: auto
   DateFormat: "October 30, 2001"
-  ShareButtons: ["x", "linkedin", "reddit", "telegram"]
+  ShareButtons: ["x", "linkedin", "telegram"]
   ShowShareButtons: true
   ShowReadingTime: true
   ShowCodeCopyButtons: true
@@ -71,7 +67,7 @@ params:
     - name: "LinkedIn"
       url: "https://linkedin.com/in/dimitris-chatzis"
     - name: "X"
-      url: "https://twitter.com/dhtzs"
+      url: "https://x.com/dhtzs"
     - name: "GitHub"
       url: "https://github.com/dhtzs"
     - name: "HackerOne"
@@ -81,13 +77,11 @@ params:
     - name: "Intigriti"
       url: "https://intigriti.com/profile/dhtzs"
     - name: "PGPKey"
-      url: "/pgp-key.txt"
-    - name: "Email"
-      url: "#"
+      url: "/pubkey.asc"
   schema:
     sameAs:
       - "https://linkedin.com/in/dimitris-chatzis"
-      - "https://twitter.com/dhtzs"
+      - "https://x.com/dhtzs"
       - "https://github.com/dhtzs"
       - "https://hackerone.com/dhtzs"
       - "https://bugcrowd.com/dhtzs"
@@ -103,6 +97,7 @@ params:
     msapplication_TileColor: "#1D1E20"
   fuseOpts:
     isCaseSensitive: false
+    ignoreDiacritics: false
     includeScore: false
     includeMatches: false
     minMatchCharLength: 1
@@ -128,6 +123,9 @@ markup:
     lineNos: true
     noClasses: false
     tabWidth: 4
+  goldmark:
+    renderer:
+      unsafe: true
 
 menu:
   main:
@@ -140,6 +138,9 @@ menu:
     - name: "/write-ups"
       url: "/write-ups/"
       weight: 3
+    - name: "/contact-me"
+      url: "/contact-me/"
+      weight: 4
 
 outputs:
   home:
@@ -154,6 +155,6 @@ languages:
       profileMode:
         enabled: true
         title: "Dimitris Chatzis"
-        subtitle: "Student of [Digital Systems](https://ds.uth.gr/en) in [University of Thessaly](https://www.uth.gr/en), programmer and hacking enthusiast. Bug Bounty Hunter at HackerOne, Bugcrowd and Intigriti."
+        subtitle: "Full-stack developer and hacking enthusiast. Security researcher on HackerOne, Bugcrowd, and Intigriti."
         imageUrl: "/images/profile"
         imageTitle: "Dimitris Chatzis"
