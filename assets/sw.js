@@ -4,6 +4,7 @@ var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
     assetsToCache = [
         "/",
         "/about-me/",
+        "/activity/",
         "/write-ups/",
         "/search/",
         "/404",

@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var activityChart;
-    fetch("https://dhtzs.dev/api/activity").then(function(res) {
+    fetch("https://dhtzs.dev/api/activity?type=interactions").then(function(res) {
         return res.json()
     }).then(function(data) {
         var datasets = [

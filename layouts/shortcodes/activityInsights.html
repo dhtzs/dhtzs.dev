@@ -1,0 +1,72 @@
+<div>
+    <div class="insights-widget">
+        <div class="insights-widget-icon">
+            <a target="_blank" title="Play on Spotify">
+                <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" aria-label="song cover">
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
+            </svg>
+        </div>
+        <div class="insights-widget-content">
+            <p>Not playing anything</p>
+            <p>&mdash;</p>
+        </div>
+    </div>
+</div>
+<script>
+    var spotify_data_track_id;
+    // setInterval((function _() {
+        fetch("https://dhtzs.dev/api/activity?type=insights").then(function(res) {
+            return res.json();
+        }).then(function(data) {
+            var widgetContent = document.querySelectorAll(".insights-widget-content p"),
+                spotify_data = data.spotify;
+
+            // TODO: Half animation scrolls to end of song other half goes back to start (add animation interval timeout)
+
+            if (data.listening_to_spotify) {
+                if (spotify_data_track_id != spotify_data.track_id) {
+                    widgetContent[0].innerHTML = spotify_data.song;
+                    widgetContent[0].style.fontWeight = "bold";
+                    if (widgetContent[0].offsetWidth < widgetContent[0].scrollWidth) {
+                        var scrollDistance = widgetContent[0].scrollWidth + 25;
+                        widgetContent[0].style.textShadow = scrollDistance + "px 0";
+                        widgetContent[0].style.animation = "marquee_song " + (scrollDistance / 50) + "s linear infinite";
+                        var cssStyle = document.createElement("style");
+                        cssStyle.innerHTML = "@keyframes marquee_song { 100% { transform:translateX(-" + scrollDistance + "px); } }";
+                        widgetContent[0].appendChild(cssStyle)
+                    }
+                    widgetContent[1].innerHTML = spotify_data.artist.replaceAll(";", ",");
+                    if (widgetContent[1].offsetWidth < widgetContent[1].scrollWidth) {
+                        var scrollDistance = widgetContent[1].scrollWidth + 25;
+                        widgetContent[1].style.textShadow = scrollDistance + "px 0";
+                        widgetContent[1].style.animation = "marquee_artist " + (scrollDistance / 50) + "s linear infinite";
+                        var cssStyle = document.createElement("style");
+                        cssStyle.innerHTML = "@keyframes marquee_artist { 100% { transform:translateX(-" + scrollDistance + "px); } }";
+                        widgetContent[1].appendChild(cssStyle)
+                    }
+                    document.querySelectorAll(".insights-widget-icon img")[0].src = spotify_data.album_art_url;
+                    document.querySelectorAll(".insights-widget-icon a")[0].href = "https://open.spotify.com/track/" + spotify_data.track_id;
+                    document.querySelectorAll(".insights-widget-icon a")[0].style.display = "block";
+                    document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "none";
+
+                    spotify_data_track_id = spotify_data.track_id;
+                }
+            } else {
+                widgetContent[0].innerHTML = "Not playing anything";
+                widgetContent[0].style.fontWeight = "normal";
+                widgetContent[0].style.textShadow = "none";
+                widgetContent[0].style.animation = "none";
+                widgetContent[1].innerHTML = "&mdash;";
+                widgetContent[1].style.textShadow = "none";
+                widgetContent[1].style.animation = "none";
+                document.querySelectorAll(".insights-widget-icon img")[0].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+                document.querySelectorAll(".insights-widget-icon a")[0].href = "";
+                document.querySelectorAll(".insights-widget-icon a")[0].style.display = "none";
+                document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
+            }
+        });
+    //     return _;
+    // })(), 15000);
+</script>
