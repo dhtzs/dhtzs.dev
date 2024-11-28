@@ -4,19 +4,19 @@ Hash: SHA512
 Contact: mailto:security@dhtzs.dev
 Expires: 2025-01-01T00:00:00.000Z
 Encryption: https://dhtzs.dev/pgp-key.txt
-Preferred-Languages: en, gr
+Preferred-Languages: en, el
 Canonical: https://dhtzs.dev/.well-known/security.txt
 -----BEGIN PGP SIGNATURE-----
 
-iQGzBAEBCgAdFiEEeRkA0rCxxCJ7Dl5AuttZ6qKMqdsFAmYoT+MACgkQuttZ6qKM
-qdsT7Qv9Fp7y2CbdowhASt8kyg2PJK0EGio/Xrxo8vRN0g2F4MBgyWoxB46Fx0V5
-02XybU8/PJTe9UJCTtW8rpUH4uQ1j6g01AGeYAvj18c5JN3mUvSBJkYuiXODabvF
-NTzrYnyW431eVsuMm0I6ayosR3PJCs9EP1aiJo4VnI1nQvJxnY6+HMD0eDmEKzA7
-H12J/h2ywJwsEID6DKyialsJ71dY0XNo+77mxlHCilvEscgCCXa6tbOwIZl0icPa
-jGraeZdddeYrrTPTMTUpVcWs0mhEcBZbknxPxKylTHGjeLEXR1pvdoGGHCHwtkok
-5wJHhe4C0Qhl398Fk3ipOHz0iPnAEtRKHRznWjCvkdmPDyPCN5e0uC+JS7UBLDvZ
-yf69pLEAahCINwgGHqVcruErGeXfi7Catgiw43TtZIXq4YoKY4iIovM5HlF54Vle
-Mtk3g0EsXZo9L98BQtW5FhW6ORSl+kPPokO+jCVeSzjChSGyrdygydUFTjdslhtD
-8vEIoAlv
-=n3G8
+iQGzBAEBCgAdFiEEeRkA0rCxxCJ7Dl5AuttZ6qKMqdsFAmdTCZMACgkQuttZ6qKM
+qdtoaQv/am6Ywk5JKwPA/L09WHeg/W0Ox104+o4y3h5poO4SmjavsUORy8c2wJj0
+rYXoO77R2iGIoQurOmjY0Ff/GSNPuZva4y2AaAGJ+ihdgrNIVS9O2zxsNyiHCb01
+VAAEiehq3TiuxVMzUoVNNhKeXsNK6EviSQx1UdhNU11hBEXdUdUYZ0DT5UA1DSqB
+982RP4Cp/RvXSycnCLeAdZPnyA2wrAJ3W5t8oL9WSawmTXCX3cLMF7k4l42ferxp
+ZDG/DbB4hk44A+dYG+epmLAMLj065kLQ1pYHuO3ZOrkqtLVoPhOHnfEnBBM4/LWw
+QBeSJVN8YNXnTEqamUMDVCwAk2iVBNaYEiFmDv0bzWLYw7Wagj4UcOVtzNZLC/2E
+vbyX9wbFYaxnDO4oex18VF9+iVBVWNS/mWxUX+K+SVGat6G3k7onOPiXYfdDdzR/
+oI42EnJ+opqxUEZO92o/jjyyXeVI3hl5PcQrJT7J2Xffx3fVsd9AIMkbakZ752jj
+DAl85FGA
+=FP2D
 -----END PGP SIGNATURE-----

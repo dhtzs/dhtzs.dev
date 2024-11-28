@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>404 Page not found | dhtzs.dev</title>
-<meta name="keywords" content="">
-<meta name="description" content="Explore my persona — A student, programmer, and bug bounty hunter on a digital journey.">
+<title>Contact me | dhtzs.dev</title>
+<meta name="keywords" content="contact me">
+<meta name="description" content="Connect with me — Reach out for collaborations, inquiries, or to exchange ideas in the exciting world of ethical hacking and technology.">
 <meta name="author" content="Dimitris Chatzis">
-<link rel="canonical" href="https://dhtzs.dev/404.html">
+<link rel="canonical" href="https://dhtzs.dev/contact-me/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://dhtzs.dev/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://dhtzs.dev/favicons/favicon.svg">
 <meta name="theme-color" content="#1D1E20">
 <meta name="msapplication-TileColor" content="#1D1E20">
-<link rel="alternate" hreflang="en" href="https://dhtzs.dev/404.html">
+<link rel="alternate" hreflang="en" href="https://dhtzs.dev/contact-me/">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,18 +60,33 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
-<meta property="og:url" content="https://dhtzs.dev/404.html">
+<meta property="og:url" content="https://dhtzs.dev/contact-me/">
 <meta property="og:site_name" content="dhtzs.dev">
-<meta property="og:title" content="404 Page not found">
-<meta property="og:description" content="Explore my persona — A student, programmer, and bug bounty hunter on a digital journey.">
+<meta property="og:title" content="Contact me">
+<meta property="og:description" content="Connect with me — Reach out for collaborations, inquiries, or to exchange ideas in the exciting world of ethical hacking and technology.">
 <meta property="og:locale" content="en">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
-<meta name="twitter:title" content="404 Page not found">
-<meta name="twitter:description" content="Explore my persona — A student, programmer, and bug bounty hunter on a digital journey.">
+<meta name="twitter:title" content="Contact me">
+<meta name="twitter:description" content="Connect with me — Reach out for collaborations, inquiries, or to exchange ideas in the exciting world of ethical hacking and technology.">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Contact me",
+      "item": "https://dhtzs.dev/contact-me/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -138,14 +153,43 @@
             </li>
             <li>
                 <a href="https://dhtzs.dev/contact-me/" title="/contact-me">
-                    <span>/contact-me</span>
+                    <span class="active">/contact-me</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
 <main class="main">
-<div class="not-found">404</div>
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Contact me
+    </h1>
+    <div class="post-description">
+      Connect with me — Reach out for collaborations, inquiries, or to exchange ideas in the exciting world of ethical hacking and technology.
+    </div>
+  </header> 
+  <div class="post-content"><form action="/api/email" method="post" autocomplete="off">
+    <label for="name">Name</label>
+    <input type="text" name="name" placeholder="Your name" role="presentation" autocomplete="off" required>
+    <label for="email">Email</label>
+    <input type="email" name="email" placeholder="Your email" role="presentation" autocomplete="off" required>
+    <label for="message">Message</label>
+    <textarea rows="5" name="message" placeholder="Your message" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer>
+</article>
     </main>
     
 <footer class="footer">
