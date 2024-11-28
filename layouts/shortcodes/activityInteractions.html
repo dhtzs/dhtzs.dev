@@ -1,0 +1,114 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div><canvas class="interactions-chart"></canvas></div>
+<script>
+    var interactionsChart;
+    fetch("https://dhtzs.dev/api/activity?type=interactions").then(function(res) {
+        return res.json();
+    }).then(function(data) {
+        var datasets = [
+            { label: "Left clicks", data: data["left_clicks"] },
+            { label: "Right clicks", data: data["right_clicks"] },
+            { label: "Middle clicks", data: data["middle_clicks"] },
+            { label: "Mouse distance", data: data["mouse_distance"] },
+            { label: "Scroll distance", data: data["scroll_distance"] },
+            { label: "Keypresses", data: data["key_presses"] }
+        ];
+
+        Chart.defaults.font.family = getComputedStyle(document.body).getPropertyValue("font-family");
+
+        interactionsChart = new Chart(document.getElementsByClassName("interactions-chart")[0].getContext("2d"), {
+            type: "line",
+            data: {
+                labels: (function() {
+                    var timeLabels = [],
+                        ampm = ["AM", "PM"];
+                    for (var i = 0; i < 24; i++) {
+                        var hour = i % 12,
+                            period = ampm[Math.floor(i / 12)];
+                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:00 ${period}`);
+                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:30 ${period}`);
+                    }
+                    return timeLabels;
+                })(),
+                datasets: datasets.map(function(ds) {
+                    return {
+                        label: ds.label,
+                        data: ds.data,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    }
+                })
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: `Last update: ${new Date(new Date(data["last_upload"]).getTime() + 30 * 60 * 1000).toUTCString()}`,
+                        color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); },
+                        position: "bottom",
+                        align: "start",
+                        font: {
+                            weight: "normal"
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                        }
+                    },
+                    tooltip: {
+                        mode: "index",
+                        intersect: false,
+                        callbacks: {
+                            title: function() { return null },
+                            label: function(context) {
+                                const { dataset: { label = "" }, raw: value } = context;
+                                if (label === "Mouse distance" || label === "Scroll distance")
+                                    return `${label}: ${Math.round(value)} m`;
+                                return `${label}: ${value}`;
+                            },
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 9,
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                        },
+                        grid: {
+                            drawOnChartArea: true,
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                var ranges = [
+                                    { divider: 1e6, suffix: "M" },
+                                    { divider: 1e3, suffix: "k" }
+                                ];
+                                for (var i = 0; i < ranges.length; i++)
+                                    if (value >= ranges[i].divider)
+                                        return (value / ranges[i].divider).toString() + ranges[i].suffix;
+                                return value.toString();
+                            },
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                        },
+                        grid: {
+                            drawOnChartArea: true,
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
+                        }
+                    },
+                },
+            },
+        });
+    });
+</script>
