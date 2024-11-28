@@ -1,16 +1,16 @@
 {
   "devDependencies": {
-    "@tailwindcss/cli": "^4.0.0-beta.3",
-    "autoprefixer": "^10.4.20",
-    "cssnano": "^6.1.2",
-    "cssnano-preset-advanced": "^6.1.2",
-    "cssnano-preset-default": "^6.1.2",
-    "cssnano-preset-lite": "^3.1.0",
+    "@eslint/js": "^9.17.0",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "eslint": "^9.17.0",
+    "eslint-plugin-html": "^8.1.2",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
-    "tailwindcss": "^4.0.0-beta.3"
+    "tailwindcss": "^4.0.0-beta.8"
   },
   "scripts": {
-    "update-deps": "npm install @tailwindcss/cli autoprefixer cssnano cssnano-preset-advanced cssnano-preset-default cssnano-preset-lite postcss postcss-cli tailwindcss --save-dev"
+    "build": "node scripts/build.js",
+    "server": "node scripts/server.js",
+    "update": "node scripts/update.js"
   }
 }

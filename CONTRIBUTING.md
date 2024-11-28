@@ -31,7 +31,7 @@ Thank you for considering contributing to this repository! Your help is greatly 
 ## Development Setup
 
 > [!NOTE]
-> The following instructions assume that you have already installed both Hugo and Node.js to your machine.
+> The following instructions assume that you have already installed both Node.js and Hugo to your machine.
 
 1. Clone the repository and submodules:
 ```
@@ -43,11 +43,11 @@ cd dhtzs.dev/
 ```
 3. Install dependencies:
 ```
-npm install --save-dev
+npm install
 ```
-4. Build the site:
+4. Build the sites:
 ```
-hugo
+npm run build
 ```
 
 ## Pull Request Process

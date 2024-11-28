@@ -3,15 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dhtzs.dev/about-me/</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://dhtzs.dev/contact-me/</loc>
+    <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://dhtzs.dev/</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://dhtzs.dev/search/</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://dhtzs.dev/write-ups/</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>

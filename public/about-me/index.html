@@ -60,12 +60,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
+<meta property="og:url" content="https://dhtzs.dev/about-me/">
+<meta property="og:site_name" content="dhtzs.dev">
 <meta property="og:title" content="About me">
 <meta property="og:description" content="Discover about me — Explore my bug bounty journey, methodical cybersecurity approach, and impactful contributions in the dynamic realm of ethical hacking.">
+<meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dhtzs.dev/about-me/">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
-<meta property="og:site_name" content="Dimitris Chatzis">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:title" content="About me">
@@ -150,6 +151,11 @@
                     <span>/write-ups</span>
                 </a>
             </li>
+            <li>
+                <a href="https://dhtzs.dev/contact-me/" title="/contact-me">
+                    <span>/contact-me</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -157,7 +163,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://dhtzs.dev/">Home</a></div>
+    
     <h1 class="post-title entry-hint-parent">
       About me
     </h1>
@@ -176,6 +182,7 @@
     <li><a href="#experience-and-contributions">Experience and Contributions</a></li>
     <li><a href="#bug-bounty-profiles">Bug Bounty Profiles</a></li>
     <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#insights">Insights</a></li>
     <li><a href="#interactions">Interactions</a></li>
   </ul>
 </nav>
@@ -200,14 +207,115 @@
 <p>On these platforms, you can see my profile, my past submissions, and my overall stats. Take the opportunity to check and see the impact that I&rsquo;ve made on each platform. I&rsquo;m always interested in connecting with others in the bug bounty community, so <strong>don&rsquo;t hesitate to reach out and say hello</strong>.</p>
 <h2 id="methodology">Methodology</h2>
 <p>When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I&rsquo;m always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and <strong>I&rsquo;m constantly studying new attack vectors and exploitation techniques to stay ahead of the curve</strong>.</p>
-<h2 id="interactions">Interactions</h2>
-<p>This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses, providing a fresh snapshot of my daily engagement.</p>
-<div><canvas id="activity-chart"></canvas></div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h2 id="insights">Insights</h2>
+<p>Get an instant overview of my digital world. From the songs fueling my creativity to the programs driving my workflow, this section highlights what&rsquo;s currently shaping my day.</p>
+<div>
+    <div class="insights-widget-container">
+        <div class="insights-widget-icon">
+            <a href="/" target="_blank">
+                <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="song thumbnail" aria-label="song thumbnail">
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+            </svg>
+        </div>
+        <div class="insights-widget-content">
+            <a href="/" target="_blank">No music playing</a>
+            <p>&mdash;</p>
+        </div>
+    </div>
+    <div class="insights-widget-container">
+        <div class="insights-widget-icon">
+            <a href="/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+            </a>
+        </div>
+        <div class="insights-widget-content">
+            <a href="/" target="_blank">No program running</a>
+            <p>&mdash;</p>
+        </div>
+    </div>
+</div>
 <script>
-    var activityChart;
-    fetch("https://dhtzs.dev/api/activity").then(function(res) {
-        return res.json()
+    var widgetContent = document.querySelectorAll(".insights-widget-content a, .insights-widget-content p"),
+        spotify_data_track_id;
+    setInterval((function _() {
+        fetch("https://dhtzs.dev/api/activity?type=insights").then(function(res) {
+            return res.json();
+        }).then(function(data) {
+            var spotify_data = data.spotify;
+            if (data.listening_to_spotify) {
+                if (spotify_data_track_id != spotify_data.track_id) {
+                    widgetContent[0].innerHTML = spotify_data.song;
+                    widgetContent[0].href = "https://open.spotify.com/track/" + spotify_data.track_id;
+                    widgetContent[0].style.pointerEvents = "auto";
+                    widgetContent[1].innerHTML = spotify_data.artist.replaceAll(";", ",");
+                    document.querySelectorAll(".insights-widget-icon img")[0].src = spotify_data.album_art_url;
+                    document.querySelectorAll(".insights-widget-icon img")[0].style.display = "block";
+                    document.querySelectorAll(".insights-widget-icon a")[0].href = "https://open.spotify.com/track/" + spotify_data.track_id;
+                    document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "auto";
+                    document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "none";
+                    spotify_data_track_id = spotify_data.track_id;
+                }
+            } else {
+                widgetContent[0].innerHTML = "No music playing";
+                widgetContent[0].href = "/"
+                widgetContent[0].style.pointerEvents = "none";
+                widgetContent[1].innerHTML = "&mdash;";
+                document.querySelectorAll(".insights-widget-icon img")[0].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+                document.querySelectorAll(".insights-widget-icon img")[0].style.display = "none";
+                document.querySelectorAll(".insights-widget-icon a")[0].href = "/";
+                document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "none";
+                document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
+            }
+
+            var activities_data = data.activities.filter(function(activity) {
+                return activity.name != "Spotify";
+            });
+            var icons = {
+                default: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+                youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>`,
+                twitch: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>`
+            }
+            if (activities_data.length > 0) {
+                widgetContent[2].innerHTML = `${["Playing", "Streaming on", "Listening to", "Watching", "Running", "Competing in"][activities_data[0].type]} ${activities_data[0].name}`;
+                widgetContent[3].innerHTML = activities_data[0].details || "&mdash;";
+                if (activities_data[0].url) {
+                    widgetContent[2].href = activities_data[0].url;
+                    widgetContent[2].style.pointerEvents = "auto";
+                    document.querySelectorAll(".insights-widget-icon a")[1].href = activities_data[0].url;
+                    document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "auto";
+                } else {
+                    widgetContent[2].href = "/";
+                    widgetContent[2].style.pointerEvents = "none";
+                    document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
+                    document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
+                }
+                document.querySelectorAll(".insights-widget-icon a")[1].innerHTML = icons[activities_data[0].name.toLowerCase()] || icons.default;
+            } else {
+                widgetContent[2].innerHTML = "No program running";
+                widgetContent[3].innerHTML = "&mdash;";
+                widgetContent[2].href = "/";
+                widgetContent[2].style.pointerEvents = "none";
+                document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
+                document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
+                document.querySelectorAll(".insights-widget-icon a")[1].innerHTML = icons.default;
+            }
+        });
+        return _;
+    })(), 15000);
+</script>
+
+<h2 id="interactions">Interactions</h2>
+<p>This graph visualizes my daily digital interactions, illustrating patterns in mouse activity, scrolling, and typing, offering an insightful snapshot of my engagement with technology.</p>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div><canvas class="interactions-chart"></canvas></div>
+<script>
+    var interactionsChart;
+    fetch("https://dhtzs.dev/api/activity?type=interactions").then(function(res) {
+        return res.json();
     }).then(function(data) {
         var datasets = [
             { label: "Left clicks", data: data["left_clicks"] },
@@ -220,15 +328,15 @@
 
         Chart.defaults.font.family = getComputedStyle(document.body).getPropertyValue("font-family");
 
-        activityChart = new Chart(document.getElementById("activity-chart").getContext("2d"), {
+        interactionsChart = new Chart(document.getElementsByClassName("interactions-chart")[0].getContext("2d"), {
             type: "line",
             data: {
                 labels: (function() {
-                    var timeLabels = [];
-                    var ampm = ["AM", "PM"];
+                    var timeLabels = [],
+                        ampm = ["AM", "PM"];
                     for (var i = 0; i < 24; i++) {
-                        var hour = i % 12;
-                        var period = ampm[Math.floor(i / 12)];
+                        var hour = i % 12,
+                            period = ampm[Math.floor(i / 12)];
                         timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:00 ${period}`);
                         timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:30 ${period}`);
                     }
@@ -243,7 +351,7 @@
                         tension: 0.1,
                         borderWidth: 2
                     }
-                }),
+                })
             },
             options: {
                 responsive: true,
@@ -251,8 +359,8 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: `Last update: ${new Date(data["last_upload"]).toUTCString()}`,
-                        color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") },
+                        text: `Last update: ${new Date(new Date(data["last_upload"]).getTime() + 30 * 60 * 1000).toUTCString()}`,
+                        color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); },
                         position: "bottom",
                         align: "start",
                         font: {
@@ -263,7 +371,7 @@
                         display: true,
                         position: "bottom",
                         labels: {
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
                         }
                     },
                     tooltip: {
@@ -284,11 +392,11 @@
                     x: {
                         ticks: {
                             maxTicksLimit: 9,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
                         },
                         grid: {
                             drawOnChartArea: true,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
                         }
                     },
                     y: {
@@ -304,11 +412,11 @@
                                         return (value / ranges[i].divider).toString() + ranges[i].suffix;
                                 return value.toString();
                             },
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
                         },
                         grid: {
                             drawOnChartArea: true,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
+                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
                         }
                     },
                 },
@@ -329,8 +437,8 @@
     </main>
     
 <footer class="footer">
-    <p>Copyright &copy; 2024 | All rights reserved</p>
-    <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> with <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> and <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg> by Dimitris Chatzis</p>
+    <p>&copy; 2024 | CC BY-SA 4.0</p>
+    <a href="https://github.com/dhtzs/dhtzs.dev" target="_blank" rel="noopener noreferrer me" title="View source"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> with <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> and <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg> by Dimitris Chatzis</a>
 </footer>
 <a href="#top" aria-label="go to top" id="top-link" class="top-link" title="Go to top (Alt + G)" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
@@ -342,14 +450,14 @@
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("\/sw.min.js", {
             updateViaCache: "none"
-        }).catch(function(err) {
-            return console.error(err);
+        }).catch(function(e) {
+            return console.error(e.message);
         });
     }
 </script>
 
 <script>
-    var menu = document.getElementById("menu")
+    var menu = document.getElementById("menu");
     if (menu) {
         menu.scrollLeft = localStorage.getItem("menu-scroll-position");
         menu.addEventListener("scroll", function() {
@@ -397,8 +505,8 @@
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
         }
-        if (activityChart !== undefined) {
-            activityChart.update();
+        if (window.interactionsChart !== undefined) {
+            window.interactionsChart.update();
         }
     });
 </script>
