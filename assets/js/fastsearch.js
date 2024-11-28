@@ -31,6 +31,7 @@ window.onload = function () {
                     if (params.fuseOpts) {
                         options = {
                             isCaseSensitive: params.fuseOpts.iscasesensitive ?? false,
+                            ignoreDiacritics: params.fuseOpts.ignorediacritics ?? false,
                             includeScore: params.fuseOpts.includescore ?? false,
                             includeMatches: params.fuseOpts.includematches ?? false,
                             minMatchCharLength: params.fuseOpts.minmatchcharlength ?? 1,
@@ -124,7 +125,7 @@ sInput.onkeyup = function (e) {
                         }
                     }
                 }
-                xhr.open("GET", window.location.href + "?v=" + Date.now(), true);
+                xhr.open("GET", window.location.href + "?t=" + Date.now(), true);
                 xhr.send();
             }
         } else {
