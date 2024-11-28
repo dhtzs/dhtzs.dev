@@ -8,42 +8,38 @@ This repository contains the source code for my personal website. It is licensed
 ![Repository size](https://img.shields.io/github/repo-size/dhtzs/dhtzs.dev)
 
 ## 📋 Requirements
-- [Hugo](https://gohugo.io/installation/)
-- [Node.js](https://nodejs.org/en/download)
+- [Node.js](https://nodejs.org/en/download) (v18 or higher)
+- [Hugo Extended](https://gohugo.io/installation/) (v0.125.7 or higher)
 
 ## 🚀 Getting started
 > [!NOTE]
-> The following instructions assume that you have already installed both Hugo and Node.js to your machine.
+> The following instructions assume that you have already installed both Node.js and Hugo Extended to your machine.
 
-1. Clone the repository and submodules:
-```
+1. Clone the repository and its submodules:
+```console
 git clone --recurse-submodules https://github.com/dhtzs/dhtzs.dev
 ```
 2. Navigate to the repository:
-```
+```console
 cd dhtzs.dev/
 ```
 3. Install dependencies:
+```console
+npm install
 ```
-npm install --save-dev
-```
-4. Build the site:
-```
-hugo
+4. Build the sites:
+```console
+npm run build
 ```
 
-## 🔄 Updating submodules and dependencies
+## 🔄 Updating dependencies and submodules
 1. Navigate to the repository:
-```
+```console
 cd dhtzs.dev/
 ```
-2. Update submodules:
-```
-git submodule update --remote --merge
-```
-3. Update dependencies:
-```
-npm run update-deps
+2. Update dependencies and submodules:
+```console
+npm run update
 ```
 
 ## 📜 Licensing information
@@ -53,5 +49,7 @@ Read the [LICENSE.md](LICENSE.md) file for more information.
 
 ## 🤝 Contributing
 Interested in contributing? You are more than welcome to contribute to this repository as much as you wish.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/dhtzs/dhtzs.dev)
 
 This repository adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.

@@ -1,4 +1,5 @@
 node_modules/
+public/
 backup/
 .hugo_build.lock
 resources/
