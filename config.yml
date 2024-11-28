@@ -69,25 +69,25 @@ params:
   hideSummary: false
   socialIcons:
     - name: "LinkedIn"
-      url: "https://linkedin.com/in/dimitris-chatzis"
+      url: "/profile/linkedin"
     - name: "X"
-      url: "https://twitter.com/dhtzs"
+      url: "/profile/x"
     - name: "GitHub"
-      url: "https://github.com/dhtzs"
+      url: "/profile/github"
     - name: "HackerOne"
-      url: "https://hackerone.com/dhtzs"
+      url: "/profile/hackerone"
     - name: "Bugcrowd"
-      url: "https://bugcrowd.com/dhtzs"
+      url: "/profile/bugcrowd"
     - name: "Intigriti"
-      url: "https://intigriti.com/profile/dhtzs"
+      url: "/profile/intigriti"
     - name: "PGPKey"
       url: "/pgp-key.txt"
     - name: "Email"
-      url: "#"
+      url: "/"
   schema:
     sameAs:
       - "https://linkedin.com/in/dimitris-chatzis"
-      - "https://twitter.com/dhtzs"
+      - "https://x.com/dhtzs"
       - "https://github.com/dhtzs"
       - "https://hackerone.com/dhtzs"
       - "https://bugcrowd.com/dhtzs"
@@ -128,6 +128,9 @@ markup:
     lineNos: true
     noClasses: false
     tabWidth: 4
+  goldmark:
+    renderer:
+      unsafe: true
 
 menu:
   main:
@@ -137,9 +140,12 @@ menu:
     - name: "/about-me"
       url: "/about-me/"
       weight: 2
+    - name: "/activity"
+      url: "/activity/"
+      weight: 3
     - name: "/write-ups"
       url: "/write-ups/"
-      weight: 3
+      weight: 4
 
 outputs:
   home:

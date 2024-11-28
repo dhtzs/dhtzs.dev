@@ -4,6 +4,7 @@ description: "Discover about me — Explore my bug bounty journey, methodical cy
 keywords: ["about me"]
 layout: "single"
 hideMeta: true
+ShowBreadCrumbs: false
 disableShare: true
 searchHidden: true
 draft: false
@@ -32,8 +33,3 @@ On these platforms, you can see my profile, my past submissions, and my overall 
 
 ## Methodology
 When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I'm always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and __I'm constantly studying new attack vectors and exploitation techniques to stay ahead of the curve__.
-
-## Interactions
-This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses, providing a fresh snapshot of my daily engagement.
-
-{{< activityChart >}}

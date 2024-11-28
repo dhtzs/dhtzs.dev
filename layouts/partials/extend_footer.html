@@ -1,4 +1,14 @@
 
+{{- $snowstorm := (slice (resources.Get "js/snowstorm-min.js")) | resources.Concat "assets/js/snowstorm-min.js" }}
+<script src="{{ $snowstorm.RelPermalink }}"></script>
+<script>
+    snowStorm.excludeMobile = false;
+    snowStorm.snowColor = "var(--primary)";
+    snowStorm.followMouse = false;
+    snowStorm.snowStick = false;
+    snowStorm.freezeOnBlur = false;
+    snowStorm.useMeltEffect = false;
+</script>
 {{ $buildHash := now.UnixNano | md5 -}}
 {{- $extraAssetsToCache := slice -}}
 {{- range $section := site.Params.mainSections }}
