@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "npm",
+            "script": "install",
+            "problemMatcher": [],
+            "label": "npm: install",
+            "detail": "Install dependencies"
+        },
+        {
+            "type": "npm",
+            "script": "update",
+            "problemMatcher": [],
+            "label": "npm: update",
+            "detail": "Update dependencies and submodules"
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": [],
+            "label": "npm: build",
+            "detail": "Build the sites"
+        },
+        {
+            "type": "npm",
+            "script": "lint",
+            "problemMatcher": [],
+            "label": "npm: lint",
+            "detail": "Lint the files"
+        },
+        {
+            "type": "npm",
+            "script": "server",
+            "problemMatcher": [],
+            "label": "npm: server",
+            "detail": "Preview the sites"
+        }
+    ]
+}
