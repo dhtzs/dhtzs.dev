@@ -2,7 +2,8 @@ baseURL: https://dhtzs.dev/
 languageCode: en-us
 title: "dhtzs.dev"
 theme: PaperMod
-paginate: 5
+pagination:
+  pagerSize: 5
 timeout: 60
 
 enableRobotsTXT: true
