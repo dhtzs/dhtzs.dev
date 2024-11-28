@@ -1,16 +1,28 @@
 {
+  "name": "dhtzs.dev",
+  "author": "Dimitris Chatzis",
+  "version": "1.0.0",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.11"
+  },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.0.0-beta.3",
-    "autoprefixer": "^10.4.20",
-    "cssnano": "^6.1.2",
-    "cssnano-preset-advanced": "^6.1.2",
-    "cssnano-preset-default": "^6.1.2",
-    "cssnano-preset-lite": "^3.1.0",
-    "postcss": "^8.4.49",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^4.0.0-beta.3"
+    "@eslint/css": "^0.10.0",
+    "@eslint/js": "^9.32.0",
+    "@eslint/json": "^0.13.1",
+    "@eslint/markdown": "^7.1.0",
+    "eslint": "^9.32.0",
+    "npm-check-updates": "^18.0.2",
+    "tailwind-csstree": "^0.1.2"
   },
   "scripts": {
-    "update-deps": "npm install @tailwindcss/cli autoprefixer cssnano cssnano-preset-advanced cssnano-preset-default cssnano-preset-lite postcss postcss-cli tailwindcss --save-dev"
+    "build": "node scripts/build.js",
+    "lint": "node scripts/lint.js",
+    "server": "node scripts/server.js",
+    "update": "node scripts/update.js"
   }
 }
