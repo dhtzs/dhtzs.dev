@@ -63,13 +63,12 @@
 {{- $core := (slice $theme_vars $reset $common $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
 
+{{- /* Add TailwindCSS */}}
+{{- $tailwind := (slice (resources.Get "css/tailwind.css")) | resources.Concat "assets/css/tailwind.css" | css.PostCSS }}
+
 {{- /* bundle all required css */}}
 {{- /* Add extended css after theme style */ -}}
-{{- $bundle := (slice $license_css $core $extended) | resources.Concat "assets/css/bundle.css" | css.PostCSS }}
-
-{{- /* Add TailwindCSS */}}
-{{- $tailwind := (slice (resources.Get "css/tailwind.css")) | resources.Concat "assets/css/tailwind.css" | css.TailwindCSS (dict "minify" true) }}
-{{- $stylesheet := (slice $tailwind $bundle) | resources.Concat "assets/css/stylesheet.css" }}
+{{- $stylesheet := (slice $tailwind $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css" | css.PostCSS }}
 
 {{- if not site.Params.assets.disableFingerprinting }}
 {{- $stylesheet := $stylesheet | fingerprint }}
