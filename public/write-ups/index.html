@@ -60,12 +60,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
+<meta property="og:url" content="https://dhtzs.dev/write-ups/">
+<meta property="og:site_name" content="dhtzs.dev">
 <meta property="og:title" content="Write-ups">
 <meta property="og:description" content="Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.">
+<meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dhtzs.dev/write-ups/">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
-<meta property="og:site_name" content="Dimitris Chatzis">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:title" content="Write-ups">
@@ -146,6 +147,11 @@
                 </a>
             </li>
             <li>
+                <a href="https://dhtzs.dev/activity/" title="/activity">
+                    <span>/activity</span>
+                </a>
+            </li>
+            <li>
                 <a href="https://dhtzs.dev/write-ups/" title="/write-ups">
                     <span class="active">/write-ups</span>
                 </a>
@@ -154,7 +160,7 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://dhtzs.dev/">Home</a></div>
+<header class="page-header">
   <h1>
     Write-ups
   </h1>
@@ -263,8 +269,8 @@
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
         }
-        if (activityChart !== undefined) {
-            activityChart.update();
+        if (window.activityChart !== undefined) {
+            window.activityChart.update();
         }
     });
 </script>

@@ -60,12 +60,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
+<meta property="og:url" content="https://dhtzs.dev/about-me/">
+<meta property="og:site_name" content="dhtzs.dev">
 <meta property="og:title" content="About me">
 <meta property="og:description" content="Discover about me — Explore my bug bounty journey, methodical cybersecurity approach, and impactful contributions in the dynamic realm of ethical hacking.">
+<meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dhtzs.dev/about-me/">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
-<meta property="og:site_name" content="Dimitris Chatzis">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:title" content="About me">
@@ -146,6 +147,11 @@
                 </a>
             </li>
             <li>
+                <a href="https://dhtzs.dev/activity/" title="/activity">
+                    <span>/activity</span>
+                </a>
+            </li>
+            <li>
                 <a href="https://dhtzs.dev/write-ups/" title="/write-ups">
                     <span>/write-ups</span>
                 </a>
@@ -157,7 +163,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://dhtzs.dev/">Home</a></div>
+    
     <h1 class="post-title entry-hint-parent">
       About me
     </h1>
@@ -176,7 +182,6 @@
     <li><a href="#experience-and-contributions">Experience and Contributions</a></li>
     <li><a href="#bug-bounty-profiles">Bug Bounty Profiles</a></li>
     <li><a href="#methodology">Methodology</a></li>
-    <li><a href="#interactions">Interactions</a></li>
   </ul>
 </nav>
         </div>
@@ -200,123 +205,6 @@
 <p>On these platforms, you can see my profile, my past submissions, and my overall stats. Take the opportunity to check and see the impact that I&rsquo;ve made on each platform. I&rsquo;m always interested in connecting with others in the bug bounty community, so <strong>don&rsquo;t hesitate to reach out and say hello</strong>.</p>
 <h2 id="methodology">Methodology</h2>
 <p>When it comes to bug bounty hunting, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I&rsquo;m always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and <strong>I&rsquo;m constantly studying new attack vectors and exploitation techniques to stay ahead of the curve</strong>.</p>
-<h2 id="interactions">Interactions</h2>
-<p>This graph captures my digital interactions, showcasing left, right, and middle mouse clicks, mouse and scroll distances, as well as keypresses, providing a fresh snapshot of my daily engagement.</p>
-<div><canvas id="activity-chart"></canvas></div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    var activityChart;
-    fetch("https://dhtzs.dev/api/activity").then(function(res) {
-        return res.json()
-    }).then(function(data) {
-        var datasets = [
-            { label: "Left clicks", data: data["left_clicks"] },
-            { label: "Right clicks", data: data["right_clicks"] },
-            { label: "Middle clicks", data: data["middle_clicks"] },
-            { label: "Mouse distance", data: data["mouse_distance"] },
-            { label: "Scroll distance", data: data["scroll_distance"] },
-            { label: "Keypresses", data: data["key_presses"] }
-        ];
-
-        Chart.defaults.font.family = getComputedStyle(document.body).getPropertyValue("font-family");
-
-        activityChart = new Chart(document.getElementById("activity-chart").getContext("2d"), {
-            type: "line",
-            data: {
-                labels: (function() {
-                    var timeLabels = [];
-                    var ampm = ["AM", "PM"];
-                    for (var i = 0; i < 24; i++) {
-                        var hour = i % 12;
-                        var period = ampm[Math.floor(i / 12)];
-                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:00 ${period}`);
-                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:30 ${period}`);
-                    }
-                    return timeLabels;
-                })(),
-                datasets: datasets.map(function(ds) {
-                    return {
-                        label: ds.label,
-                        data: ds.data,
-                        pointRadius: 0,
-                        fill: false,
-                        tension: 0.1,
-                        borderWidth: 2
-                    }
-                }),
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: `Last update: ${new Date(data["last_upload"]).toUTCString()}`,
-                        color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") },
-                        position: "bottom",
-                        align: "start",
-                        font: {
-                            weight: "normal"
-                        }
-                    },
-                    legend: {
-                        display: true,
-                        position: "bottom",
-                        labels: {
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
-                        }
-                    },
-                    tooltip: {
-                        mode: "index",
-                        intersect: false,
-                        callbacks: {
-                            title: function() { return null },
-                            label: function(context) {
-                                const { dataset: { label = "" }, raw: value } = context;
-                                if (label === "Mouse distance" || label === "Scroll distance")
-                                    return `${label}: ${Math.round(value)} m`;
-                                return `${label}: ${value}`;
-                            },
-                        }
-                    },
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            maxTicksLimit: 9,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
-                        },
-                        grid: {
-                            drawOnChartArea: true,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                var ranges = [
-                                    { divider: 1e6, suffix: "M" },
-                                    { divider: 1e3, suffix: "k" }
-                                ];
-                                for (var i = 0; i < ranges.length; i++)
-                                    if (value >= ranges[i].divider)
-                                        return (value / ranges[i].divider).toString() + ranges[i].suffix;
-                                return value.toString();
-                            },
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--primary") }
-                        },
-                        grid: {
-                            drawOnChartArea: true,
-                            color: function() { return getComputedStyle(document.body).getPropertyValue("--border") }
-                        }
-                    },
-                },
-            },
-        });
-    });
-</script>
-
 
   </div>
 
@@ -397,8 +285,8 @@
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
         }
-        if (activityChart !== undefined) {
-            activityChart.update();
+        if (window.activityChart !== undefined) {
+            window.activityChart.update();
         }
     });
 </script>

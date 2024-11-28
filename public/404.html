@@ -60,12 +60,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
+<meta property="og:url" content="https://dhtzs.dev/404.html">
+<meta property="og:site_name" content="dhtzs.dev">
 <meta property="og:title" content="404 Page not found">
 <meta property="og:description" content="Explore my persona — A student, programmer, and bug bounty hunter on a digital journey.">
+<meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dhtzs.dev/404.html">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
-<meta property="og:site_name" content="Dimitris Chatzis">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:title" content="404 Page not found">
@@ -128,6 +129,11 @@
             <li>
                 <a href="https://dhtzs.dev/about-me/" title="/about-me">
                     <span>/about-me</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dhtzs.dev/activity/" title="/activity">
+                    <span>/activity</span>
                 </a>
             </li>
             <li>
@@ -211,8 +217,8 @@
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
         }
-        if (activityChart !== undefined) {
-            activityChart.update();
+        if (window.activityChart !== undefined) {
+            window.activityChart.update();
         }
     });
 </script>
