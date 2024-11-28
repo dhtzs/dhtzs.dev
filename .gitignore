@@ -1,4 +1,5 @@
 node_modules/
+.vscode/
 backup/
 .hugo_build.lock
 resources/

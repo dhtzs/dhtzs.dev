@@ -62,12 +62,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
 
+<meta property="og:url" content="https://dhtzs.dev/search/">
+<meta property="og:site_name" content="dhtzs.dev">
 <meta property="og:title" content="Search">
 <meta property="og:description" content="Find cybersecurity nuggets — Dive into my ethical hacking experiences smoothly with the search tool, uncovering nuggets of knowledge and practical solutions.">
+<meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dhtzs.dev/search/">
 <meta property="og:image" content="https://dhtzs.dev/images/logo.png">
-<meta property="og:site_name" content="Dimitris Chatzis">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png">
 <meta name="twitter:title" content="Search">
@@ -152,6 +153,11 @@
                     <span>/write-ups</span>
                 </a>
             </li>
+            <li>
+                <a href="https://dhtzs.dev/contact-me/" title="/contact-me">
+                    <span>/contact-me</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -185,13 +191,21 @@
         <path d="M12 6H0l6-6z" />
     </svg>
 </a>
+<script src="/assets/js/snowstorm-min.js"></script>
+<script>
+    snowStorm.snowColor = "var(--primary)";
+    snowStorm.followMouse = false;
+    snowStorm.snowStick = false;
+    snowStorm.freezeOnBlur = false;
+    snowStorm.useMeltEffect = false;
+</script>
 
 <script>
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("\/sw.min.js", {
             updateViaCache: "none"
-        }).catch(function(err) {
-            return console.error(err);
+        }).catch(function(e) {
+            return console.error(e.message);
         });
     }
 </script>
@@ -245,8 +259,8 @@
             document.body.classList.add("dark");
             localStorage.setItem("pref-theme", "dark");
         }
-        if (activityChart !== undefined) {
-            activityChart.update();
+        if (window.interactionsChart !== undefined) {
+            window.interactionsChart.update();
         }
     });
 </script>

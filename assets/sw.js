@@ -5,10 +5,12 @@ var cacheStorage = "cache_" + (params.buildHash || "serviceWorker"),
         "/",
         "/about-me/",
         "/write-ups/",
+        "/contact-me/",
         "/search/",
         "/404",
         "/index.json",
         "/assets/css/stylesheet.css",
+        "/assets/js/snowstorm-min.js",
         "/assets/js/search.js",
         "/site.webmanifest",
         "/images/profile.jpg",
@@ -71,7 +73,7 @@ self.addEventListener("activate", function(event) {
 
 self.addEventListener("fetch", function(event) {
     if (!event.request.headers.get("Save-Data"))
-        event.respondWith(fetch(event.request).catch(function() {
+        event.respondWith(fetch(event.request).catch(function(e) {
             return caches.match(event.request);
         }));
 });

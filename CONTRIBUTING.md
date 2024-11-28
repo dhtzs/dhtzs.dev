@@ -43,11 +43,11 @@ cd dhtzs.dev/
 ```
 3. Install dependencies:
 ```
-npm install --save-dev
+npm install
 ```
 4. Build the site:
 ```
-hugo
+npm run build
 ```
 
 ## Pull Request Process
