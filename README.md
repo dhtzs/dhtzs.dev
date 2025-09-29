@@ -1,5 +1,5 @@
-![CodeQL](/static/images/screenshot-1280x800.jpg)
-dhtzs.dev - powered by Hugo & PaperMod. Hosted on Cloudflare Pages.
+![dhtzs.dev](/static/images/screenshot-1280x800.jpg)
+[dhtzs.dev](https://dhtzs.dev/) - powered by [Hugo](https://gohugo.io/) & [PaperMod](https://github.com/adityatelange/hugo-PaperMod). Deployed on [Cloudflare Workers](https://workers.cloudflare.com/).
 
 ## 📖 About
 This repository contains the source code for my personal website. It is licensed under the [Creative Commons Attribution ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
@@ -42,14 +42,14 @@ cd dhtzs.dev/
 npm run update
 ```
 
-## 📜 Licensing information
+## 📜 License
 All content in this repository is licensed under the [Creative Commons Attribution ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). That means you are free to share and adapt the content for any purpose, even commercially, as long as you give proper attribution to the author(s) and any derived work is shared under the same license. Please verify that you attribute the author(s) appropriately and include a link to the original publication when applicable.
 
-Read the [LICENSE.md](LICENSE.md) file for more information.
+Read [LICENSE](LICENSE.md) for more information.
 
 ## 🤝 Contributing
 Interested in contributing? You are more than welcome to contribute to this repository as much as you wish.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/dhtzs/dhtzs.dev)
 
-This repository adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.
+This repository adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read [CONTRIBUTING](CONTRIBUTING.md) to get started.
