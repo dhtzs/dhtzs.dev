@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +10,9 @@
     <meta name="description" content="Discover about me — Explore my cybersecurity journey, methodical approach, and impactful contributions in the dynamic realm of ethical hacking." />
     <meta name="author" content="Dimitris Chatzis" />
     <link rel="canonical" href="https://dhtzs.dev/about-me/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" />
     <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style" />
     <link rel="icon" href="https://dhtzs.dev/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png" />
@@ -19,6 +22,8 @@
     <meta name="theme-color" content="#1D1E20" />
     <meta name="msapplication-TileColor" content="#1D1E20" />
     <link rel="alternate" hreflang="en" href="https://dhtzs.dev/about-me/" />
+    <link rel="manifest" href="/manifest.json" />
+
     <noscript>
       <style>
         #theme-toggle,
@@ -38,28 +43,36 @@
             --code-block-bg: rgb(46, 46, 51);
             --code-bg: rgb(55, 56, 62);
             --border: rgb(51, 51, 51);
+            color-scheme: dark;
           }
 
           .list {
             background: var(--theme);
           }
 
-          .list:not(.dark)::-webkit-scrollbar-track {
-            background: 0 0;
+          .toc {
+            background: var(--entry);
           }
+        }
 
-          .list:not(.dark)::-webkit-scrollbar-thumb {
-            border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+          .list::-webkit-scrollbar-thumb {
+            border-color: var(--code-bg);
           }
         }
       </style>
     </noscript>
-
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" />
-
+    <script>
+      if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = "dark";
+      } else if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = "light";
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.querySelector("html").dataset.theme = "dark";
+      } else {
+        document.querySelector("html").dataset.theme = "light";
+      }
+    </script>
     <meta property="og:url" content="https://dhtzs.dev/about-me/" />
     <meta property="og:site_name" content="dhtzs.dev" />
     <meta property="og:title" content="About me" />
@@ -87,18 +100,7 @@
       }
     </script>
   </head>
-
   <body class="list" id="top">
-    <script>
-      if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add("dark");
-      } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove("dark");
-      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark");
-      }
-    </script>
-
     <header class="header">
       <nav class="nav">
         <div class="logo">
@@ -213,12 +215,12 @@
               <div class="insights-widget-icon">
                 <a href="/" target="_blank" aria-label="song thumbnail">
                   <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="song thumbnail" aria-label="song thumbnail" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg>
                 </a>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18V5l12-2v13" />
-                  <circle cx="6" cy="18" r="3" />
-                  <circle cx="18" cy="16" r="3" />
-                </svg>
               </div>
               <div class="insights-widget-content">
                 <a href="/" target="_blank">No music playing</a>
@@ -228,6 +230,7 @@
             <div class="insights-widget-container">
               <div class="insights-widget-icon">
                 <a href="/" target="_blank" aria-label="program thumbnail">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="program thumbnail" aria-label="program thumbnail" />
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                   </svg>
@@ -253,14 +256,14 @@
                     if (data.listening_to_spotify) {
                       if (spotify_data_track_id != spotify_data.track_id) {
                         widgetContent[0].innerHTML = spotify_data.song;
-                        widgetContent[0].href = "https://open.spotify.com/track/" + spotify_data.track_id;
+                        widgetContent[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
                         widgetContent[0].style.pointerEvents = "auto";
                         widgetContent[1].innerHTML = spotify_data.artist.replaceAll(";", ",");
                         document.querySelectorAll(".insights-widget-icon img")[0].src = spotify_data.album_art_url;
                         document.querySelectorAll(".insights-widget-icon img")[0].style.display = "block";
-                        document.querySelectorAll(".insights-widget-icon a")[0].href = "https://open.spotify.com/track/" + spotify_data.track_id;
-                        document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "auto";
                         document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "none";
+                        document.querySelectorAll(".insights-widget-icon a")[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
+                        document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "auto";
                         spotify_data_track_id = spotify_data.track_id;
                       }
                     } else {
@@ -270,22 +273,22 @@
                       widgetContent[1].innerHTML = "&mdash;";
                       document.querySelectorAll(".insights-widget-icon img")[0].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
                       document.querySelectorAll(".insights-widget-icon img")[0].style.display = "none";
+                      document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
                       document.querySelectorAll(".insights-widget-icon a")[0].href = "/";
                       document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "none";
-                      document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
                     }
 
                     var activities_data = data.activities.filter(function (activity) {
                       return activity.name != "Spotify";
                     });
-                    var icons = {
-                      default: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-                      youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>`,
-                      twitch: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>`,
-                    };
                     if (activities_data.length > 0) {
                       widgetContent[2].innerHTML = `${["Playing", "Streaming on", "Listening to", "Watching", "Running", "Competing in"][activities_data[0].type]} ${activities_data[0].name}`;
                       widgetContent[3].innerHTML = activities_data[0].details || "&mdash;";
+                      if (activities_data[0].assets) {
+                        document.querySelectorAll(".insights-widget-icon img")[1].src = activities_data[0].assets.large_image?.startsWith("twitch:") ? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${activities_data[0].assets.large_image.split(":")[1]}-640x640.jpg` : `https://cdn.discordapp.com/app-assets/${activities_data[0].application_id}/${activities_data[0].assets.small_image ?? activities_data[0].assets.large_image}.png`;
+                        document.querySelectorAll(".insights-widget-icon img")[1].style.display = "block";
+                        document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "none";
+                      }
                       if (activities_data[0].url) {
                         widgetContent[2].href = activities_data[0].url;
                         widgetContent[2].style.pointerEvents = "auto";
@@ -297,15 +300,16 @@
                         document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
                         document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
                       }
-                      document.querySelectorAll(".insights-widget-icon a")[1].innerHTML = icons[activities_data[0].name.toLowerCase()] || icons.default;
                     } else {
                       widgetContent[2].innerHTML = "No program running";
-                      widgetContent[3].innerHTML = "&mdash;";
                       widgetContent[2].href = "/";
                       widgetContent[2].style.pointerEvents = "none";
+                      widgetContent[3].innerHTML = "&mdash;";
+                      document.querySelectorAll(".insights-widget-icon img")[1].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+                      document.querySelectorAll(".insights-widget-icon img")[1].style.display = "none";
+                      document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "block";
                       document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
                       document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
-                      document.querySelectorAll(".insights-widget-icon a")[1].innerHTML = icons.default;
                     }
                   });
                 return _;
@@ -495,7 +499,11 @@
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        var scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+          menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+
         menu.addEventListener("scroll", function () {
           localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         });
@@ -534,11 +542,12 @@
     </script>
     <script>
       document.getElementById("theme-toggle").addEventListener("click", function () {
-        if (document.body.className.includes("dark")) {
-          document.body.classList.remove("dark");
+        var html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+          html.dataset.theme = "light";
           localStorage.setItem("pref-theme", "light");
         } else {
-          document.body.classList.add("dark");
+          html.dataset.theme = "dark";
           localStorage.setItem("pref-theme", "dark");
         }
         if (window.interactionsChart !== undefined) {

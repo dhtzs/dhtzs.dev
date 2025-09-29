@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +10,9 @@
     <meta name="description" content="Explore my persona — A full-stack developer and security researcher on a digital journey." />
     <meta name="author" content="Dimitris Chatzis" />
     <link rel="canonical" href="https://dhtzs.dev/404.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" />
     <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style" />
     <link rel="icon" href="https://dhtzs.dev/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png" />
@@ -19,6 +22,8 @@
     <meta name="theme-color" content="#1D1E20" />
     <meta name="msapplication-TileColor" content="#1D1E20" />
     <link rel="alternate" hreflang="en" href="https://dhtzs.dev/404.html" />
+    <link rel="manifest" href="/manifest.json" />
+
     <noscript>
       <style>
         #theme-toggle,
@@ -38,28 +43,36 @@
             --code-block-bg: rgb(46, 46, 51);
             --code-bg: rgb(55, 56, 62);
             --border: rgb(51, 51, 51);
+            color-scheme: dark;
           }
 
           .list {
             background: var(--theme);
           }
 
-          .list:not(.dark)::-webkit-scrollbar-track {
-            background: 0 0;
+          .toc {
+            background: var(--entry);
           }
+        }
 
-          .list:not(.dark)::-webkit-scrollbar-thumb {
-            border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+          .list::-webkit-scrollbar-thumb {
+            border-color: var(--code-bg);
           }
         }
       </style>
     </noscript>
-
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" />
-
+    <script>
+      if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = "dark";
+      } else if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = "light";
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.querySelector("html").dataset.theme = "dark";
+      } else {
+        document.querySelector("html").dataset.theme = "light";
+      }
+    </script>
     <meta property="og:url" content="https://dhtzs.dev/404.html" />
     <meta property="og:site_name" content="dhtzs.dev" />
     <meta property="og:title" content="404 Page not found" />
@@ -72,18 +85,7 @@
     <meta name="twitter:title" content="404 Page not found" />
     <meta name="twitter:description" content="Explore my persona — A full-stack developer and security researcher on a digital journey." />
   </head>
-
   <body class="list" id="top">
-    <script>
-      if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add("dark");
-      } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove("dark");
-      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark");
-      }
-    </script>
-
     <header class="header">
       <nav class="nav">
         <div class="logo">
@@ -182,7 +184,11 @@
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        var scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+          menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+
         menu.addEventListener("scroll", function () {
           localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         });
@@ -221,11 +227,12 @@
     </script>
     <script>
       document.getElementById("theme-toggle").addEventListener("click", function () {
-        if (document.body.className.includes("dark")) {
-          document.body.classList.remove("dark");
+        var html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+          html.dataset.theme = "light";
           localStorage.setItem("pref-theme", "light");
         } else {
-          document.body.classList.add("dark");
+          html.dataset.theme = "dark";
           localStorage.setItem("pref-theme", "dark");
         }
         if (window.interactionsChart !== undefined) {
