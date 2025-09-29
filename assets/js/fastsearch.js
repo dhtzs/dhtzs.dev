@@ -1,3 +1,4 @@
+import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.3.0/dist/fuse.basic.min.mjs';
 import * as params from '@params';
 
 let fuse; // holds our search engine
@@ -76,10 +77,16 @@ function reset() {
 }
 
 // execute search as each character is typed
-sInput.onkeyup = function (e) {
+sInput.onkeyup = function () {
     // run a search query (for "term") every time a letter is typed
     // in the search box
     if (fuse) {
+        if (!this.value.trim()) {
+            resultsAvailable = false;
+            resList.innerHTML = '';
+            return;
+        }
+
         let results;
         if (params.fuseOpts) {
             results = fuse.search(this.value.trim(), {limit: params.fuseOpts.limit}); // the actual query being run using fuse.js along with options
@@ -135,7 +142,7 @@ sInput.onkeyup = function (e) {
     }
 }
 
-sInput.addEventListener('search', function (e) {
+sInput.addEventListener('search', function () {
     // clicked on x
     if (!this.value) reset()
 })

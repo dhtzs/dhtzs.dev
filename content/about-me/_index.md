@@ -11,7 +11,7 @@ draft: false
 ---
 
 ## Introduction
-Greetings! I'm Dimitris, a self-motivated full-stack developer and cybersecurity enthusiast with a BSc in Digital Systems from the University of Thessaly. Along the way, I've developed strong programming skills and a growing passion for ethical hacking and problem-solving.
+Greetings! I'm Dimitris, a self-motivated full-stack developer and cybersecurity enthusiast with a BSc in Digital Systems from the University of Thessaly in Greece. Along the way, I've developed strong programming skills and a growing passion for ethical hacking and problem-solving.
 
 As an avid security researcher, I bring a distinctive blend of knowledge, imagination, and hands-on experience to the realm of cybersecurity. Actively engaging with top bug bounty platforms, I collaborate with diverse organizations to identify and exploit vulnerabilities, contributing significantly to enhancing their security posture.
 

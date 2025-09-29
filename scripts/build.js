@@ -1,13 +1,17 @@
-const { execSync } = require("child_process");
-const fs = require("fs");
+import { execSync } from "child_process";
+import fs from "fs";
+import path from "path";
 
 try {
   console.log("-> Building sites …");
-  fs.rmSync(require("path").resolve(__dirname, "../public"), { recursive: true, force: true });
-  execSync("hugo --gc --quiet", { stdio: "inherit" });
+  fs.rmSync(path.resolve(import.meta.dirname, "../public"), { recursive: true, force: true });
+  execSync("hugo --gc", { stdio: "inherit" });
 
-  console.log("-> Formatting sites …");
-  execSync("prettier --ignore-path '' --log-level silent --write 'public/**/*.{html,json}'", { stdio: "inherit" });
+  console.log("\n-> Formatting sites …");
+  execSync("prettier --ignore-path '' --write 'public/**/*.{html,json}'", { stdio: "inherit" });
+
+  console.log("\n-> Building worker …");
+  execSync("wrangler pages functions build --outdir=./ --minify", { stdio: "inherit" });
 } catch (error) {
   console.error("Error during build process:", error.message);
 }
