@@ -1,5 +1,5 @@
 ![CodeQL](/static/images/screenshot-1280x800.jpg)
-dhtzs.dev - powered by Hugo & PaperMod. Hosted on Cloudflare Pages.
+dhtzs.dev - powered by Hugo & PaperMod. Deployed on Cloudflare Workers.
 
 ## 📖 About
 This repository contains the source code for my personal website. It is licensed under the [Creative Commons Attribution ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
