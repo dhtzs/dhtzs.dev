@@ -73,9 +73,9 @@ params:
     - name: "HackerOne"
       url: "https://hackerone.com/dhtzs"
     - name: "Bugcrowd"
-      url: "https://bugcrowd.com/dhtzs"
+      url: "https://bugcrowd.com/h/dhtzs"
     - name: "Intigriti"
-      url: "https://intigriti.com/profile/dhtzs"
+      url: "https://app.intigriti.com/profile/dhtzs"
     - name: "PGPKey"
       url: "/pubkey.asc"
   schema:
@@ -84,8 +84,8 @@ params:
       - "https://x.com/dhtzs"
       - "https://github.com/dhtzs"
       - "https://hackerone.com/dhtzs"
-      - "https://bugcrowd.com/dhtzs"
-      - "https://intigriti.com/profile/dhtzs"
+      - "https://bugcrowd.com/h/dhtzs"
+      - "https://app.intigriti.com/profile/dhtzs"
   assets:
     disableFingerprinting: true
     favicon: "favicon.ico"
@@ -155,6 +155,6 @@ languages:
       profileMode:
         enabled: true
         title: "Dimitris Chatzis"
-        subtitle: "Full-stack developer and hacking enthusiast. Security researcher on HackerOne, Bugcrowd, and Intigriti."
+        subtitle: "Security researcher. Active on HackerOne, Bugcrowd, and Intigriti."
         imageUrl: "/images/profile"
         imageTitle: "Dimitris Chatzis"
