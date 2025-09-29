@@ -5,9 +5,10 @@
     "directory": "./public/",
     "not_found_handling": "404-page"
   },
-  "main": "./worker.js",
+  "main": "./index.js",
   "workers_dev": false,
   "placement": {
     "mode": "smart"
-  }
+  },
+  "send_metrics": false
 }

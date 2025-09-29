@@ -42,7 +42,8 @@ export default defineConfig([
     plugins: { json },
     files: ["**/*.json"],
     language: "json/json",
-    extends: ["json/recommended"]
+    extends: ["json/recommended"],
+    ignores: ["layouts/**"]
   },
   {
     plugins: { markdown },
