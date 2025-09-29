@@ -76,7 +76,7 @@ header nav div.logo>a:after {
     cursor: pointer;
 }
 
-.dark .insights-widget-container {
+[data-theme="dark"] .insights-widget-container {
     background: var(--entry);
 }
 
@@ -102,8 +102,9 @@ header nav div.logo>a:after {
 
 .insights-widget-icon svg, .insights-widget-icon img {
     width: 64px;
-    height: auto;
+    height: 64px;
     margin: 0;
+    object-fit: cover;
     border-radius: var(--radius);
 }
 
@@ -198,7 +199,7 @@ form button {
     color: var(--code-bg);
 }
 
-.dark form button {
+[data-theme="dark"] form button {
     color: var(--theme);
 }
 
@@ -208,7 +209,7 @@ form button:hover {
     transition: background 0.5s, color 0.5s;
 }
 
-.dark form button:hover {
+[data-theme="dark"] form button:hover {
     background: var(--theme);
 }
 
@@ -217,7 +218,7 @@ form button.success {
     color: var(--code-bg);
 }
 
-.dark form button.success {
+[data-theme="dark"] form button.success {
     color: var(--primary);
 }
 
@@ -226,7 +227,7 @@ form button.error {
     color: var(--code-bg);
 }
 
-.dark form button.error {
+[data-theme="dark"] form button.error {
     color: var(--primary);
 }
 

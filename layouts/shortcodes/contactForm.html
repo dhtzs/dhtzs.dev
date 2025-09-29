@@ -1,5 +1,5 @@
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<script src="https://cdn.jsdelivr.net/npm/openpgp/dist/openpgp.min.js" async defer></script>
+<script async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/openpgp/dist/openpgp.min.js"></script>
 <form action="/api/email" method="POST" autocomplete="off">
     <label for="contactForm-emailAddess"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>Email address</label>
     <input id="contactForm-emailAddess" type="email" name="email" placeholder="Your email address" autocomplete="off" required>
@@ -7,7 +7,7 @@
     <textarea id="contactForm-message" rows="5" name="message" placeholder="Your message" required></textarea>
     <div class="cf-turnstile" data-sitekey="0x4AAAAAAA2BsmXYsRUGzdXY" data-size="flexible"></div>
     <blockquote>Your messages are fully encrypted for privacy and confidentiality!</blockquote>
-    <button type="submit" aria-label="Send email">Send email <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+    <button type="submit" aria-label="send email">Send email <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
 </form>
 <script>
     var form = document.querySelectorAll("form")[0],

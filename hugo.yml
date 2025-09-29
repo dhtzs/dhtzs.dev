@@ -1,5 +1,5 @@
 baseURL: https://dhtzs.dev/
-languageCode: en-us
+locale: en-US
 title: "dhtzs.dev"
 theme: PaperMod
 pagination:
@@ -15,6 +15,8 @@ pygmentsUseClasses: true
 sitemap:
   changefreq: "weekly"
 
+build:
+  noJSConfigInAssets: true
 services:
   googleAnalytics:
     id: "G-LVC4CS3028"
@@ -73,9 +75,9 @@ params:
     - name: "HackerOne"
       url: "https://hackerone.com/dhtzs"
     - name: "Bugcrowd"
-      url: "https://bugcrowd.com/dhtzs"
+      url: "https://bugcrowd.com/h/dhtzs"
     - name: "Intigriti"
-      url: "https://intigriti.com/profile/dhtzs"
+      url: "https://app.intigriti.com/profile/dhtzs"
     - name: "PGPKey"
       url: "/pubkey.asc"
   schema:
@@ -84,8 +86,8 @@ params:
       - "https://x.com/dhtzs"
       - "https://github.com/dhtzs"
       - "https://hackerone.com/dhtzs"
-      - "https://bugcrowd.com/dhtzs"
-      - "https://intigriti.com/profile/dhtzs"
+      - "https://bugcrowd.com/h/dhtzs"
+      - "https://app.intigriti.com/profile/dhtzs"
   assets:
     disableFingerprinting: true
     favicon: "favicon.ico"
@@ -95,9 +97,15 @@ params:
     safari_pinned_tab: "favicons/favicon.svg"
     theme_color: "#1D1E20"
     msapplication_TileColor: "#1D1E20"
+  profileMode:
+    enabled: true
+    title: "Dimitris Chatzis"
+    subtitle: "Security researcher. Active on HackerOne, Bugcrowd, and Intigriti."
+    imageUrl: "/images/profile"
+    imageTitle: "Dimitris Chatzis"
   fuseOpts:
     isCaseSensitive: false
-    ignoreDiacritics: false
+    ignoreDiacritics: true
     includeScore: false
     includeMatches: false
     minMatchCharLength: 1
@@ -149,12 +157,7 @@ outputs:
 
 languages:
   en:
-    params:
-      languageName: "English"
-      weight: 1
-      profileMode:
-        enabled: true
-        title: "Dimitris Chatzis"
-        subtitle: "Full-stack developer and hacking enthusiast. Security researcher on HackerOne, Bugcrowd, and Intigriti."
-        imageUrl: "/images/profile"
-        imageTitle: "Dimitris Chatzis"
+    direction: auto
+    label: English
+    locale: en-US
+    weight: 1
