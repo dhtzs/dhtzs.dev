@@ -20,7 +20,11 @@
 <script>
     var menu = document.getElementById("menu");
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        var scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+
         menu.addEventListener("scroll", function() {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         });
@@ -64,11 +68,12 @@
 {{- if (not site.Params.disableThemeToggle) }}
 <script>
     document.getElementById("theme-toggle").addEventListener("click", function() {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove("dark");
+        var html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = "light";
             localStorage.setItem("pref-theme", "light");
         } else {
-            document.body.classList.add("dark");
+            html.dataset.theme = "dark";
             localStorage.setItem("pref-theme", "dark");
         }
         if (window.interactionsChart !== undefined) {
