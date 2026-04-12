@@ -3,7 +3,6 @@ import globals from "globals";
 
 import js from "@eslint/js";
 import css from "@eslint/css";
-import { tailwind4 } from "tailwind-csstree";
 import markdown from "@eslint/markdown";
 import json from "@eslint/json";
 
@@ -30,8 +29,7 @@ export default defineConfig([
     files: ["**/*.css"],
     language: "css/css",
     languageOptions: {
-      tolerant: true,
-      customSyntax: tailwind4
+      tolerant: true
     },
     extends: ["css/recommended"],
     rules: {

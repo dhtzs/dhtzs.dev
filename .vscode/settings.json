@@ -6,8 +6,5 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "tailwindCSS.includeLanguages": {
-    "plaintext": "html"
-  },
   "files.trimFinalNewlines": true
 }
