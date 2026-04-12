@@ -5,6 +5,5 @@ keywords: ["write-ups"]
 hideMeta: true
 ShowBreadCrumbs: false
 disableShare: true
-searchHidden: true
 draft: false
 ---

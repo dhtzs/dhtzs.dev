@@ -56,8 +56,8 @@
     var postControls = document.querySelector(".post-controls");
     if (postControls) {
         if ("serviceWorker" in navigator && "caches" in window) {
-            postControls.innerHTML += '<div id="control-offlineAccess"></div>';
-            var offlineAccessControl = document.querySelector(".post-controls #control-offlineAccess");
+            postControls.innerHTML += '<div class="control-offlineAccess"></div>';
+            var offlineAccessControl = document.querySelector(".post-controls .control-offlineAccess");
 
             function checkIfCached () {
                 return caches.open("offline-access").then(function(cache) {

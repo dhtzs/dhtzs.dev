@@ -16,31 +16,23 @@ html, body {
 
 header nav div.logo>a:after {
     content: "";
-    position: relative;
-    display: inline-block;
+    display: inline-flex;
     background: var(--primary);
-    vertical-align: middle;
     border-radius: 1px;
     width: 2px;
     height: 24px;
-    bottom: 2.5px;
-    margin-left: 2.5px;
     opacity: 0;
     animation: blink 1.06s linear infinite;
 }
 
-#search-toggle {
+.search-toggle {
     width: 24px;
     font-size: 26px;
     margin: auto 4px;
 }
 
-#search-toggle.active {
+.search-toggle.active {
     pointer-events: none;
-}
-
-#search-toggle:focus {
-    outline: 0;
 }
 
 @keyframes blink {
@@ -56,7 +48,18 @@ header nav div.logo>a:after {
 }
 
 .footer a {
+    text-decoration: none;
     border-bottom: 1px dotted var(--secondary);
+}
+
+.list .top-link {
+    bottom: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .list .top-link {
+        transform: none;
+    }
 }
 
 .footer svg, .post-controls svg {
@@ -65,14 +68,14 @@ header nav div.logo>a:after {
     height: 100%;
 }
 
-.post-controls, #control-offlineAccess {
+.post-controls, .control-offlineAccess {
     color: var(--primary);
     font-size: 14px;
     display: flex;
     flex-wrap: wrap;
 }
 
-#control-offlineAccess:hover {
+.control-offlineAccess:hover {
     cursor: pointer;
 }
 
@@ -136,6 +139,7 @@ header nav div.logo>a:after {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-decoration: none;
 }
 
 .insights-widget-content a, .insights-widget-icon a {

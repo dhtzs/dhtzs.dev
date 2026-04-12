@@ -13,9 +13,7 @@ window.onload = function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText).filter(function (data) {
-                    return !data.isSearchHidden;
-                });
+                let data = JSON.parse(xhr.responseText);
                 if (data) {
                     // fuse.js options; check fuse.js website for details
                     let options = {

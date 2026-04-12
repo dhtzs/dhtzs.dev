@@ -6,7 +6,6 @@ layout: "single"
 hideMeta: true
 ShowBreadCrumbs: false
 disableShare: true
-searchHidden: true
 draft: false
 ---
 

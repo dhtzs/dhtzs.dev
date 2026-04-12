@@ -7,7 +7,6 @@ hideMeta: true
 ShowBreadCrumbs: false
 ShowToc: false
 disableShare: true
-searchHidden: true
 draft: false
 ---
 
