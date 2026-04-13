@@ -28,43 +28,43 @@
       <style>
         #theme-toggle,
         .top-link {
-          display: none;
+            display: none;
         }
       </style>
       <style>
         @media (prefers-color-scheme: dark) {
-          :root {
-            --theme: rgb(29, 30, 32);
-            --entry: rgb(46, 46, 51);
-            --primary: rgb(218, 218, 219);
-            --secondary: rgb(155, 156, 157);
-            --tertiary: rgb(65, 66, 68);
-            --content: rgb(196, 196, 197);
-            --code-block-bg: rgb(46, 46, 51);
-            --code-bg: rgb(55, 56, 62);
-            --border: rgb(51, 51, 51);
-            color-scheme: dark;
-          }
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
 
-          .list {
-            background: var(--theme);
-          }
+            .list {
+                background: var(--theme);
+            }
 
-          .toc {
-            background: var(--entry);
-          }
+            .toc {
+                background: var(--entry);
+            }
         }
       </style>
     </noscript>
     <script>
       if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       }
     </script>
     <meta property="og:url" content="https://dhtzs.dev/about-me/" />
@@ -87,7 +87,7 @@
         "itemListElement": [
           {
             "@type": "ListItem",
-            "position": 1,
+            "position":  1 ,
             "name": "About me",
             "item": "https://dhtzs.dev/about-me/"
           }
@@ -102,10 +102,10 @@
           <a href="https://dhtzs.dev/" accesskey="h" title="dhtzs.dev (Alt + H)">dhtzs.dev</a>
           <div class="logo-switches">
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="Toggle theme (Alt + T)" aria-label="toggle theme">
-              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -118,7 +118,7 @@
               </svg>
             </button>
             <a href="https://dhtzs.dev/search/" class="search-toggle" accesskey="/" title="Search (Alt + /)" aria-label="search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -164,11 +164,10 @@
             <nav id="TableOfContents">
               <ul>
                 <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#experience-and-contributions">Experience and Contributions</a></li>
-                <li><a href="#bug-bounty-profiles">Bug Bounty Profiles</a></li>
+                <li><a href="#experience--contributions">Experience &amp; Contributions</a></li>
                 <li><a href="#methodology">Methodology</a></li>
-                <li><a href="#insights">Insights</a></li>
-                <li><a href="#interactions">Interactions</a></li>
+                <li><a href="#platform-contributions">Platform Contributions</a></li>
+                <li><a href="#insights--interactions">Insights &amp; Interactions</a></li>
               </ul>
             </nav>
           </div>
@@ -177,32 +176,28 @@
         <div class="post-content md-content">
           <h2 id="introduction">Introduction</h2>
           <p>Greetings! I&rsquo;m Dimitris, a self-motivated full-stack developer and cybersecurity enthusiast with a BSc in Digital Systems from the University of Thessaly in Greece. Along the way, I&rsquo;ve developed strong programming skills and a growing passion for ethical hacking and problem-solving.</p>
-          <p>As an avid security researcher, I bring a distinctive blend of knowledge, imagination, and hands-on experience to the realm of cybersecurity. Actively engaging with top bug bounty platforms, I collaborate with diverse organizations to identify and exploit vulnerabilities, contributing significantly to enhancing their security posture.</p>
           <p>
             <strong>This journey is more than a pursuit; it&rsquo;s a true passion that I approach with enthusiasm and dedication.</strong>
-            Beyond my academic endeavors and security research exploits, I am committed to continuous learning. In my spare time, I delve into relevant books, articles, and online courses, applying newfound knowledge to tackle hacking challenges. This perpetual learning cycle not only enhances my skills but also deepens my understanding of the dynamic field of cybersecurity.
+            Beyond my academic endeavors and security research exploits, I am committed to continuous learning. In my spare time, I delve into relevant books, articles, and online courses, applying newfound knowledge to tackle hacking challenges.
           </p>
-          <h2 id="experience-and-contributions">Experience and Contributions</h2>
-          <p>I&rsquo;ve had the privilege of engaging with top bug bounty platforms, collaborating with diverse organizations to uncover vulnerabilities and bolster their security posture. In the dynamic landscape of cybersecurity, I prioritize a methodical and data-driven approach. My methodology encompasses a blend of manual testing, automated scanning, and targeted research to identify vulnerabilities. I&rsquo;m continually exploring new tools and techniques to refine my process, with a specific focus on reconnaissance. My goal is to stay at the forefront of evolving attack vectors and exploitation techniques.</p>
-          <p>Throughout my journey in 2022, I demonstrated consistent commitment and perseverance on HackerOne, earning recognition for my contributions. My focus remains on making meaningful contributions to the cybersecurity community and refining my skills. If you&rsquo;re interested in exploring my research experience further, feel free to check out my profiles on HackerOne, Bugcrowd, and Intigriti. I welcome connections with fellow researchers and am always open to discussions on our shared passion.</p>
-          <h2 id="bug-bounty-profiles">Bug Bounty Profiles</h2>
-          <p>If you&rsquo;d like to learn more about my security research and bug bounty hunting experience, I encourage you to check out my profiles on each of the platforms I participate in:</p>
-          <ul>
-            <li><a href="https://hackerone.com/dhtzs" target="_blank">HackerOne</a></li>
-            <li><a href="https://bugcrowd.com/dhtzs" target="_blank">Bugcrowd</a></li>
-            <li><a href="https://intigriti.com/profile/dhtzs" target="_blank">Intigriti</a></li>
-          </ul>
-          <p>
-            On these platforms, you can see my profile, my past submissions, and my overall stats. Take the opportunity to check and see the impact that I&rsquo;ve made on each platform. I&rsquo;m always interested in connecting with others in the cybersecurity community, so
-            <strong>don&rsquo;t hesitate to reach out and say hello.</strong>
-          </p>
+          <h2 id="experience--contributions">Experience &amp; Contributions</h2>
+          <p>As an avid security researcher, I bring a distinctive blend of knowledge, imagination, and hands-on experience to the realm of cybersecurity. I&rsquo;ve had the privilege of engaging with top bug bounty platforms, collaborating with diverse organizations to uncover vulnerabilities and bolster their security posture.</p>
+          <p>Since beginning my bug bounty journey in 2020, I have demonstrated a consistent commitment to identifying vulnerabilities, earning recognition for my ongoing contributions across various programs. My primary focus remains on making meaningful contributions to the cybersecurity community and continually refining my skills.</p>
           <h2 id="methodology">Methodology</h2>
           <p>
             When it comes to security research, I believe in taking a methodical and data-driven approach. I rely on a combination of manual testing, automated scanning, and targeted research to identify vulnerabilities, and I&rsquo;m always looking for new tools and techniques to improve my process. I have a particular expertise in reconnaissance, and
             <strong>I&rsquo;m constantly studying new attack vectors and exploitation techniques to stay ahead of the curve.</strong>
           </p>
-          <h2 id="insights">Insights</h2>
-          <p>Get an instant overview of my digital world. From the songs fueling my creativity to the programs driving my workflow, this section highlights what&rsquo;s currently shaping my day.</p>
+          <h2 id="platform-contributions">Platform Contributions</h2>
+          <p>If you&rsquo;d like to learn more about my security research, I encourage you to check out my profiles on HackerOne, Bugcrowd, and Intigriti:</p>
+          <ul>
+            <li><a href="https://hackerone.com/dhtzs" target="_blank">HackerOne</a></li>
+            <li><a href="https://bugcrowd.com/dhtzs" target="_blank">Bugcrowd</a></li>
+            <li><a href="https://intigriti.com/profile/dhtzs" target="_blank">Intigriti</a></li>
+          </ul>
+          <p>There, you can view my past submissions, overall stats, and the impact I&rsquo;ve made on each platform. I welcome connections with fellow researchers and am always open to discussing our shared passion, so don&rsquo;t hesitate to reach out!</p>
+          <h2 id="insights--interactions">Insights &amp; Interactions</h2>
+          <p>Get an instant overview of my digital world. From the music fueling my creativity and the programs driving my workflow to visualizations of my daily mouse, scrolling, and typing patterns, this section offers a comprehensive snapshot of my day-to-day engagement with technology.</p>
           <div>
             <div class="insights-widget-container">
               <div class="insights-widget-icon">
@@ -237,218 +232,194 @@
           </div>
           <script>
             var widgetContent = document.querySelectorAll(".insights-widget-content a, .insights-widget-content p"),
-              spotify_data_track_id;
-            setInterval(
-              (function _() {
-                fetch("https://dhtzs.dev/api/activity?type=insights")
-                  .then(function (res) {
+                spotify_data_track_id;
+            setInterval((function _() {
+                fetch("https://dhtzs.dev/api/activity?type=insights").then(function(res) {
                     return res.json();
-                  })
-                  .then(function (data) {
+                }).then(function(data) {
                     var spotify_data = data.spotify;
                     if (data.listening_to_spotify) {
-                      if (spotify_data_track_id != spotify_data.track_id) {
-                        widgetContent[0].innerHTML = spotify_data.song;
-                        widgetContent[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
-                        widgetContent[0].style.pointerEvents = "auto";
-                        widgetContent[1].innerHTML = spotify_data.artist.replaceAll(";", ",");
-                        document.querySelectorAll(".insights-widget-icon img")[0].src = spotify_data.album_art_url;
-                        document.querySelectorAll(".insights-widget-icon img")[0].style.display = "block";
-                        document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "none";
-                        document.querySelectorAll(".insights-widget-icon a")[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
-                        document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "auto";
-                        spotify_data_track_id = spotify_data.track_id;
-                      }
+                        if (spotify_data_track_id != spotify_data.track_id) {
+                            widgetContent[0].innerHTML = spotify_data.song;
+                            widgetContent[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
+                            widgetContent[0].style.pointerEvents = "auto";
+                            widgetContent[1].innerHTML = spotify_data.artist.replaceAll(";", ",");
+                            document.querySelectorAll(".insights-widget-icon img")[0].src = spotify_data.album_art_url;
+                            document.querySelectorAll(".insights-widget-icon img")[0].style.display = "block";
+                            document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "none";
+                            document.querySelectorAll(".insights-widget-icon a")[0].href = `https://open.spotify.com/track/${spotify_data.track_id}`;
+                            document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "auto";
+                            spotify_data_track_id = spotify_data.track_id;
+                        }
                     } else {
-                      widgetContent[0].innerHTML = "No music playing";
-                      widgetContent[0].href = "/";
-                      widgetContent[0].style.pointerEvents = "none";
-                      widgetContent[1].innerHTML = "&mdash;";
-                      document.querySelectorAll(".insights-widget-icon img")[0].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-                      document.querySelectorAll(".insights-widget-icon img")[0].style.display = "none";
-                      document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
-                      document.querySelectorAll(".insights-widget-icon a")[0].href = "/";
-                      document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "none";
+                        widgetContent[0].innerHTML = "No music playing";
+                        widgetContent[0].href = "/"
+                        widgetContent[0].style.pointerEvents = "none";
+                        widgetContent[1].innerHTML = "&mdash;";
+                        document.querySelectorAll(".insights-widget-icon img")[0].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+                        document.querySelectorAll(".insights-widget-icon img")[0].style.display = "none";
+                        document.querySelectorAll(".insights-widget-icon svg")[0].style.display = "block";
+                        document.querySelectorAll(".insights-widget-icon a")[0].href = "/";
+                        document.querySelectorAll(".insights-widget-icon a")[0].style.pointerEvents = "none";
                     }
 
-                    var activities_data = data.activities.filter(function (activity) {
-                      return activity.name != "Spotify";
+                    var activities_data = data.activities.filter(function(activity) {
+                        return activity.name != "Spotify";
                     });
                     if (activities_data.length > 0) {
-                      widgetContent[2].innerHTML = `${["Playing", "Streaming on", "Listening to", "Watching", "Running", "Competing in"][activities_data[0].type]} ${activities_data[0].name}`;
-                      widgetContent[3].innerHTML = activities_data[0].details || "&mdash;";
-                      var assets = activities_data[0].assets;
-                      if (assets) {
-                        if (assets.large_image?.startsWith("twitch:")) {
-                          document.querySelectorAll(".insights-widget-icon img")[1].src = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${assets.large_image.split(":")[1]}-640x640.jpg`;
-                        } else if (assets.large_image?.startsWith("mp:external")) {
-                          document.querySelectorAll(".insights-widget-icon img")[1].src = assets.large_image.replace("mp:external", "https://media.discordapp.net/external/");
-                        } else {
-                          document.querySelectorAll(".insights-widget-icon img")[1].src = `https://cdn.discordapp.com/app-assets/${activities_data[0].application_id}/${assets.small_image ?? assets.large_image}.png`;
+                        widgetContent[2].innerHTML = `${["Playing", "Streaming on", "Listening to", "Watching", "Running", "Competing in"][activities_data[0].type]} ${activities_data[0].name}`;
+                        widgetContent[3].innerHTML = activities_data[0].details || "&mdash;";
+                        var assets = activities_data[0].assets;
+                        if (assets) {
+                            if (assets.large_image?.startsWith("twitch:")) {
+                                document.querySelectorAll(".insights-widget-icon img")[1].src = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${assets.large_image.split(":")[1]}-640x640.jpg`;
+                            } else if (assets.large_image?.startsWith("mp:external")) {
+                                document.querySelectorAll(".insights-widget-icon img")[1].src = assets.large_image.replace("mp:external", "https://media.discordapp.net/external/");
+                            } else {
+                                document.querySelectorAll(".insights-widget-icon img")[1].src = `https://cdn.discordapp.com/app-assets/${activities_data[0].application_id}/${assets.small_image ?? assets.large_image}.png`;
+                            }
+                            document.querySelectorAll(".insights-widget-icon img")[1].style.display = "block";
+                            document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "none";
                         }
-                        document.querySelectorAll(".insights-widget-icon img")[1].style.display = "block";
-                        document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "none";
-                      }
-                      if (activities_data[0].url) {
-                        widgetContent[2].href = activities_data[0].url;
-                        widgetContent[2].style.pointerEvents = "auto";
-                        document.querySelectorAll(".insights-widget-icon a")[1].href = activities_data[0].url;
-                        document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "auto";
-                      } else {
+                        if (activities_data[0].url) {
+                            widgetContent[2].href = activities_data[0].url;
+                            widgetContent[2].style.pointerEvents = "auto";
+                            document.querySelectorAll(".insights-widget-icon a")[1].href = activities_data[0].url;
+                            document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "auto";
+                        } else {
+                            widgetContent[2].href = "/";
+                            widgetContent[2].style.pointerEvents = "none";
+                            document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
+                            document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
+                        }
+                    } else {
+                        widgetContent[2].innerHTML = "No program running";
                         widgetContent[2].href = "/";
                         widgetContent[2].style.pointerEvents = "none";
+                        widgetContent[3].innerHTML = "&mdash;";
+                        document.querySelectorAll(".insights-widget-icon img")[1].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+                        document.querySelectorAll(".insights-widget-icon img")[1].style.display = "none";
+                        document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "block";
                         document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
                         document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
-                      }
-                    } else {
-                      widgetContent[2].innerHTML = "No program running";
-                      widgetContent[2].href = "/";
-                      widgetContent[2].style.pointerEvents = "none";
-                      widgetContent[3].innerHTML = "&mdash;";
-                      document.querySelectorAll(".insights-widget-icon img")[1].src = "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-                      document.querySelectorAll(".insights-widget-icon img")[1].style.display = "none";
-                      document.querySelectorAll(".insights-widget-icon svg")[1].style.display = "block";
-                      document.querySelectorAll(".insights-widget-icon a")[1].href = "/";
-                      document.querySelectorAll(".insights-widget-icon a")[1].style.pointerEvents = "none";
                     }
-                  });
+                });
                 return _;
-              })(),
-              15000,
-            );
+            })(), 15000);
           </script>
-
-          <h2 id="interactions">Interactions</h2>
-          <p>This graph visualizes my daily digital interactions, illustrating patterns in mouse activity, scrolling, and typing, offering an insightful snapshot of my engagement with technology.</p>
           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <div><canvas class="interactions-chart"></canvas></div>
           <script>
             var interactionsChart;
-            fetch("https://dhtzs.dev/api/activity?type=interactions")
-              .then(function (res) {
+            fetch("https://dhtzs.dev/api/activity?type=interactions").then(function(res) {
                 return res.json();
-              })
-              .then(function (data) {
+            }).then(function(data) {
                 var datasets = [
-                  { label: "Left clicks", data: data["left_clicks"] },
-                  { label: "Right clicks", data: data["right_clicks"] },
-                  { label: "Middle clicks", data: data["middle_clicks"] },
-                  { label: "Mouse distance", data: data["mouse_distance"] },
-                  { label: "Scroll distance", data: data["scroll_distance"] },
-                  { label: "Keypresses", data: data["key_presses"] },
+                    { label: "Left clicks", data: data["left_clicks"] },
+                    { label: "Right clicks", data: data["right_clicks"] },
+                    { label: "Middle clicks", data: data["middle_clicks"] },
+                    { label: "Mouse distance", data: data["mouse_distance"] },
+                    { label: "Scroll distance", data: data["scroll_distance"] },
+                    { label: "Keypresses", data: data["key_presses"] }
                 ];
 
                 Chart.defaults.font.family = getComputedStyle(document.body).getPropertyValue("font-family");
 
                 interactionsChart = new Chart(document.getElementsByClassName("interactions-chart")[0].getContext("2d"), {
-                  type: "line",
-                  data: {
-                    labels: (function () {
-                      var timeLabels = [],
-                        ampm = ["AM", "PM"];
-                      for (var i = 0; i < 24; i++) {
-                        var hour = i % 12,
-                          period = ampm[Math.floor(i / 12)];
-                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:00 ${period}`);
-                        timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:30 ${period}`);
-                      }
-                      return timeLabels;
-                    })(),
-                    datasets: datasets.map(function (ds) {
-                      return {
-                        label: ds.label,
-                        data: ds.data,
-                        pointRadius: 0,
-                        fill: false,
-                        tension: 0.1,
-                        borderWidth: 2,
-                      };
-                    }),
-                  },
-                  options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      title: {
-                        display: true,
-                        text: `Last update: ${new Date(new Date(data["last_upload"]).getTime() + 30 * 60 * 1000).toUTCString()}`,
-                        color: function () {
-                          return getComputedStyle(document.body).getPropertyValue("--primary");
-                        },
-                        position: "bottom",
-                        align: "start",
-                        font: {
-                          weight: "normal",
-                        },
-                      },
-                      legend: {
-                        display: true,
-                        position: "bottom",
-                        labels: {
-                          color: function () {
-                            return getComputedStyle(document.body).getPropertyValue("--primary");
-                          },
-                        },
-                      },
-                      tooltip: {
-                        mode: "index",
-                        intersect: false,
-                        callbacks: {
-                          title: function () {
-                            return null;
-                          },
-                          label: function (context) {
-                            const {
-                              dataset: { label = "" },
-                              raw: value,
-                            } = context;
-                            if (label === "Mouse distance" || label === "Scroll distance") return `${label}: ${Math.round(value)} m`;
-                            return `${label}: ${value}`;
-                          },
-                        },
-                      },
+                    type: "line",
+                    data: {
+                        labels: (function() {
+                            var timeLabels = [],
+                                ampm = ["AM", "PM"];
+                            for (var i = 0; i < 24; i++) {
+                                var hour = i % 12,
+                                    period = ampm[Math.floor(i / 12)];
+                                timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:00 ${period}`);
+                                timeLabels.push(`${hour < 10 ? "0" : ""}${hour}:30 ${period}`);
+                            }
+                            return timeLabels;
+                        })(),
+                        datasets: datasets.map(function(ds) {
+                            return {
+                                label: ds.label,
+                                data: ds.data,
+                                pointRadius: 0,
+                                fill: false,
+                                tension: 0.1,
+                                borderWidth: 2
+                            }
+                        })
                     },
-                    scales: {
-                      x: {
-                        ticks: {
-                          maxTicksLimit: 9,
-                          color: function () {
-                            return getComputedStyle(document.body).getPropertyValue("--primary");
-                          },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Last chart update: ${new Date(new Date(data["last_upload"]).getTime() + 30 * 60 * 1000).toUTCString()}`,
+                                color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); },
+                                position: "bottom",
+                                align: "center",
+                                font: {
+                                    weight: "normal"
+                                }
+                            },
+                            legend: {
+                                display: true,
+                                position: "bottom",
+                                labels: {
+                                    color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                                }
+                            },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                                callbacks: {
+                                    title: function() { return null },
+                                    label: function(context) {
+                                        const { dataset: { label = "" }, raw: value } = context;
+                                        if (label === "Mouse distance" || label === "Scroll distance")
+                                            return `${label}: ${Math.round(value)} m`;
+                                        return `${label}: ${value}`;
+                                    },
+                                }
+                            },
                         },
-                        grid: {
-                          drawOnChartArea: true,
-                          color: function () {
-                            return getComputedStyle(document.body).getPropertyValue("--border");
-                          },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    maxTicksLimit: 9,
+                                    color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                                },
+                                grid: {
+                                    drawOnChartArea: true,
+                                    color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        var ranges = [
+                                            { divider: 1e6, suffix: "M" },
+                                            { divider: 1e3, suffix: "k" }
+                                        ];
+                                        for (var i = 0; i < ranges.length; i++)
+                                            if (value >= ranges[i].divider)
+                                                return (value / ranges[i].divider).toString() + ranges[i].suffix;
+                                        return value.toString();
+                                    },
+                                    color: function() { return getComputedStyle(document.body).getPropertyValue("--primary"); }
+                                },
+                                grid: {
+                                    drawOnChartArea: true,
+                                    color: function() { return getComputedStyle(document.body).getPropertyValue("--border"); }
+                                }
+                            },
                         },
-                      },
-                      y: {
-                        beginAtZero: true,
-                        ticks: {
-                          callback: function (value) {
-                            var ranges = [
-                              { divider: 1e6, suffix: "M" },
-                              { divider: 1e3, suffix: "k" },
-                            ];
-                            for (var i = 0; i < ranges.length; i++) if (value >= ranges[i].divider) return (value / ranges[i].divider).toString() + ranges[i].suffix;
-                            return value.toString();
-                          },
-                          color: function () {
-                            return getComputedStyle(document.body).getPropertyValue("--primary");
-                          },
-                        },
-                        grid: {
-                          drawOnChartArea: true,
-                          color: function () {
-                            return getComputedStyle(document.body).getPropertyValue("--border");
-                          },
-                        },
-                      },
                     },
-                  },
                 });
-              });
+            });
           </script>
         </div>
 
@@ -487,12 +458,10 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("\/sw.min.js", {
-            updateViaCache: "none",
-          })
-          .catch(function (e) {
-            return console.error(e.message);
+          navigator.serviceWorker.register("\/sw.min.js", {
+              updateViaCache: "none"
+          }).catch(function(e) {
+              return console.error(e.message);
           });
       }
     </script>
@@ -500,59 +469,73 @@
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        var scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-          menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+          const scrollPosition = localStorage.getItem("menu-scroll-position");
+          if (scrollPosition) {
+              menu.scrollLeft = parseInt(scrollPosition, 10);
+          }
 
-        menu.addEventListener("scroll", function () {
-          localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        });
+          let menuScrollTimeout;
+          menu.addEventListener("scroll", function() {
+              clearTimeout(menuScrollTimeout);
+              menuScrollTimeout = setTimeout(function () {
+                  localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+              }, 150);
+          }, { passive: true });
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          var id = this.getAttribute("href").substr(1);
-          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-          }
-          if (id === "top") {
-            history.replaceState(null, null, " ");
-          } else {
-            history.pushState(null, null, `#${id}`);
-          }
-        });
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+          anchor.addEventListener("click", function(e) {
+              e.preventDefault();
+              var id = this.getAttribute("href").substr(1);
+              const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+              if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                  target.scrollIntoView({
+                      behavior: "smooth"
+                  });
+              } else {
+                  target.scrollIntoView();
+              }
+              if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                  target.setAttribute("tabindex", "-1");
+              }
+              target.focus({ preventScroll: true });
+              if (id === "top") {
+                  history.replaceState(null, null, " ");
+              } else {
+                  history.pushState(null, null, `#${id}`);
+              }
+          });
       });
     </script>
     <script>
       var toplink = document.getElementById("top-link");
-      window.addEventListener("scroll", function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-          toplink.classList.remove("hidden");
-        } else {
-          toplink.classList.add("hidden");
-        }
-      });
+      var scrollTicking = false;
+      window.addEventListener("scroll", function() {
+          if (scrollTicking) {
+              return;
+          }
+          scrollTicking = true;
+          requestAnimationFrame(function () {
+              const scrollThreshold = window.innerHeight;
+              const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+              toplink.classList.toggle("hidden", !shown);
+              scrollTicking = false;
+          });
+      }, { passive: true });
     </script>
     <script>
-      document.getElementById("theme-toggle").addEventListener("click", function () {
-        var html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-          html.dataset.theme = "light";
-          localStorage.setItem("pref-theme", "light");
-        } else {
-          html.dataset.theme = "dark";
-          localStorage.setItem("pref-theme", "dark");
-        }
-        if (window.interactionsChart !== undefined) {
-          window.interactionsChart.update();
-        }
+      document.getElementById("theme-toggle").addEventListener("click", function() {
+          var html = document.querySelector("html");
+          if (html.dataset.theme === "dark") {
+              html.dataset.theme = "light";
+              localStorage.setItem("pref-theme", "light");
+          } else {
+              html.dataset.theme = "dark";
+              localStorage.setItem("pref-theme", "dark");
+          }
+          if (window.interactionsChart !== undefined) {
+              window.interactionsChart.update();
+          }
       });
     </script>
   </body>

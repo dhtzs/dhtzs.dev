@@ -31,7 +31,7 @@
     {{- $search := (slice $license_js $fastsearch ) | resources.Concat "assets/js/search.js" }}
     <script crossorigin="anonymous" type="module" src="{{ $search.RelPermalink }}"></script>
     {{- end }}
-    <input id="searchInput" autofocus placeholder="{{ .Params.placeholder | default (printf "%s ↵" .Title) }}"
+    <input id="searchInput" disabled placeholder="{{ .Params.placeholder | default (printf "%s ↵" .Title) }}"
         aria-label="search" type="search" autocomplete="off" maxlength="64">
     <ul id="searchResults" class="searchResults" aria-label="search results"></ul>
 </div>

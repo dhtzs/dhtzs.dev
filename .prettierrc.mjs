@@ -20,6 +20,6 @@ export default {
   "htmlWhitespaceSensitivity": "ignore",
   "vueIndentScriptAndStyle": false,
   "endOfLine": "lf",
-  "embeddedLanguageFormatting": "auto",
+  "embeddedLanguageFormatting": "off",
   "singleAttributePerLine": false
 }

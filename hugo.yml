@@ -100,7 +100,7 @@ params:
   profileMode:
     enabled: true
     title: "Dimitris Chatzis"
-    subtitle: "Security researcher. Active on HackerOne, Bugcrowd, and Intigriti."
+    subtitle: "Security researcher"
     imageUrl: "/images/profile"
     imageTitle: "Dimitris Chatzis"
   fuseOpts:

@@ -29,43 +29,43 @@
       <style>
         #theme-toggle,
         .top-link {
-          display: none;
+            display: none;
         }
       </style>
       <style>
         @media (prefers-color-scheme: dark) {
-          :root {
-            --theme: rgb(29, 30, 32);
-            --entry: rgb(46, 46, 51);
-            --primary: rgb(218, 218, 219);
-            --secondary: rgb(155, 156, 157);
-            --tertiary: rgb(65, 66, 68);
-            --content: rgb(196, 196, 197);
-            --code-block-bg: rgb(46, 46, 51);
-            --code-bg: rgb(55, 56, 62);
-            --border: rgb(51, 51, 51);
-            color-scheme: dark;
-          }
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
 
-          .list {
-            background: var(--theme);
-          }
+            .list {
+                background: var(--theme);
+            }
 
-          .toc {
-            background: var(--entry);
-          }
+            .toc {
+                background: var(--entry);
+            }
         }
       </style>
     </noscript>
     <script>
       if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       }
     </script>
     <meta property="og:url" content="https://dhtzs.dev/search/" />
@@ -88,7 +88,7 @@
         "itemListElement": [
           {
             "@type": "ListItem",
-            "position": 1,
+            "position":  1 ,
             "name": "Search",
             "item": "https://dhtzs.dev/search/"
           }
@@ -103,10 +103,10 @@
           <a href="https://dhtzs.dev/" accesskey="h" title="dhtzs.dev (Alt + H)">dhtzs.dev</a>
           <div class="logo-switches">
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="Toggle theme (Alt + T)" aria-label="toggle theme">
-              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -118,8 +118,8 @@
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             </button>
-            <a href="https://dhtzs.dev/search/" class="search-toggle" class="active" aria-label="search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <a href="https://dhtzs.dev/search/" class="search-toggle active" aria-label="search">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -164,7 +164,7 @@
 
       <div id="searchbox" class="searchbox">
         <script crossorigin="anonymous" type="module" src="/assets/js/search.js"></script>
-        <input id="searchInput" autofocus placeholder="Type to search ↵" aria-label="search" type="search" autocomplete="off" maxlength="64" />
+        <input id="searchInput" disabled placeholder="Type to search ↵" aria-label="search" type="search" autocomplete="off" maxlength="64" />
         <ul id="searchResults" class="searchResults" aria-label="search results"></ul>
       </div>
     </main>
@@ -198,12 +198,10 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("\/sw.min.js", {
-            updateViaCache: "none",
-          })
-          .catch(function (e) {
-            return console.error(e.message);
+          navigator.serviceWorker.register("\/sw.min.js", {
+              updateViaCache: "none"
+          }).catch(function(e) {
+              return console.error(e.message);
           });
       }
     </script>
@@ -211,59 +209,73 @@
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        var scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-          menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+          const scrollPosition = localStorage.getItem("menu-scroll-position");
+          if (scrollPosition) {
+              menu.scrollLeft = parseInt(scrollPosition, 10);
+          }
 
-        menu.addEventListener("scroll", function () {
-          localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        });
+          let menuScrollTimeout;
+          menu.addEventListener("scroll", function() {
+              clearTimeout(menuScrollTimeout);
+              menuScrollTimeout = setTimeout(function () {
+                  localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+              }, 150);
+          }, { passive: true });
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          var id = this.getAttribute("href").substr(1);
-          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-          }
-          if (id === "top") {
-            history.replaceState(null, null, " ");
-          } else {
-            history.pushState(null, null, `#${id}`);
-          }
-        });
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+          anchor.addEventListener("click", function(e) {
+              e.preventDefault();
+              var id = this.getAttribute("href").substr(1);
+              const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+              if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                  target.scrollIntoView({
+                      behavior: "smooth"
+                  });
+              } else {
+                  target.scrollIntoView();
+              }
+              if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                  target.setAttribute("tabindex", "-1");
+              }
+              target.focus({ preventScroll: true });
+              if (id === "top") {
+                  history.replaceState(null, null, " ");
+              } else {
+                  history.pushState(null, null, `#${id}`);
+              }
+          });
       });
     </script>
     <script>
       var toplink = document.getElementById("top-link");
-      window.addEventListener("scroll", function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-          toplink.classList.remove("hidden");
-        } else {
-          toplink.classList.add("hidden");
-        }
-      });
+      var scrollTicking = false;
+      window.addEventListener("scroll", function() {
+          if (scrollTicking) {
+              return;
+          }
+          scrollTicking = true;
+          requestAnimationFrame(function () {
+              const scrollThreshold = window.innerHeight;
+              const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+              toplink.classList.toggle("hidden", !shown);
+              scrollTicking = false;
+          });
+      }, { passive: true });
     </script>
     <script>
-      document.getElementById("theme-toggle").addEventListener("click", function () {
-        var html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-          html.dataset.theme = "light";
-          localStorage.setItem("pref-theme", "light");
-        } else {
-          html.dataset.theme = "dark";
-          localStorage.setItem("pref-theme", "dark");
-        }
-        if (window.interactionsChart !== undefined) {
-          window.interactionsChart.update();
-        }
+      document.getElementById("theme-toggle").addEventListener("click", function() {
+          var html = document.querySelector("html");
+          if (html.dataset.theme === "dark") {
+              html.dataset.theme = "light";
+              localStorage.setItem("pref-theme", "light");
+          } else {
+              html.dataset.theme = "dark";
+              localStorage.setItem("pref-theme", "dark");
+          }
+          if (window.interactionsChart !== undefined) {
+              window.interactionsChart.update();
+          }
       });
     </script>
   </body>

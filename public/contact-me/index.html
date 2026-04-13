@@ -28,43 +28,43 @@
       <style>
         #theme-toggle,
         .top-link {
-          display: none;
+            display: none;
         }
       </style>
       <style>
         @media (prefers-color-scheme: dark) {
-          :root {
-            --theme: rgb(29, 30, 32);
-            --entry: rgb(46, 46, 51);
-            --primary: rgb(218, 218, 219);
-            --secondary: rgb(155, 156, 157);
-            --tertiary: rgb(65, 66, 68);
-            --content: rgb(196, 196, 197);
-            --code-block-bg: rgb(46, 46, 51);
-            --code-bg: rgb(55, 56, 62);
-            --border: rgb(51, 51, 51);
-            color-scheme: dark;
-          }
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
 
-          .list {
-            background: var(--theme);
-          }
+            .list {
+                background: var(--theme);
+            }
 
-          .toc {
-            background: var(--entry);
-          }
+            .toc {
+                background: var(--entry);
+            }
         }
       </style>
     </noscript>
     <script>
       if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       }
     </script>
     <meta property="og:url" content="https://dhtzs.dev/contact-me/" />
@@ -87,7 +87,7 @@
         "itemListElement": [
           {
             "@type": "ListItem",
-            "position": 1,
+            "position":  1 ,
             "name": "Contact me",
             "item": "https://dhtzs.dev/contact-me/"
           }
@@ -102,10 +102,10 @@
           <a href="https://dhtzs.dev/" accesskey="h" title="dhtzs.dev (Alt + H)">dhtzs.dev</a>
           <div class="logo-switches">
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="Toggle theme (Alt + T)" aria-label="toggle theme">
-              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -118,7 +118,7 @@
               </svg>
             </button>
             <a href="https://dhtzs.dev/search/" class="search-toggle" accesskey="/" title="Search (Alt + /)" aria-label="search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -166,16 +166,15 @@
               </svg>
               Email address
             </label>
-            <input id="contactForm-emailAddess" type="email" name="email" placeholder="Your email address" autocomplete="off" required />
+            <input id="contactForm-emailAddess" type="email" name="email" placeholder="you@domain.tld" autocomplete="off" required />
             <label for="contactForm-message">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
               Message
             </label>
-            <textarea id="contactForm-message" rows="5" name="message" placeholder="Your message" required></textarea>
+            <textarea id="contactForm-message" rows="5" name="message" placeholder="Bug report, collab, or a plain hello. POCs welcome." required></textarea>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAA2BsmXYsRUGzdXY" data-size="flexible"></div>
-            <blockquote>Your messages are fully encrypted for privacy and confidentiality!</blockquote>
-            <button type="submit" aria-label="send email">
-              Send email
+            <button type="submit" aria-label="encrypt and send email">
+              Encrypt &amp; send
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
@@ -184,79 +183,83 @@
           </form>
           <script>
             var form = document.querySelectorAll("form")[0],
-              fInput = document.querySelectorAll("form input")[0],
-              fTextarea = document.querySelectorAll("form textarea")[0],
-              fButton = document.querySelectorAll("form button")[0];
+                fInput = document.querySelectorAll("form input")[0],
+                fTextarea = document.querySelectorAll("form textarea")[0],
+                fButton = document.querySelectorAll("form button")[0],
+                resetTimer;
 
             var icons = {
-              default: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
-              encrypting: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
-              sending: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
-              success: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-              error: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
-            };
+                default: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
+                encrypting: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+                sending: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+                success: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+                error: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+            }
 
             function setButtonState(html, className) {
-              fButton.innerHTML = html;
-              fButton.className = className;
+                fButton.innerHTML = html;
+                fButton.className = className;
             }
 
             function toggleFormState(state) {
-              fInput.disabled = !state;
-              fTextarea.disabled = !state;
-              fButton.disabled = !state;
+                fInput.disabled = !state;
+                fTextarea.disabled = !state;
+                fButton.disabled = !state;
             }
 
-            form.addEventListener("submit", function (e) {
-              e.preventDefault();
+            form.addEventListener("submit", async function(e) {
+                e.preventDefault();
 
-              var formData = new FormData(form);
+                var formData = new FormData(form);
 
-              toggleFormState(false);
-              setButtonState(`Encrypting email ${icons.encrypting}`, "");
-              fetch("/pubkey.asc")
-                .then(function (res) {
-                  setButtonState(res.ok ? `Encrypted email ${icons.success}` : `Error encrypting email ${icons.error}`, res.ok ? "success" : "error");
+                window.clearTimeout(resetTimer);
+                toggleFormState(false);
+                setButtonState(`Encrypting &hellip; ${icons.encrypting}`, "");
 
-                  return res.text();
-                })
-                .then(async function (res) {
-                  var encryptedMessage = await openpgp.encrypt({
-                    message: await openpgp.createMessage({ text: formData.get("message").trim().concat("\n") }),
-                    encryptionKeys: await openpgp.readKey({ armoredKey: res }),
-                  });
-                  formData.set("message", encryptedMessage);
+                try {
+                    try {
+                        var keyResponse = await fetch("/pubkey.asc");
+                        if (!keyResponse.ok) {
+                            throw new Error(`Error fetching public key: ${keyResponse.status} ${keyResponse.statusText}`);
+                        }
 
-                  setButtonState(`Sending email ${icons.sending}`, "");
-                  fetch(form.action, {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                  })
-                    .then(function (res) {
-                      setButtonState(res.ok ? `Sent email ${icons.success}` : `Error sending email ${icons.error}`, res.ok ? "success" : "error");
+                        formData.set("message", await openpgp.encrypt({
+                            message: await openpgp.createMessage({ text: formData.get("message").trim().concat("\n") }),
+                            encryptionKeys: await openpgp.readKey({ armoredKey: await keyResponse.text() })
+                        }));
+                    } catch(e) {
+                        console.error(e.message);
+                        setButtonState(`Error encrypting email ${icons.error}`, "error");
+                        return;
+                    }
 
-                      turnstile.reset();
-                      if (res.ok) {
+                    setButtonState(`Sending &hellip; ${icons.sending}`, "");
+
+                    try {
+                        var sendResponse = await fetch(form.action, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: new URLSearchParams(formData).toString()
+                        });
+                        if (!sendResponse.ok) {
+                            throw new Error(`Error sending email: ${sendResponse.status} ${sendResponse.statusText}`);
+                        }
+
+                        setButtonState(`Encrypted &amp; sent ${icons.success}`, "success");
                         form.reset();
-                      }
-                    })
-                    .catch(function (e) {
-                      console.error(e.message);
-                      setButtonState(`Error sending email ${icons.error}`, "error");
-                    });
-                })
-                .catch(function (e) {
-                  console.error(e.message);
-                  setButtonState(`Error encrypting email ${icons.error}`, "error");
-                });
-
-              window.setTimeout(function () {
-                toggleFormState(true);
-                setButtonState(`Send email ${icons.default}`, "");
-              }, 3000);
+                    } catch(e) {
+                        console.error(e.message);
+                        setButtonState(`Error sending email ${icons.error}`, "error");
+                    }
+                } finally {
+                    resetTimer = window.setTimeout(function() {
+                        toggleFormState(true);
+                        setButtonState(`Encrypt &amp; send ${icons.default}`, "");
+                    }, 3000);
+                    turnstile.reset();
+                }
             });
           </script>
         </div>
@@ -296,12 +299,10 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("\/sw.min.js", {
-            updateViaCache: "none",
-          })
-          .catch(function (e) {
-            return console.error(e.message);
+          navigator.serviceWorker.register("\/sw.min.js", {
+              updateViaCache: "none"
+          }).catch(function(e) {
+              return console.error(e.message);
           });
       }
     </script>
@@ -309,59 +310,73 @@
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        var scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-          menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+          const scrollPosition = localStorage.getItem("menu-scroll-position");
+          if (scrollPosition) {
+              menu.scrollLeft = parseInt(scrollPosition, 10);
+          }
 
-        menu.addEventListener("scroll", function () {
-          localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        });
+          let menuScrollTimeout;
+          menu.addEventListener("scroll", function() {
+              clearTimeout(menuScrollTimeout);
+              menuScrollTimeout = setTimeout(function () {
+                  localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+              }, 150);
+          }, { passive: true });
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          var id = this.getAttribute("href").substr(1);
-          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-          }
-          if (id === "top") {
-            history.replaceState(null, null, " ");
-          } else {
-            history.pushState(null, null, `#${id}`);
-          }
-        });
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+          anchor.addEventListener("click", function(e) {
+              e.preventDefault();
+              var id = this.getAttribute("href").substr(1);
+              const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+              if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                  target.scrollIntoView({
+                      behavior: "smooth"
+                  });
+              } else {
+                  target.scrollIntoView();
+              }
+              if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                  target.setAttribute("tabindex", "-1");
+              }
+              target.focus({ preventScroll: true });
+              if (id === "top") {
+                  history.replaceState(null, null, " ");
+              } else {
+                  history.pushState(null, null, `#${id}`);
+              }
+          });
       });
     </script>
     <script>
       var toplink = document.getElementById("top-link");
-      window.addEventListener("scroll", function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-          toplink.classList.remove("hidden");
-        } else {
-          toplink.classList.add("hidden");
-        }
-      });
+      var scrollTicking = false;
+      window.addEventListener("scroll", function() {
+          if (scrollTicking) {
+              return;
+          }
+          scrollTicking = true;
+          requestAnimationFrame(function () {
+              const scrollThreshold = window.innerHeight;
+              const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+              toplink.classList.toggle("hidden", !shown);
+              scrollTicking = false;
+          });
+      }, { passive: true });
     </script>
     <script>
-      document.getElementById("theme-toggle").addEventListener("click", function () {
-        var html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-          html.dataset.theme = "light";
-          localStorage.setItem("pref-theme", "light");
-        } else {
-          html.dataset.theme = "dark";
-          localStorage.setItem("pref-theme", "dark");
-        }
-        if (window.interactionsChart !== undefined) {
-          window.interactionsChart.update();
-        }
+      document.getElementById("theme-toggle").addEventListener("click", function() {
+          var html = document.querySelector("html");
+          if (html.dataset.theme === "dark") {
+              html.dataset.theme = "light";
+              localStorage.setItem("pref-theme", "light");
+          } else {
+              html.dataset.theme = "dark";
+              localStorage.setItem("pref-theme", "dark");
+          }
+          if (window.interactionsChart !== undefined) {
+              window.interactionsChart.update();
+          }
       });
     </script>
   </body>
