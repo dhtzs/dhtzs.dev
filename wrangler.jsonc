@@ -11,5 +11,12 @@
   "placement": {
     "mode": "smart"
   },
-  "send_metrics": false
+  "send_metrics": false,
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {}
+  }
 }
