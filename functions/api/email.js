@@ -13,7 +13,10 @@ export async function onRequest(context) {
         }
 
         const formData = await context.request.formData();
-        if (!formData.get("email") || !formData.get("message")) {
+        const userEmail = formData.get("email")?.trim();
+        const userMessage = formData.get("message")?.trim();
+
+        if (!userEmail || !userMessage) {
             console.error("Error sending email: Missing required fields");
             return new Response("Error sending email: Missing required fields", { status: 400 });
         }
@@ -38,37 +41,54 @@ export async function onRequest(context) {
             return new Response("Error validating captcha", { status: 400 });
         }
 
-        let resend_response = await fetch("https://api.resend.com/emails", {
+        let admin_response = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${context.env.RESEND_API_KEY}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                from: "dhtzs.dev <sender@dhtzs.dev>",
+                from: "dhtzs.dev <no-reply@dhtzs.dev>",
                 to: "contact@dhtzs.dev",
-                reply_to: formData.get("email").trim(),
-                cc: formData.get("email").trim(),
-                subject: "Encrypted message",
-                text: "This email contains an encrypted file attachment, representing the message sent from dhtzs.dev. Decrypt the file to view its content.",
+                reply_to: userEmail,
+                subject: `New message from ${userEmail}`,
+                text: "A new message was submitted via the dhtzs.dev contact form. The encoded message is attached.",
                 attachments: [{
-                    content: btoa(formData.get("message").trim()),
+                    content: btoa(userMessage),
                     filename: "message.enc"
                 }]
             }),
         });
-        if (!resend_response.ok) {
-            console.error(`Error sending email: ${resend_response.status} ${resend_response.statusText}`);
-            return new Response("Error sending email", { status: 500 });
+        if (!admin_response.ok) {
+            console.error(`Error sending admin email: ${admin_response.status} ${admin_response.statusText}`);
+            return new Response("Error processing your request", { status: 500 });
         }
 
-        resend_response = await resend_response.json();
-        return new Response(JSON.stringify(resend_response), {
+        let user_response = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${context.env.RESEND_API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                from: "dhtzs.dev <no-reply@dhtzs.dev>",
+                to: userEmail,
+                subject: "We received your message!",
+                text: "Hi there,\n\nThanks for reaching out! This is an automated message to confirm that we successfully received your inquiry via dhtzs.dev.\n\nWe will review your message and get back to you shortly."
+            }),
+        });
+
+        if (!user_response.ok) {
+            console.error(`Error sending user auto-reply: ${user_response.status} ${user_response.statusText}`);
+        }
+
+        admin_response = await admin_response.json();
+        return new Response(JSON.stringify(admin_response), {
             headers: { "Content-Type": "application/json" }
         });
     } catch(e) {
-      console.error(e.message);
-      return new Response(`Error: ${e.message}`, { status: 500 });
+        console.error(e.message);
+        return new Response(`Error: ${e.message}`, { status: 500 });
     }
 
 }

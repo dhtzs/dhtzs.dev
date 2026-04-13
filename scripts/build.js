@@ -14,4 +14,5 @@ try {
   execSync("wrangler pages functions build --outdir=./ --minify", { stdio: "inherit" });
 } catch (error) {
   console.error("Error during build process:", error.message);
+  process.exit(1);
 }

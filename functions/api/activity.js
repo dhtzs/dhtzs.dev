@@ -27,7 +27,10 @@ export async function onRequest(context) {
             response = Object.fromEntries(Object.entries(response.data).filter(([_]) => !["kv", "discord_user", "discord_status", "active_on_discord_desktop", "active_on_discord_mobile", "active_on_discord_web"].includes(_)));
 
             return new Response(JSON.stringify(response), {
-                headers: { "Content-Type": "application/json" }
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "public, max-age=15"
+                }
             });
         } catch(e) {
             console.error(e.message);
@@ -57,7 +60,10 @@ export async function onRequest(context) {
             }
 
             return new Response(response.files["activity.log"].content, {
-                headers: { "Content-Type": "application/json" }
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "public, max-age=1800"
+                }
             });
         } catch(e) {
             console.error(e.message);
@@ -118,7 +124,10 @@ export async function onRequest(context) {
             });
 
             return new Response(JSON.stringify(reports), {
-                headers: { "Content-Type": "application/json" }
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "public, max-age=86400"
+                }
             });
 
         } else return new Response(JSON.stringify({}), {

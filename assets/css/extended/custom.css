@@ -25,12 +25,6 @@ header nav div.logo>a:after {
     animation: blink 1.06s linear infinite;
 }
 
-.search-toggle {
-    width: 24px;
-    font-size: 26px;
-    margin: auto 4px;
-}
-
 .search-toggle.active {
     pointer-events: none;
 }
@@ -62,20 +56,13 @@ header nav div.logo>a:after {
     }
 }
 
-.footer svg, .post-controls svg {
+.footer svg {
     vertical-align: sub;
     width: 14px;
     height: 100%;
 }
 
-.post-controls, .control-offlineAccess {
-    color: var(--primary);
-    font-size: 14px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.control-offlineAccess:hover {
+#offlineReading:hover {
     cursor: pointer;
 }
 
@@ -139,6 +126,9 @@ header nav div.logo>a:after {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.main .insights-widget-content a {
     text-decoration: none;
 }
 
@@ -149,7 +139,6 @@ header nav div.logo>a:after {
 
 .insights-widget-content a:hover {
     text-decoration: underline;
-    cursor: pointer;
 }
 
 .insights-widget-content p {

@@ -1,4 +1,4 @@
-{{- $.Scratch.Add "index" slice -}}
+{{- $index := slice -}}
 {{- range site.RegularPages -}}
     {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
         {{- $title := .Title -}}
@@ -8,7 +8,7 @@
         {{- range .Resources -}}
             {{- $resources = $resources | append .Permalink -}}
         {{- end -}}
-        {{- $.Scratch.Add "index" (dict
+        {{- $index = $index | append (dict
             "title" $title
             "content" $content
             "permalink" $permalink
@@ -16,4 +16,4 @@
         ) -}}
     {{- end }}
 {{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $index | jsonify -}}

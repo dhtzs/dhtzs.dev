@@ -1,0 +1,123 @@
+
+{{ $buildHash := now.UnixNano | md5 -}}
+{{- $extraAssetsToCache := slice -}}
+{{- range $section := site.Params.mainSections }}
+    {{- range $page := seq (math.Ceil (div (float (len (where $.Site.RegularPages "Section" $section))) (float 5))) -}}
+        {{- $extraAssetsToCache = $extraAssetsToCache | append (printf "/%s/page/%s/" $section (string $page)) -}}
+    {{- end -}}
+{{- end -}}
+{{ $sw := resources.Get "sw.js" | js.Build (dict "params" (dict
+    "buildHash" $buildHash
+    "extraAssetsToCache" $extraAssetsToCache
+)) | resources.Minify }}
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("{{ $sw.RelPermalink }}", {
+            updateViaCache: "none"
+        }).catch(function(e) {
+            return console.error(e.message);
+        });
+    }
+</script>
+{{- if and (in site.Params.mainSections .Section) (not .IsPage) }}
+<script>
+    if ("serviceWorker" in navigator && "caches" in window) {
+        fetch(window.location.href, { method: "HEAD", cache: "no-store" }).catch(function() {
+            return caches.open("offline-access").then(function(cache) {
+                return cache.keys();
+            }).then(function(keyList) {
+                let urls = keyList.map(function(key) {
+                    return key.url;
+                });
+                document.querySelectorAll(".post-entry").forEach(function(entry) {
+                    if (urls.indexOf(entry.querySelector("a").href) !== -1) {
+                        entry.style.borderColor = "#16a34a";
+                        entry.style.pointerEvents = "auto";
+                    } else {
+                        entry.style.borderColor = "#dc2626";
+                        entry.style.pointerEvents = "none";
+                    }
+                });
+            });
+        });
+    }
+</script>
+{{- end }}
+{{- if and .IsPage (not .IsHome) (not (.Param "hideMeta")) }}
+<script>
+    var offlineReading = document.getElementById("offlineReading");
+    if ("serviceWorker" in navigator && "caches" in window) {
+        function checkIfCached() {
+            return caches.open("offline-access").then(function(cache) {
+                return cache.match(location.pathname).then(function(match) {
+                    return !!match;
+                });
+            });
+        }
+
+        function addToCache() {
+            return Promise.all([
+                caches.open("offline-access"),
+                fetch("/index.json").then(function(res) {
+                    return res.json();
+                })
+            ]).then(function(results) {
+                let cache = results[0];
+                let data = results[1].find(function(entry) {
+                    return entry.permalink.indexOf(location.pathname) !== -1;
+                });
+                return cache.addAll(data.resources.concat(data.permalink));
+            });
+        }
+
+        function removeFromCache() {
+            return Promise.all([
+                caches.open("offline-access"),
+                fetch("/index.json").then(function(res) {
+                    return res.json();
+                })
+            ]).then(function(results) {
+                let cache = results[0];
+                let data = results[1].find(function(entry) {
+                    return entry.permalink.indexOf(location.pathname) !== -1;
+                });
+                return Promise.all(data.resources.concat(data.permalink).map(function(url) {
+                    return cache.delete(url);
+                }));
+            });
+        }
+
+        function updateOfflineReading(isCached) {
+            if (!isCached) {
+                offlineReading.textContent = "Save to cache";
+                offlineReading.style.color = "#16a34a";
+            } else {
+                offlineReading.textContent = "Remove from cache";
+                offlineReading.style.color = "#dc2626";
+            }
+        }
+
+        checkIfCached().then(function(isCached) {
+            updateOfflineReading(isCached);
+        });
+        offlineReading.addEventListener("click", function() {
+            checkIfCached().then(function(isCached) {
+                if (!isCached) {
+                    return addToCache().then(function() {
+                        updateOfflineReading(true);
+                    });
+                } else {
+                    return removeFromCache().then(function() {
+                        updateOfflineReading(false);
+                    });
+                }
+            }).catch(function(e) {
+                console.error(e.message);
+            });
+        });
+    } else {
+        offlineReading.previousSibling.remove();
+        offlineReading.remove();
+    }
+</script>
+{{- end -}}

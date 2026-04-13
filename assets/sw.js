@@ -14,7 +14,7 @@ var cacheStorage = "cache_" + params.buildHash,
         "/manifest.json",
         "/images/profile.jpg",
         "/images/profile.webp",
-        "/images/screenshot-1280x800.jpg",
+        "/images/screenshot-1280x720.jpg",
         "/images/screenshot-720x1280.jpg",
         "/.well-known/security.txt",
         "/pubkey.asc",
@@ -50,7 +50,7 @@ self.addEventListener("activate", function(event) {
             }));
         }),
 
-        fetch("/index.json?t=" + Date.now()).then(function(res) {
+        fetch("/index.json", { cache: "no-store" }).then(function(res) {
             return res.json();
         }).then(function(data) {
             data = [].concat.apply([], data.map(function(data) {
@@ -64,6 +64,8 @@ self.addEventListener("activate", function(event) {
                     }));
                 });
             });
+        }).catch(function(e) {
+            console.error(e.message);
         }),
 
         self.clients.claim()

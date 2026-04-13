@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://dhtzs.dev/write-ups/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
     <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style" />
     <link rel="icon" href="https://dhtzs.dev/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="https://dhtzs.dev/favicons/favicon-16x16.png" />
@@ -28,43 +28,43 @@
       <style>
         #theme-toggle,
         .top-link {
-          display: none;
+            display: none;
         }
       </style>
       <style>
         @media (prefers-color-scheme: dark) {
-          :root {
-            --theme: rgb(29, 30, 32);
-            --entry: rgb(46, 46, 51);
-            --primary: rgb(218, 218, 219);
-            --secondary: rgb(155, 156, 157);
-            --tertiary: rgb(65, 66, 68);
-            --content: rgb(196, 196, 197);
-            --code-block-bg: rgb(46, 46, 51);
-            --code-bg: rgb(55, 56, 62);
-            --border: rgb(51, 51, 51);
-            color-scheme: dark;
-          }
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
 
-          .list {
-            background: var(--theme);
-          }
+            .list {
+                background: var(--theme);
+            }
 
-          .toc {
-            background: var(--entry);
-          }
+            .toc {
+                background: var(--entry);
+            }
         }
       </style>
     </noscript>
     <script>
       if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.querySelector("html").dataset.theme = "dark";
+          document.querySelector("html").dataset.theme = "dark";
       } else {
-        document.querySelector("html").dataset.theme = "light";
+          document.querySelector("html").dataset.theme = "light";
       }
     </script>
     <meta property="og:url" content="https://dhtzs.dev/write-ups/" />
@@ -87,7 +87,7 @@
         "itemListElement": [
           {
             "@type": "ListItem",
-            "position": 1,
+            "position":  1 ,
             "name": "Write-ups",
             "item": "https://dhtzs.dev/write-ups/"
           }
@@ -102,10 +102,10 @@
           <a href="https://dhtzs.dev/" accesskey="h" title="dhtzs.dev (Alt + H)">dhtzs.dev</a>
           <div class="logo-switches">
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="Toggle theme (Alt + T)" aria-label="toggle theme">
-              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -118,7 +118,7 @@
               </svg>
             </button>
             <a href="https://dhtzs.dev/search/" class="search-toggle" accesskey="/" title="Search (Alt + /)" aria-label="search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -154,6 +154,21 @@
         <h1>Write-ups</h1>
         <div class="post-description">Read my write-ups — Discover in-depth analyses of cybersecurity challenges, sharing insights and solutions in the world of ethical hacking.</div>
       </header>
+
+      <article class="post-entry">
+        <header class="entry-header">
+          <h2 class="entry-hint-parent">How a single space turned an email invitation into RCE</h2>
+        </header>
+        <div class="entry-content">
+          <p>Introduction Welcome to my first published write-up! I’m 25 now, and I began my bug bounty journey back in 2020 when I was 19. After a few years of researching and reporting vulnerabilities, I wanted my first post to highlight an older finding that still stands out to me — hoping it inspires newcomers entering cybersecurity, and maybe reminds experienced researchers how far methodical, creative thinking can take you. Today, AI has become an essential part of a security researcher’s toolkit, speeding up our workflows without replacing the curiosity and intuition behind the work. That said, this vulnerability dates back to before AI became part of the day-to-day process. There were no automated exploit chains or specialized tools involved — just manual testing, careful observation, and paying close attention to how the backend behaved. ...</p>
+        </div>
+        <footer class="entry-footer">
+          <span>5 min</span>
+          &nbsp;·&nbsp;
+          <span>946 words</span>
+        </footer>
+        <a class="entry-link" aria-label="post link to How a single space turned an email invitation into RCE" href="https://dhtzs.dev/write-ups/1/"></a>
+      </article>
     </main>
 
     <footer class="footer">
@@ -185,107 +200,106 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("\/sw.min.js", {
-            updateViaCache: "none",
-          })
-          .catch(function (e) {
-            return console.error(e.message);
+          navigator.serviceWorker.register("\/sw.min.js", {
+              updateViaCache: "none"
+          }).catch(function(e) {
+              return console.error(e.message);
           });
       }
     </script>
     <script>
       if ("serviceWorker" in navigator && "caches" in window) {
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 0) {
-              caches.open("offline-access").then(function (cache) {
-                return cache
-                  .keys()
-                  .then(function (keyList) {
-                    return Promise.all(
-                      keyList.map(function (key) {
-                        return key.url;
-                      }),
-                    );
-                  })
-                  .then(function (keyList) {
-                    document.querySelectorAll(".post-entry").forEach(function (entry) {
-                      if (keyList.indexOf(entry.querySelector("a").href) !== -1) {
-                        entry.style.borderColor = "#a6da95";
-                        entry.style.pointerEvents = "auto";
+          fetch(window.location.href, { method: "HEAD", cache: "no-store" }).catch(function() {
+              return caches.open("offline-access").then(function(cache) {
+                  return cache.keys();
+              }).then(function(keyList) {
+                  let urls = keyList.map(function(key) {
+                      return key.url;
+                  });
+                  document.querySelectorAll(".post-entry").forEach(function(entry) {
+                      if (urls.indexOf(entry.querySelector("a").href) !== -1) {
+                          entry.style.borderColor = "#16a34a";
+                          entry.style.pointerEvents = "auto";
                       } else {
-                        entry.style.borderColor = "#ed8796";
-                        entry.style.pointerEvents = "none";
+                          entry.style.borderColor = "#dc2626";
+                          entry.style.pointerEvents = "none";
                       }
-                    });
                   });
               });
-            }
-          }
-        };
-        xhr.open("GET", window.location.href + "?t=" + Date.now(), true);
-        xhr.send();
+          });
       }
     </script>
 
     <script>
       var menu = document.getElementById("menu");
       if (menu) {
-        var scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-          menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+          const scrollPosition = localStorage.getItem("menu-scroll-position");
+          if (scrollPosition) {
+              menu.scrollLeft = parseInt(scrollPosition, 10);
+          }
 
-        menu.addEventListener("scroll", function () {
-          localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        });
+          let menuScrollTimeout;
+          menu.addEventListener("scroll", function() {
+              clearTimeout(menuScrollTimeout);
+              menuScrollTimeout = setTimeout(function () {
+                  localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+              }, 150);
+          }, { passive: true });
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          var id = this.getAttribute("href").substr(1);
-          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-          }
-          if (id === "top") {
-            history.replaceState(null, null, " ");
-          } else {
-            history.pushState(null, null, `#${id}`);
-          }
-        });
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+          anchor.addEventListener("click", function(e) {
+              e.preventDefault();
+              var id = this.getAttribute("href").substr(1);
+              const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+              if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                  target.scrollIntoView({
+                      behavior: "smooth"
+                  });
+              } else {
+                  target.scrollIntoView();
+              }
+              if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                  target.setAttribute("tabindex", "-1");
+              }
+              target.focus({ preventScroll: true });
+              if (id === "top") {
+                  history.replaceState(null, null, " ");
+              } else {
+                  history.pushState(null, null, `#${id}`);
+              }
+          });
       });
     </script>
     <script>
       var toplink = document.getElementById("top-link");
-      window.addEventListener("scroll", function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-          toplink.classList.remove("hidden");
-        } else {
-          toplink.classList.add("hidden");
-        }
-      });
+      var scrollTicking = false;
+      window.addEventListener("scroll", function() {
+          if (scrollTicking) {
+              return;
+          }
+          scrollTicking = true;
+          requestAnimationFrame(function() {
+              const scrollThreshold = window.innerHeight;
+              const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+              toplink.classList.toggle("hidden", !shown);
+              scrollTicking = false;
+          });
+      }, { passive: true });
     </script>
     <script>
-      document.getElementById("theme-toggle").addEventListener("click", function () {
-        var html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-          html.dataset.theme = "light";
-          localStorage.setItem("pref-theme", "light");
-        } else {
-          html.dataset.theme = "dark";
-          localStorage.setItem("pref-theme", "dark");
-        }
-        if (window.interactionsChart !== undefined) {
-          window.interactionsChart.update();
-        }
+      document.getElementById("theme-toggle").addEventListener("click", function() {
+          var html = document.querySelector("html");
+          if (html.dataset.theme === "dark") {
+              html.dataset.theme = "light";
+              localStorage.setItem("pref-theme", "light");
+          } else {
+              html.dataset.theme = "dark";
+              localStorage.setItem("pref-theme", "dark");
+          }
+          if (window.interactionsChart !== undefined) {
+              window.interactionsChart.update();
+          }
       });
     </script>
   </body>

@@ -1,0 +1,23 @@
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  CDN-Cache-Control: public, max-age=3600
+
+/assets/*
+  ! Cache-Control
+  ! CDN-Cache-Control
+  Cache-Control: public, max-age=86400, stale-while-revalidate=2592000
+
+/images/*
+  ! Cache-Control
+  ! CDN-Cache-Control
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+
+/favicons/*
+  ! Cache-Control
+  ! CDN-Cache-Control
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+
+/favicon.ico
+  ! Cache-Control
+  ! CDN-Cache-Control
+  Cache-Control: public, max-age=2592000

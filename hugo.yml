@@ -45,10 +45,10 @@ params:
   images: ["images/logo.png"]
   defaultTheme: auto
   DateFormat: "October 30, 2001"
-  ShareButtons: ["x", "linkedin", "telegram"]
+  ShareButtons: ["x", "linkedin", "whatsapp", "telegram", "ycombinator"]
   ShowShareButtons: true
   ShowReadingTime: true
-  ShowCodeCopyButtons: true
+  ShowCodeCopyButtons: false
   ShowPageNums: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
@@ -64,6 +64,7 @@ params:
   disableScrollToTop: false
   comments: false
   hideMeta: false
+  hideAuthor: true
   hideSummary: false
   socialIcons:
     - name: "LinkedIn"
@@ -100,7 +101,7 @@ params:
   profileMode:
     enabled: true
     title: "Dimitris Chatzis"
-    subtitle: "Security researcher. Active on HackerOne, Bugcrowd, and Intigriti."
+    subtitle: "Security researcher"
     imageUrl: "/images/profile"
     imageTitle: "Dimitris Chatzis"
   fuseOpts:
@@ -116,16 +117,11 @@ params:
     threshold: 0.4
     distance: 100
     ignoreLocation: true
-  editPost:
-    URL: "https://github.com/dhtzs/dhtzs.dev/edit/main/content"
-    Text: "Suggest changes"
-    appendFilePath: true
   mainSections:
     - "write-ups"
 
 markup:
   highlight:
-    style: catppuccin-macchiato
     codeFences: true
     guessSyntax: true
     lineNos: true

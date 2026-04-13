@@ -1,15 +1,36 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "dhtzs-dev",
-  "compatibility_date":"2025-04-07",
+  "compatibility_date":"2026-10-01",
   "assets": {
     "directory": "./public/",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
   },
   "main": "./index.js",
+  "preview_urls": false,
+  "cache": {
+    "enabled": true
+  },
   "workers_dev": false,
   "placement": {
     "mode": "smart"
   },
-  "send_metrics": false
+  "send_metrics": false,
+  "observability": {
+    "issues": {
+      "enabled": true
+    },
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true
+    }
+  },
+  "dependencies_instrumentation": {
+    "enabled": true
+  }
 }

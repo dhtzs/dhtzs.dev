@@ -1,4 +1,4 @@
-![dhtzs.dev](/static/images/screenshot-1280x800.jpg)
+![dhtzs.dev](/static/images/screenshot-1280x720.jpg)
 [dhtzs.dev](https://dhtzs.dev/) - powered by [Hugo](https://gohugo.io/) & [PaperMod](https://github.com/adityatelange/hugo-PaperMod). Deployed on [Cloudflare Workers](https://workers.cloudflare.com/).
 
 ## 📖 About
@@ -8,12 +8,12 @@ This repository contains the source code for my personal website. It is licensed
 ![Repository size](https://img.shields.io/github/repo-size/dhtzs/dhtzs.dev)
 
 ## 📋 Requirements
-- [Node.js](https://nodejs.org/en/download) (v18.x or higher)
-- [Hugo Extended](https://gohugo.io/installation/) (v0.146.6 or higher)
+- [Node.js](https://nodejs.org/en/download) (v22.x or later)
+- [Hugo](https://gohugo.io/installation/) (v0.158.0 or later)
 
 ## 🚀 Getting started
 > [!NOTE]
-> The following instructions assume that you have already installed both Node.js and Hugo Extended to your machine.
+> The following instructions assume that you have already installed both Node.js and Hugo to your machine.
 
 1. Clone the repository and its submodules:
 ```console

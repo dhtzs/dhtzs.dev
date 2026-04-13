@@ -243,8 +243,8 @@
   ],
   "screenshots": [
     {
-      "src": "/images/screenshot-1280x800.jpg",
-      "sizes": "1280x800",
+      "src": "/images/screenshot-1280x720.jpg",
+      "sizes": "1280x720",
       "type": "image/jpg",
       "form_factor": "wide",
       "label": "dhtzs.dev on a desktop device"
