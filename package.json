@@ -16,7 +16,7 @@
     "eslint": "^10.2.0",
     "globals": "^17.5.0",
     "npm-check-updates": "^20.0.1",
-    "wrangler": "^4.81.1"
+    "wrangler": "^4.82.0"
   },
   "scripts": {
     "build": "node scripts/build.js",
