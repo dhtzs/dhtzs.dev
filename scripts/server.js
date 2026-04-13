@@ -5,7 +5,7 @@ import path from "path";
 try {
   console.log("-> Starting server …");
   fs.rmSync(path.resolve(import.meta.dirname, "../public"), { recursive: true, force: true });
-  execSync("hugo server", { stdio: "inherit" });
+  execSync("hugo server --disableFastRender", { stdio: "inherit" });
 } catch (error) {
   console.error("Error during server startup:", error.message);
 }

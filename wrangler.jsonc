@@ -1,15 +1,28 @@
 {
   "name": "dhtzs-dev",
-  "compatibility_date":"2025-04-07",
+  "compatibility_date":"2026-06-16",
   "assets": {
     "directory": "./public/",
     "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
   "main": "./index.js",
+  "cache": {
+    "enabled": true
+  },
   "workers_dev": false,
   "placement": {
     "mode": "smart"
   },
-  "send_metrics": false
+  "send_metrics": false,
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {}
+  },
+  "dependencies_instrumentation": {
+    "enabled": true
+  }
 }

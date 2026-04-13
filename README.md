@@ -8,7 +8,7 @@ This repository contains the source code for my personal website. It is licensed
 ![Repository size](https://img.shields.io/github/repo-size/dhtzs/dhtzs.dev)
 
 ## 📋 Requirements
-- [Node.js](https://nodejs.org/en/download) (v18.x or higher)
+- [Node.js](https://nodejs.org/en/download) (v22.x or higher)
 - [Hugo Extended](https://gohugo.io/installation/) (v0.146.6 or higher)
 
 ## 🚀 Getting started
